@@ -1,4 +1,4 @@
-# CodeCrew — Website nhóm + Portfolio cá nhân theo rubric GK
+# Nhóm 4 — Website nhóm + Portfolio cá nhân theo rubric GK
 
 ## Cấu trúc
 
