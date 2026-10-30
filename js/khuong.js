@@ -66,9 +66,6 @@ if ("IntersectionObserver" in window) {
   revealTargets.forEach((el) => el.classList.add("in"));
 }
 
-// Gạch chân nổi bật tên sau khi trang tải
-requestAnimationFrame(() => document.querySelector(".mark")?.classList.add("on"));
-
 // Chân dung nghiêng nhẹ theo con trỏ
 const portrait = document.querySelector(".portrait-wrap");
 if (!reduceMotion) {
@@ -100,15 +97,25 @@ filters.forEach((button) => {
 
 // Cửa sổ mô tả dự án
 const projectInfo = {
-  group: {
-    title: "Trang chủ Nhóm 4",
-    text: "Trang giới thiệu nhóm và danh sách sáu thành viên; mỗi thẻ dẫn đến trang cá nhân. Có chế độ sáng/tối, hiệu ứng hover và bố cục responsive, viết bằng HTML, CSS và JavaScript thuần.",
+  banhcuon: {
+    title: "Shop bánh cuốn",
+    text: "Website bán bánh cuốn Quỳnh Chi - Bánh cuốn Tây Sơn với banner giới thiệu, mục sản phẩm nổi bật (bánh cuốn Tây Sơn, bánh cuốn đặc biệt, bún thịt nướng) và giỏ hàng. Viết bằng HTML, CSS và JavaScript, đăng tải trên Netlify.",
     tags: ["HTML", "CSS", "JavaScript"]
   },
   portfolio: {
     title: "Portfolio cá nhân",
     text: "Trang giới thiệu bản thân gồm banner, mục tiêu, kỹ năng, học vấn, dự án và form liên hệ. Có menu di động, chế độ sáng/tối, lọc dự án, cửa sổ mô tả, nút lên đầu trang và kiểm tra form bằng JavaScript.",
     tags: ["HTML", "CSS", "JavaScript"]
+  },
+  group: {
+    title: "Trang chủ Nhóm 4",
+    text: "Trang giới thiệu nhóm và danh sách sáu thành viên; mỗi thẻ dẫn đến trang cá nhân. Có chế độ sáng/tối, hiệu ứng hover và bố cục responsive, viết bằng HTML, CSS và JavaScript thuần.",
+    tags: ["HTML", "CSS", "JavaScript"]
+  },
+  caro: {
+    title: "Game cờ Caro",
+    text: "Game cờ Caro nhiều người chơi trên máy tính: kết nối tới máy chủ qua TCP, đăng nhập, xem danh sách người chơi online, mời đấu, xem trận, tính điểm và có khung trò chuyện/nhật ký.",
+    tags: ["C#", "WinForms", "TCP"]
   }
 };
 const modal = document.querySelector("#project-modal");
@@ -216,4 +223,21 @@ if ("IntersectionObserver" in window) {
   }, { threshold: 0.3 }).observe(routeSteps);
 } else {
   routeSteps.classList.add("grow");
+}
+
+// Chữ gõ tự chạy ở dòng định hướng
+const typed = document.querySelector("#typed");
+if (typed && !reduceMotion) {
+  const text = typed.textContent;
+  let n = 0, deleting = false;
+  typed.setAttribute("aria-label", text);
+  typed.textContent = "";
+  (function tick() {
+    n += deleting ? -1 : 1;
+    typed.textContent = text.slice(0, n);
+    let delay = deleting ? 45 : 90;
+    if (!deleting && n === text.length) { deleting = true; delay = 2200; }
+    else if (deleting && n === 0) { deleting = false; delay = 500; }
+    setTimeout(tick, delay);
+  })();
 }

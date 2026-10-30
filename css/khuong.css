@@ -403,3 +403,39 @@ h1, h2, h3, p, dl, dd, figure, ol, ul { margin: 0; }
   .js .route-steps li::before { scale: 1; }
   .fall, .l-clouds { display: none; }
 }
+
+/* Sở thích */
+.hobby-title { margin: 36px 0 16px; font-family: var(--serif); font-size: 1.4rem; }
+.hobbies { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.hobby { margin: 0; padding: 0; overflow: hidden; }
+.hobby img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; transition: transform .8s var(--ease); }
+.hobby:hover img { transform: scale(1.05); }
+.hobby figcaption { padding: 16px 18px 20px; }
+.hobby figcaption strong { font-size: 1.1rem; }
+@media (max-width: 900px) { .hobbies { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .hobbies { grid-template-columns: 1fr; } }
+
+/* Biểu tượng liên hệ */
+.social { display: flex; gap: 14px; margin: 22px 0 0; padding: 0; list-style: none; }
+.social a { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--line); color: var(--ink); background: var(--card, transparent); transition: transform .3s var(--ease), background .3s, color .3s; }
+.social a:hover, .social a:focus-visible { transform: translateY(-4px); background: var(--leaf); color: #fff; }
+.social svg { width: 22px; height: 22px; fill: currentColor; }
+
+/* Màu từng biểu tượng */
+.social a.s-mail { --c: #ea4335; }
+.social a.s-phone { --c: #25a244; }
+.social a.s-fb { --c: #1877f2; }
+.social a.s-gh { --c: #6e40c9; }
+.social a[class^="s-"] { color: var(--c); border-color: var(--c); background: color-mix(in srgb, var(--c) 12%, transparent); }
+.social a[class^="s-"]:hover, .social a[class^="s-"]:focus-visible { background: var(--c); color: #fff; border-color: var(--c); }
+
+.facts.facts-two { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 700px) { .facts.facts-two { grid-template-columns: 1fr; } }
+
+/* Chữ gõ tự chạy: ô vô hình giữ chỗ để dòng không nhảy độ cao */
+.typed-wrap { display: inline-grid; }
+.typed-wrap > * { grid-area: 1 / 1; font-weight: 700; white-space: nowrap; }
+.typed-size { visibility: hidden; }
+.typed::after { content: ""; display: inline-block; width: 2px; height: 1em; margin-left: 3px; vertical-align: -.12em; background: currentColor; animation: caret-blink 1s steps(1) infinite; }
+@keyframes caret-blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .typed::after { animation: none; } }
