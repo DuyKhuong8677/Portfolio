@@ -91,7 +91,8 @@ body::before {
 }
 .header.scrolled { box-shadow: 0 8px 24px -12px rgba(10, 20, 58, .3); }
 .nav { height: 64px; display: flex; align-items: center; justify-content: space-between; }
-.brand { font-weight: 800; font-stretch: 112%; font-size: 1.15rem; letter-spacing: -.02em; }
+.brand { font-weight: 800; font-stretch: 112%; font-size: 1.05rem; letter-spacing: -.01em; }
+@media (max-width: 700px) { .brand { font-size: .8rem; } }
 .brand span { color: var(--red); }
 .nav-links { display: flex; align-items: center; gap: 26px; font-size: .92rem; font-weight: 500; color: var(--muted); }
 .nav-links a { position: relative; transition: color .2s; }
