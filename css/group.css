@@ -145,6 +145,30 @@ body::before {
 }
 .mark.on { background-size: 100% .12em; }
 
+/* Tiêu đề nghệ thuật */
+.intro h1.art-title { max-width: none; font-size: clamp(2.8rem, 9vw, 7rem); line-height: .95; letter-spacing: -.02em; }
+.art-top, .art-sub { display: block; width: fit-content; }
+.art-top {
+  letter-spacing: .04em;
+  background: linear-gradient(100deg, var(--ink) 0%, var(--ink) 35%, #3b6cf0 48%, #8a5cf0 52%, var(--ink) 65%, var(--ink) 100%) 0 0 / 250% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  animation: art-shine 5s ease-in-out infinite;
+}
+.art-sub {
+  margin-top: .06em;
+  color: transparent; -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px var(--ink);
+  background: linear-gradient(90deg, var(--red), #ff9a3c, var(--red)) 0 100% / 0 100% no-repeat;
+  -webkit-background-clip: text; background-clip: text;
+  transition: background-size .9s var(--ease);
+  cursor: default;
+}
+.art-sub:hover { background-size: 100% 100%; }
+.art-dot { font-style: normal; -webkit-text-stroke: 0; -webkit-text-fill-color: var(--red); color: var(--red); display: inline-block; animation: art-bounce 2.2s var(--ease) infinite; }
+@keyframes art-shine { 0%, 15% { background-position: 100% 0; } 85%, 100% { background-position: 0 0; } }
+@keyframes art-bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-.14em); } }
+
 /* Hình máy bay */
 .intro { position: relative; }
 .sky { display: none; position: absolute; top: 28px; right: 0; width: min(42%, 470px); overflow: visible; color: var(--ink); }
