@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hoàng Duy Khánh | Portfolio – Digital CV</title>
+<meta name="description" content="Portfolio – Digital CV của Hoàng Duy Khánh - sinh viên Công nghệ thông tin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Be+Vietnam+Pro:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <nav class="nav" aria-label="Menu chính">
+    <a class="logo" href="#top">HK<span>.</span></a>
+    <ul class="menu" id="menu">
+      <li><a href="#about">Giới thiệu</a></li>
+      <li><a href="#skills">Kỹ năng</a></li>
+      <li><a href="#education">Học vấn</a></li>
+      <li><a href="#projects">Dự án</a></li>
+      <li><a href="#contact">Liên hệ</a></li>
+    </ul>
+    <button id="themeBtn" class="icon-btn" aria-label="Chuyển chế độ sáng/tối">🌙</button>
+    <button id="menuBtn" class="icon-btn burger" aria-label="Mở menu" aria-expanded="false" aria-controls="menu">☰</button>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+    <div class="hero-inner">
+      <div class="avatar">
+        <span class="initials">HK</span>
+        <img src="images/avatar.jpg" alt="Ảnh đại diện Hoàng Duy Khánh" onerror="this.remove()">
+      </div>
+      <div>
+        <p class="hello">Xin chào, mình là 👋</p>
+        <h1>Hoàng Duy Khánh</h1>
+        <p class="role">Sinh viên CNTT • Đại học Giao thông vận tải TP.HCM (UTH)</p>
+        <p class="lead">Sinh viên Công nghệ thông tin tại UTH, thích xây dựng web và biến ý tưởng thành những sản phẩm hữu ích, dễ dùng.</p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">Xem dự án</a>
+          <a class="btn ghost" href="#contact">Liên hệ mình</a>
+          <button class="btn ghost" id="printBtn" type="button">Tải CV (PDF)</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section reveal">
+    <h2>Giới thiệu bản thân</h2>
+    <div class="grid two">
+      <article class="card c-pink">
+        <h3>Mình là ai?</h3>
+        <p>Mình là Hoàng Duy Khánh, sinh viên ngành Công nghệ thông tin tại Đại học Giao thông vận tải TP.HCM (UTH). Mình thích học lập trình web, làm việc nhóm và luôn muốn thử những cách làm mới.</p>
+      </article>
+      <article class="card c-blue">
+        <h3>Định hướng nghề nghiệp</h3>
+        <p>Mục tiêu ngắn hạn: nắm vững nền tảng HTML, CSS, JavaScript và làm được sản phẩm hoàn chỉnh. Mục tiêu dài hạn: trở thành lập trình viên Web Full-stack.</p>
+      </article>
+    </div>
+
+    <div class="info">
+      <div><span>Trường</span>Đại học GTVT TP.HCM (UTH)</div>
+      <div><span>Ngành</span>Công nghệ thông tin</div>
+      <div><span>Khóa</span>Đang cập nhật</div>
+      <div><span>GPA</span>Đang cập nhật</div>
+    </div>
+  </section>
+
+  <section id="skills" class="section reveal">
+    <h2>Kỹ năng</h2>
+    <div class="skills">
+      <div class="skill" style="--c1:#ff6b6b;--c2:#ffa94d"><div class="row"><span>HTML &amp; CSS</span><b>80%</b></div><div class="bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="HTML và CSS"><i data-level="80"></i></div></div>
+      <div class="skill" style="--c1:#ffd43b;--c2:#69db7c"><div class="row"><span>JavaScript</span><b>65%</b></div><div class="bar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" aria-label="JavaScript"><i data-level="65"></i></div></div>
+      <div class="skill" style="--c1:#38d9a9;--c2:#4dabf7"><div class="row"><span>Python</span><b>60%</b></div><div class="bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" aria-label="Python"><i data-level="60"></i></div></div>
+      <div class="skill" style="--c1:#748ffc;--c2:#da77f2"><div class="row"><span>Git &amp; GitHub</span><b>55%</b></div><div class="bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" aria-label="Git và GitHub"><i data-level="55"></i></div></div>
+      <div class="skill" style="--c1:#f783ac;--c2:#ff6b6b"><div class="row"><span>Làm việc nhóm</span><b>85%</b></div><div class="bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="Làm việc nhóm"><i data-level="85"></i></div></div>
+    </div>
+  </section>
+
+  <section id="education" class="section reveal">
+    <h2>Học vấn &amp; hoạt động</h2>
+    <div class="grid three">
+      <article class="card c-yellow">
+        <h3>🎓 Học vấn</h3>
+        <p><strong>Đại học Giao thông vận tải TP.HCM (UTH)</strong><br>Ngành Công nghệ thông tin</p>
+        <p class="muted">Niên khóa và GPA: đang cập nhật.</p>
+      </article>
+      <article class="card c-green">
+        <h3>🚀 Hoạt động</h3>
+        <ul><li>Làm đồ án và bài tập nhóm tại UTH</li><li>Hoạt động CLB / tình nguyện: đang cập nhật</li></ul>
+      </article>
+      <article class="card c-purple">
+        <h3>🏅 Chứng chỉ &amp; giải thưởng</h3>
+        <p>Chưa có. <span class="muted">Đang cập nhật.</span></p>
+      </article>
+    </div>
+  </section>
+
+  <section id="projects" class="section reveal">
+    <h2>Dự án</h2>
+    <div class="filters" role="group" aria-label="Lọc dự án">
+      <button class="chip active" data-filter="all">Tất cả</button>
+      <button class="chip" data-filter="web">Web</button>
+      <button class="chip" data-filter="code">Lập trình</button>
+    </div>
+    <div class="grid two" id="projectGrid">
+      <article class="project" data-cat="code">
+        <img src="images/project-student.svg" alt="Minh họa dự án Quản lý sinh viên" loading="lazy">
+        <div class="body">
+          <span class="badge">Dự án mẫu</span>
+          <h3>Quản lý sinh viên</h3>
+          <p>Ứng dụng thêm, sửa, xóa và tìm kiếm thông tin sinh viên.</p>
+          <p class="tags"><span>Python</span><span>SQLite</span><span>OOP</span></p>
+          <p class="links"><a href="https://github.com/your-username/student-manager" target="_blank" rel="noopener">Mã nguồn</a><a href="#" target="_blank" rel="noopener">Demo</a></p>
+        </div>
+      </article>
+      <article class="project" data-cat="web">
+        <img src="images/project-web.svg" alt="Minh họa dự án Portfolio Digital CV" loading="lazy">
+        <div class="body">
+          <span class="badge">Dự án mẫu</span>
+          <h3>Portfolio – Digital CV</h3>
+          <p>Website CV cá nhân responsive, có dark mode, lọc dự án và form liên hệ.</p>
+          <p class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></p>
+          <p class="links"><a href="https://github.com/your-username/portfolio" target="_blank" rel="noopener">Mã nguồn</a><a href="#top">Demo</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact" class="section reveal">
+    <h2>Liên hệ</h2>
+    <div class="grid two">
+      <div class="card c-blue">
+        <h3>Kết nối với mình</h3>
+        <p>📧 <a href="mailto:khanhhd245588@ut.edu.vn">khanhhd245588@ut.edu.vn</a></p>
+        <p>💻 <a href="https://github.com/Hoangduykhanh007" target="_blank" rel="noopener">https://github.com/Hoangduykhanh007</a></p>
+        <p>💬 <a href="https://zalo.me/" target="_blank" rel="noopener">Zalo</a> · 📘 <a href="https://facebook.com/" target="_blank" rel="noopener">Facebook</a></p>
+      </div>
+      <form id="contactForm" class="card form" novalidate>
+        <label>Họ tên<input name="name" type="text" autocomplete="name"><small class="err"></small></label>
+        <label>Email<input name="email" type="email" autocomplete="email"><small class="err"></small></label>
+        <label>Chủ đề<input name="subject" type="text"><small class="err"></small></label>
+        <label>Nội dung<textarea name="message" rows="4"></textarea><small class="err"></small></label>
+        <button class="btn primary" type="submit">Gửi tin nhắn</button>
+        <p id="formOk" class="ok" role="status" hidden>Đã kiểm tra hợp lệ!</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>© 2026 Hoàng Duy Khánh – UTH. Làm bằng HTML, CSS, JS và thật nhiều màu sắc 🎨</p>
+</footer>
+</body>
+</html>
