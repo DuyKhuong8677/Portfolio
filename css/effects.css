@@ -1,0 +1,60 @@
+/* Hiệu ứng trang trí: dải công nghệ, số liệu, chữ hiện dần, đom đóm, lá bung, thẻ nghiêng 3D */
+
+/* Dải công nghệ chạy ngang */
+.marquee { overflow: hidden; margin-top: 8px; padding: 14px 0; border-block: 1px dashed var(--line); }
+.marquee-track { display: flex; width: max-content; animation: marquee 32s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-group { display: flex; align-items: center; gap: 28px; padding-right: 28px; }
+.marquee-group span { font-family: var(--serif); font-size: 1.35rem; font-style: italic; font-weight: 600; color: var(--leaf); white-space: nowrap; }
+.marquee-group svg { width: 16px; height: 16px; fill: var(--accent); }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* Số liệu nhanh */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; padding-top: 40px; }
+.stat { display: grid; justify-items: center; gap: 4px; padding: 22px 12px; text-align: center; }
+.stat strong { margin: 0; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.stat span { font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+@media (max-width: 700px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+/* Gạch chân tiêu đề vẽ dần khi cuộn tới */
+.sec-title.reveal::after { content: ""; display: block; width: 72px; height: 3px; margin-top: 10px; border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--leaf)); transform: scaleX(0); transform-origin: left; transition: transform .9s var(--ease) .35s; }
+.sec-title.reveal.in::after { transform: scaleX(1); }
+
+/* Ảnh hiện dần như kéo màn */
+.js .ph img { clip-path: inset(0 0 100% 0); transition: transform .8s var(--ease), clip-path 1.1s var(--ease) .2s; }
+.js .reveal.in .ph img, .js .ph.reveal.in img { clip-path: inset(0); }
+
+/* Tên ở banner hiện từng chữ */
+.hero h1 .word { display: inline-block; white-space: nowrap; }
+.hero h1 .char { display: inline-block; opacity: 0; transform: translateY(.55em) rotate(6deg); animation: char-in .8s var(--ease) forwards; animation-delay: calc(var(--i) * 40ms + .25s); }
+@keyframes char-in { to { opacity: 1; transform: none; } }
+
+/* Đom đóm bay ở chế độ tối */
+.fireflies { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0; transition: opacity .9s; }
+:root[data-theme="dark"] .fireflies { opacity: 1; }
+.fireflies i { position: absolute; left: var(--x); top: var(--y); width: 5px; height: 5px; border-radius: 50%; background: #ffe9a8; box-shadow: 0 0 10px 3px rgba(255, 226, 140, .65); animation: firefly var(--dur) ease-in-out var(--delay) infinite; }
+@keyframes firefly {
+  0%, 100% { transform: translate(0, 0); opacity: .15; }
+  25% { transform: translate(var(--mx), calc(var(--my) * .4)); opacity: 1; }
+  50% { transform: translate(calc(var(--mx) * .4), var(--my)); opacity: .3; }
+  75% { transform: translate(calc(var(--mx) * -.6), calc(var(--my) * .5)); opacity: .9; }
+}
+
+/* Đom đóm theo con trỏ và lá bung khi bấm */
+.spark { position: fixed; z-index: 60; width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px 2px color-mix(in srgb, var(--accent) 60%, transparent); pointer-events: none; animation: spark .8s ease-out forwards; }
+@keyframes spark { to { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(.2); } }
+.burst { position: fixed; z-index: 60; width: 18px; height: 18px; margin: -9px 0 0 -9px; fill: var(--leaf); pointer-events: none; animation: burst .9s cubic-bezier(.2, .7, .3, 1) forwards; }
+@keyframes burst { to { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(.6); } }
+
+/* Thẻ nghiêng 3D và vệt sáng */
+.tilt { position: relative; transform-style: preserve-3d; }
+.glare { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s; background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, .38), transparent 55%); }
+:root[data-theme="dark"] .glare { background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, .14), transparent 55%); }
+.tilt:hover .glare { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .ph img { clip-path: none; }
+  .marquee-track { animation: none; }
+  .sec-title.reveal::after { transform: none; }
+  .fireflies { display: none; }
+}

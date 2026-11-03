@@ -447,7 +447,7 @@ h1, h2, h3, p, dl, dd, figure, ol, ul { margin: 0; }
 .arch .slide { opacity: 0; transition: opacity .9s ease; }
 .arch .slide[src$="me-4.jpg"] { object-position: 60% center; }
 .arch .slide.is-on { opacity: 1; }
-.motto { margin: 0 0 18px; color: var(--leaf); font-family: var(--serif); font-size: 1.15rem; font-style: italic; }
+.motto { margin: 0 0 18px; padding-left: 14px; border-left: 3px solid var(--accent); font-family: var(--serif); font-size: 1.15rem; font-style: italic; }
 
 /* Về mình */
 .story { display: grid; grid-template-columns: .8fr 1.2fr; gap: 32px; align-items: start; }

@@ -37,6 +37,13 @@ const EN = {
   "Đại học GTVT TP.HCM": "UTH – University of Transport HCMC",
   "Công nghệ": "Technologies",
 
+  // Số liệu nhanh
+  "Số liệu nhanh": "Quick stats",
+  "Năm bắt đầu viết code": "Year I started coding",
+  "Dự án đã làm": "Projects built",
+  "Kỹ năng đang học": "Skills in progress",
+  "Người trong Nhóm 4": "People in Group 4",
+
   // Về mình
   "Ngoài lý lịch, đây là con người thật của mình.": "Beyond the résumé, this is the real me.",
   "Duy Khương dang tay giữa khu rừng xanh, ánh nắng xuyên qua tán lá": "Duy Khuong with arms spread in a green forest, sunlight streaming through the leaves",
