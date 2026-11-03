@@ -2,8 +2,8 @@
  * ==========================================================================
  * PERSONAL PORTFOLIO WEBSITE - JAVASCRIPT
  * Developer: Đỗ Trung Kiên
- * University: Đại học Giao thông Vận tải TP.HCM (UTH)
- * Architecture: Vanilla JavaScript (ES6+), Zero External Dependencies
+ * Institution: Đại học Giao thông Vận tải TP.HCM (UTH)
+ * Architecture: Vanilla JavaScript (ES6+), High Performance, Zero Dependencies
  * ==========================================================================
  */
 
@@ -11,16 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
     /* ==========================================================================
-       FEATURE 1: THEME TOGGLE (Dark / Light Mode)
+       FEATURE 1: THEME TOGGLE (Dark & Light Mode with LocalStorage)
        ========================================================================== */
     const initThemeToggle = () => {
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         if (!themeToggle || !themeIcon) return;
 
-        const THEME_STORAGE_KEY = 'theme';
+        const THEME_STORAGE_KEY = 'kien-portfolio-theme';
 
-        // Apply theme helper
         const applyTheme = (theme) => {
             if (theme === 'light') {
                 document.body.classList.add('light-mode');
@@ -33,24 +32,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // Load saved preference on initialization
+        // Saved preference or system preference
         const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
         if (savedTheme) {
             applyTheme(savedTheme);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            applyTheme('light');
         } else {
-            // Default is dark mode according to design spec
             applyTheme('dark');
         }
 
-        // Toggle on click
         themeToggle.addEventListener('click', () => {
-            const isCurrentlyLight = document.body.classList.contains('light-mode');
-            const nextTheme = isCurrentlyLight ? 'dark' : 'light';
-            applyTheme(nextTheme);
+            const isLight = document.body.classList.contains('light-mode');
+            const targetTheme = isLight ? 'dark' : 'light';
+            applyTheme(targetTheme);
             try {
-                localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+                localStorage.setItem(THEME_STORAGE_KEY, targetTheme);
             } catch (e) {
-                console.warn('LocalStorage unavailable for theme persistence.', e);
+                console.warn('LocalStorage unavailable:', e);
             }
         });
     };
@@ -60,167 +59,85 @@ document.addEventListener('DOMContentLoaded', () => {
        ========================================================================== */
     const initMobileMenu = () => {
         const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
+        const navMenu = document.getElementById('navLinks')?.parentElement;
         const mobileOverlay = document.getElementById('mobileOverlay');
-        if (!hamburger || !navLinks || !mobileOverlay) return;
+        if (!hamburger || !navMenu || !mobileOverlay) return;
 
         let isMenuOpen = false;
 
         const openMenu = () => {
             isMenuOpen = true;
             hamburger.classList.add('active');
-            navLinks.classList.add('active');
+            navMenu.classList.add('active');
             mobileOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
             hamburger.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
         };
 
         const closeMenu = () => {
             if (!isMenuOpen) return;
             isMenuOpen = false;
             hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
+            navMenu.classList.remove('active');
             mobileOverlay.classList.remove('active');
-            document.body.style.overflow = '';
             hamburger.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
         };
 
         hamburger.addEventListener('click', () => {
-            if (isMenuOpen) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
+            if (isMenuOpen) closeMenu();
+            else openMenu();
         });
 
-        // Close when clicking overlay
         mobileOverlay.addEventListener('click', closeMenu);
 
-        // Close menu when any nav link is clicked
-        const navAnchorLinks = navLinks.querySelectorAll('a');
-        navAnchorLinks.forEach((link) => {
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach((link) => {
             link.addEventListener('click', closeMenu);
         });
 
-        // Auto close when resizing to desktop
         window.addEventListener('resize', () => {
-            if (window.innerWidth > 768 && isMenuOpen) {
+            if (window.innerWidth > 1024 && isMenuOpen) {
                 closeMenu();
             }
         });
     };
 
     /* ==========================================================================
-       FEATURE 3: STICKY HEADER & SCROLL EFFECTS
-       FEATURE 6: SCROLL PROGRESS BAR
-       FEATURE 7: SCROLL TO TOP BUTTON
-       FEATURE 4: ACTIVE NAV LINK ON SCROLL
-       (Unified in a high-performance scroll handler with requestAnimationFrame)
+       FEATURE 3: SCROLL PROGRESS BAR & FLOATING SCROLL TOP
        ========================================================================== */
-    const initScrollFeatures = () => {
-        const header = document.getElementById('header');
+    const initScrollIndicators = () => {
         const scrollProgress = document.getElementById('scrollProgress');
         const scrollTopBtn = document.getElementById('scrollTopBtn');
-        const navLinks = document.querySelectorAll('.nav-link[data-section]');
-        const sections = document.querySelectorAll('section[id]');
+        const header = document.getElementById('header');
 
-        let ticking = false;
-
-        // Sticky Header update
-        const updateStickyHeader = (scrollY) => {
-            if (!header) return;
-            if (scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        };
-
-        // Scroll progress bar update
-        const updateScrollProgress = (scrollY) => {
-            if (!scrollProgress) return;
+        const handleScroll = () => {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
             const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const progress = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
-            const clamped = Math.min(100, Math.max(0, progress));
-            scrollProgress.style.width = `${clamped}%`;
-        };
 
-        // Scroll to top button visibility
-        const updateScrollTopBtn = (scrollY) => {
-            if (!scrollTopBtn) return;
-            if (scrollY > 500) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
-            }
-        };
-
-        // Active nav link based on scroll position
-        const updateActiveNav = (scrollY) => {
-            if (!navLinks.length || !sections.length) return;
-
-            const HEADER_OFFSET = 100;
-            const scrollPos = scrollY + HEADER_OFFSET;
-            const windowHeight = window.innerHeight;
-            const docHeight = document.documentElement.scrollHeight;
-
-            // Edge case: when user reaches the very bottom of the document
-            if (scrollY + windowHeight >= docHeight - 40) {
-                const lastSection = sections[sections.length - 1];
-                if (lastSection) {
-                    setActiveLink(lastSection.getAttribute('id'));
-                    return;
-                }
+            // Update Progress Bar
+            if (scrollProgress && docHeight > 0) {
+                const percent = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
+                scrollProgress.style.width = percent + '%';
             }
 
-            let currentSectionId = '';
-            sections.forEach((section) => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
-                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                    currentSectionId = section.getAttribute('id');
-                }
-            });
-
-            // Edge case: at the very top of page
-            if (!currentSectionId && sections[0] && scrollY < sections[0].offsetHeight) {
-                currentSectionId = sections[0].getAttribute('id');
-            }
-
-            if (currentSectionId) {
-                setActiveLink(currentSectionId);
-            }
-        };
-
-        const setActiveLink = (sectionId) => {
-            navLinks.forEach((link) => {
-                if (link.getAttribute('data-section') === sectionId) {
-                    link.classList.add('active');
+            // Show/Hide Scroll to top button
+            if (scrollTopBtn) {
+                if (scrollTop > 350) {
+                    scrollTopBtn.classList.add('show');
                 } else {
-                    link.classList.remove('active');
+                    scrollTopBtn.classList.remove('show');
                 }
-            });
-        };
-
-        // Unified tick function
-        const onScrollTick = () => {
-            const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-            updateStickyHeader(scrollY);
-            updateScrollProgress(scrollY);
-            updateScrollTopBtn(scrollY);
-            updateActiveNav(scrollY);
-            ticking = false;
-        };
-
-        // Scroll listener using requestAnimationFrame for 60fps performance
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(onScrollTick);
-                ticking = true;
             }
-        }, { passive: true });
 
-        // Scroll to top button click event
+            // Header shadow on scroll
+            if (header) {
+                header.classList.toggle('scrolled', scrollTop > 20);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
         if (scrollTopBtn) {
             scrollTopBtn.addEventListener('click', () => {
                 window.scrollTo({
@@ -229,666 +146,564 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         }
-
-        // Run once on load
-        onScrollTick();
     };
 
     /* ==========================================================================
-       FEATURE 5: SMOOTH SCROLL (Account for fixed header height: 80px)
+       FEATURE 4: SECTION SPY (Sync Navbar & Dossier TOC)
        ========================================================================== */
-    const initSmoothScroll = () => {
-        const FIXED_HEADER_HEIGHT = 80;
+    const initSectionSpy = () => {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.masthead-nav .nav-link');
+        if (!sections.length || !navLinks.length) return;
 
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (!href || href === '#' || href === '#!') return;
+        const updateActiveLinks = () => {
+            const scrollHeaderOffset = 110;
+            let currentSectionId = '';
 
-                const targetElement = document.querySelector(href);
-                if (targetElement) {
-                    e.preventDefault();
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - FIXED_HEADER_HEIGHT;
+            const isNearBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 70);
 
-                    window.scrollTo({
-                        top: Math.max(0, offsetPosition),
-                        behavior: 'smooth'
-                    });
-
-                    // Update URL without harsh jumping
-                    if (window.history && window.history.pushState) {
-                        window.history.pushState(null, '', href);
+            if (isNearBottom) {
+                currentSectionId = 'contact';
+            } else if (window.scrollY < 120) {
+                currentSectionId = 'hero';
+            } else {
+                sections.forEach((section) => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= scrollHeaderOffset && rect.bottom > scrollHeaderOffset) {
+                        currentSectionId = section.getAttribute('id');
                     }
-                }
-            });
-        });
+                });
+            }
+
+            if (currentSectionId) {
+                navLinks.forEach((link) => {
+                    const target = link.getAttribute('href');
+                    if (target === `#${currentSectionId}`) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+        };
+
+        window.addEventListener('scroll', updateActiveLinks, { passive: true });
+        updateActiveLinks();
     };
 
     /* ==========================================================================
-       FEATURE 8: TYPING EFFECT (Hero Section)
+       FEATURE 5: DYNAMIC TYPING EFFECT
        ========================================================================== */
     const initTypingEffect = () => {
-        const typingText = document.getElementById('typingText');
-        if (!typingText) return;
+        const typingEl = document.getElementById('typingText');
+        if (!typingEl) return;
 
-        const phrases = [
-            'Full-stack Developer',
-            'Photography Lover'
+        const PHRASES = [
+            'Sinh viên Công nghệ Thông tin',
+            'Nhiếp ảnh gia & Sáng tạo',
+            'Sinh viên K24 · UTH'
         ];
 
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
-        let timer = null;
+        let typingSpeed = 90;
 
-        const TYPE_DELAY = 100;
-        const DELETE_DELAY = 50;
-        const PAUSE_COMPLETE = 2000;
-        const PAUSE_EMPTY = 300;
-
-        const typeStep = () => {
-            const currentPhrase = phrases[phraseIndex];
+        const type = () => {
+            const currentPhrase = PHRASES[phraseIndex];
 
             if (isDeleting) {
+                typingEl.textContent = currentPhrase.substring(0, charIndex - 1);
                 charIndex--;
-                typingText.textContent = currentPhrase.substring(0, charIndex);
-
-                if (charIndex === 0) {
-                    isDeleting = false;
-                    phraseIndex = (phraseIndex + 1) % phrases.length;
-                    timer = setTimeout(typeStep, PAUSE_EMPTY);
-                    return;
-                }
-                timer = setTimeout(typeStep, DELETE_DELAY);
+                typingSpeed = 40;
             } else {
+                typingEl.textContent = currentPhrase.substring(0, charIndex + 1);
                 charIndex++;
-                typingText.textContent = currentPhrase.substring(0, charIndex);
-
-                if (charIndex === currentPhrase.length) {
-                    isDeleting = true;
-                    timer = setTimeout(typeStep, PAUSE_COMPLETE);
-                    return;
-                }
-                timer = setTimeout(typeStep, TYPE_DELAY);
+                typingSpeed = 90;
             }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                typingSpeed = 1600; // Pause at end of phrase
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % PHRASES.length;
+                typingSpeed = 400; // Pause before new phrase
+            }
+
+            setTimeout(type, typingSpeed);
         };
 
-        // Start typing
-        typeStep();
-
-        // Cleanup on unload if needed
-        window.addEventListener('beforeunload', () => {
-            if (timer) clearTimeout(timer);
-        });
+        type();
     };
 
     /* ==========================================================================
-       FEATURE 9: PARTICLE BACKGROUND (Canvas)
+       FEATURE 6: AMBIENT PARTICLE CANVAS
        ========================================================================== */
-    const initParticleBackground = () => {
+    const initParticleCanvas = () => {
         const canvas = document.getElementById('particleCanvas');
         if (!canvas) return;
 
         const ctx = canvas.getContext('2d');
-        if (!ctx) return;
+        let width = (canvas.width = window.innerWidth);
+        let height = (canvas.height = window.innerHeight);
 
-        let animationFrameId = null;
-        let width = 0;
-        let height = 0;
-        let particles = [];
-
-        const MAX_CONNECT_DISTANCE = 150;
-        const PARTICLE_COLOR = 'rgba(102, 126, 234, 0.5)';
-        const LINE_COLOR_BASE = 'rgba(102, 126, 234, ';
-
-        // Mouse interaction state
-        const mouse = {
-            x: null,
-            y: null,
-            radius: 120
-        };
-
-        // Resize handler
-        const resizeCanvas = () => {
-            const parent = canvas.parentElement || document.body;
-            width = canvas.width = parent.offsetWidth || window.innerWidth;
-            height = canvas.height = parent.offsetHeight || window.innerHeight;
-            createParticles();
-        };
+        const PARTICLE_COUNT = Math.min(50, Math.floor(width / 30));
+        const particles = [];
 
         class Particle {
             constructor() {
+                this.reset();
+            }
+
+            reset() {
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.7;
-                this.vy = (Math.random() - 0.5) * 0.7;
-                this.radius = Math.random() * 1.5 + 1.2; // 1.2px - 2.7px
-                this.baseVx = this.vx;
-                this.baseVy = this.vy;
+                this.radius = Math.random() * 1.5 + 0.5;
+                this.vx = (Math.random() - 0.5) * 0.35;
+                this.vy = (Math.random() - 0.5) * 0.35;
+                this.alpha = Math.random() * 0.6 + 0.2;
+                this.color = Math.random() > 0.5 ? '59, 130, 246' : '139, 92, 246';
             }
 
             update() {
-                // Gentle bounce off boundaries
-                if (this.x < 0 || this.x > width) this.vx = -this.vx;
-                if (this.y < 0 || this.y > height) this.vy = -this.vy;
-
-                // Mouse subtle repulsion
-                if (mouse.x !== null && mouse.y !== null) {
-                    const dx = this.x - mouse.x;
-                    const dy = this.y - mouse.y;
-                    const dist = Math.hypot(dx, dy);
-
-                    if (dist < mouse.radius && dist > 0) {
-                        const force = (mouse.radius - dist) / mouse.radius;
-                        const pushX = (dx / dist) * force * 1.2;
-                        const pushY = (dy / dist) * force * 1.2;
-                        this.x += pushX;
-                        this.y += pushY;
-                    }
-                }
-
                 this.x += this.vx;
                 this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
             }
 
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = PARTICLE_COLOR;
+                ctx.fillStyle = `rgba(${this.color}, ${this.alpha})`;
                 ctx.fill();
             }
         }
 
-        const createParticles = () => {
-            particles = [];
-            // Target ~80 particles on desktop, scale down for smaller viewports
-            const targetCount = width < 768 ? 35 : Math.min(80, Math.floor((width * height) / 11000));
-            const count = Math.max(25, targetCount);
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+            particles.push(new Particle());
+        }
 
-            for (let i = 0; i < count; i++) {
-                particles.push(new Particle());
-            }
-        };
-
-        const drawLines = () => {
-            const count = particles.length;
-            for (let i = 0; i < count; i++) {
-                for (let j = i + 1; j < count; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.hypot(dx, dy);
-
-                    if (distance < MAX_CONNECT_DISTANCE) {
-                        const alpha = (1 - distance / MAX_CONNECT_DISTANCE) * 0.15;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `${LINE_COLOR_BASE}${alpha})`;
-                        ctx.lineWidth = 1;
-                        ctx.stroke();
-                    }
-                }
-            }
-        };
+        let animationFrameId;
 
         const animate = () => {
             ctx.clearRect(0, 0, width, height);
 
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-            }
+            particles.forEach((p) => {
+                p.update();
+                p.draw();
+            });
 
-            drawLines();
             animationFrameId = requestAnimationFrame(animate);
         };
 
-        // Mouse listeners on hero / canvas
-        const heroSection = canvas.closest('.hero') || canvas;
-
-        heroSection.addEventListener('mousemove', (e) => {
-            const rect = canvas.getBoundingClientRect();
-            mouse.x = e.clientX - rect.left;
-            mouse.y = e.clientY - rect.top;
-        }, { passive: true });
-
-        heroSection.addEventListener('mouseleave', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
+        animate();
 
         window.addEventListener('resize', () => {
-            resizeCanvas();
-        }, { passive: true });
-
-        // Pause animation when page is hidden to conserve battery
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                if (animationFrameId) cancelAnimationFrame(animationFrameId);
-            } else {
-                animate();
-            }
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
         });
-
-        // Initialize
-        resizeCanvas();
-        animate();
     };
 
     /* ==========================================================================
-       FEATURE 10: CUSTOM CURSOR (Desktop Only)
+       FEATURE 7: CUSTOM CURSOR FOLLOWER
        ========================================================================== */
     const initCustomCursor = () => {
-        const cursor = document.getElementById('cursor');
-        const cursorFollower = document.getElementById('cursorFollower');
-        if (!cursor || !cursorFollower) return;
+        const dot = document.getElementById('cursorDot');
+        const ring = document.getElementById('cursorRing');
+        if (!dot || !ring) return;
 
-        // Check if device supports fine hover pointer and width >= 768px
-        const isTouchOrSmall = () => {
-            return window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches;
-        };
-
-        if (isTouchOrSmall()) {
-            cursor.style.display = 'none';
-            cursorFollower.style.display = 'none';
+        // Skip on touch or mobile
+        if (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 1024) {
             return;
         }
 
         let mouseX = -100;
         let mouseY = -100;
-        let followerX = -100;
-        let followerY = -100;
-        let isCursorVisible = false;
+        let ringX = -100;
+        let ringY = -100;
 
-        // Interactive element selector
-        const INTERACTIVE_SELECTORS = 'a, button, input, textarea, select, .project-card, .tilt-card, .dot, .slide-btn, .theme-toggle, .hamburger, [role="button"]';
-
-        document.addEventListener('mousemove', (e) => {
-            if (isTouchOrSmall()) return;
-
+        window.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
-
-            // Direct update for the sharp center dot
-            cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-
-            if (!isCursorVisible) {
-                cursor.style.opacity = '1';
-                cursorFollower.style.opacity = '1';
-                followerX = mouseX;
-                followerY = mouseY;
-                isCursorVisible = true;
-            }
+            dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
         });
 
-        // Smooth trailing animation loop for follower circle
-        const renderFollower = () => {
-            if (!isTouchOrSmall() && isCursorVisible) {
-                // Smooth interpolation (LERP: 0.16)
-                followerX += (mouseX - followerX) * 0.16;
-                followerY += (mouseY - followerY) * 0.16;
-                cursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0)`;
-            }
-            requestAnimationFrame(renderFollower);
+        const renderRing = () => {
+            ringX += (mouseX - ringX) * 0.18;
+            ringY += (mouseY - ringY) * 0.18;
+            ring.style.transform = `translate(${ringX - 17}px, ${ringY - 17}px)`;
+            requestAnimationFrame(renderRing);
         };
-        requestAnimationFrame(renderFollower);
+        renderRing();
 
-        // Hover scale effects using event delegation for reliable performance
-        document.addEventListener('mouseover', (e) => {
-            if (isTouchOrSmall()) return;
-            const target = e.target.closest(INTERACTIVE_SELECTORS);
-            if (target) {
-                cursor.classList.add('cursor-hover');
-                cursorFollower.classList.add('cursor-hover');
-            }
-        });
-
-        document.addEventListener('mouseout', (e) => {
-            if (isTouchOrSmall()) return;
-            const target = e.target.closest(INTERACTIVE_SELECTORS);
-            if (target) {
-                cursor.classList.remove('cursor-hover');
-                cursorFollower.classList.remove('cursor-hover');
-            }
-        });
-
-        // Hide when mouse exits window viewport
-        document.documentElement.addEventListener('mouseleave', () => {
-            cursor.style.opacity = '0';
-            cursorFollower.style.opacity = '0';
-            isCursorVisible = false;
-        });
-
-        document.documentElement.addEventListener('mouseenter', () => {
-            if (!isTouchOrSmall()) {
-                cursor.style.opacity = '1';
-                cursorFollower.style.opacity = '1';
-                isCursorVisible = true;
-            }
-        });
-
-        // Handle resize events dynamically
-        window.addEventListener('resize', () => {
-            if (isTouchOrSmall()) {
-                cursor.style.display = 'none';
-                cursorFollower.style.display = 'none';
-            } else {
-                cursor.style.display = 'block';
-                cursorFollower.style.display = 'block';
-            }
+        // Enlarge on interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, input, textarea, .slide-item, .thumb-node');
+        interactiveElements.forEach((el) => {
+            el.addEventListener('mouseenter', () => {
+                ring.style.width = '48px';
+                ring.style.height = '48px';
+                ring.style.borderColor = 'var(--brand-blue)';
+            });
+            el.addEventListener('mouseleave', () => {
+                ring.style.width = '34px';
+                ring.style.height = '34px';
+                ring.style.borderColor = 'var(--border-accent)';
+            });
         });
     };
 
     /* ==========================================================================
-       FEATURE 11: SCROLL ANIMATIONS (Intersection Observer)
+       FEATURE 8: SCROLL REVEAL ANIMATIONS (IntersectionObserver)
        ========================================================================== */
-    const initScrollAnimations = () => {
-        const animElements = document.querySelectorAll('.animate-on-scroll');
-        if (!animElements.length) return;
+    const initScrollReveals = () => {
+        const revealElements = document.querySelectorAll('.reveal-on-scroll');
+        if (!revealElements.length) return;
 
-        if (!('IntersectionObserver' in window)) {
-            // Fallback for older browsers
-            animElements.forEach((el) => el.classList.add('animated'));
-            return;
-        }
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.12,
+                rootMargin: '0px 0px -40px 0px'
+            }
+        );
 
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px 0px -40px 0px',
-            threshold: 0.12
-        };
-
-        const animObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        animElements.forEach((el) => {
-            animObserver.observe(el);
-        });
+        revealElements.forEach((el) => observer.observe(el));
     };
 
     /* ==========================================================================
-       FEATURE 12: SKILL BAR PROGRESS ANIMATION
+       FEATURE 9: SKILLS FILTER TABS & ANIMATED METERS
        ========================================================================== */
-    const initSkillBars = () => {
-        const skillCategories = document.querySelectorAll('.skill-category');
-        const skillProgressBars = document.querySelectorAll('.skill-progress[data-width]');
-        if (!skillProgressBars.length) return;
+    const initSkillsFilter = () => {
+        const filterBtns = document.querySelectorAll('.filter-tab-btn');
+        const panels = document.querySelectorAll('.skill-category-panel');
 
-        const animateCategoryBars = (category) => {
-            const bars = category.querySelectorAll('.skill-progress[data-width]');
-            bars.forEach((bar) => {
-                const targetWidth = bar.getAttribute('data-width');
-                if (targetWidth) {
-                    bar.style.width = `${targetWidth}%`;
-                }
+        filterBtns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const targetCategory = btn.getAttribute('data-filter');
+
+                filterBtns.forEach((b) => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                panels.forEach((panel) => {
+                    const category = panel.getAttribute('data-category');
+                    if (targetCategory === 'all' || category === targetCategory) {
+                        panel.classList.remove('hidden');
+                        panel.style.opacity = '1';
+                    } else {
+                        panel.classList.add('hidden');
+                    }
+                });
             });
-        };
-
-        if (!('IntersectionObserver' in window)) {
-            // Fallback
-            skillProgressBars.forEach((bar) => {
-                const width = bar.getAttribute('data-width');
-                if (width) bar.style.width = `${width}%`;
-            });
-            return;
-        }
-
-        const skillObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    animateCategoryBars(entry.target);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.2
-        });
-
-        skillCategories.forEach((category) => {
-            skillObserver.observe(category);
         });
     };
 
     /* ==========================================================================
-       FEATURE 13: PROJECT MODAL
+       FEATURE 10: PROJECT MODAL DATA & HANDLERS
        ========================================================================== */
     const initProjectModal = () => {
-        const projectModal = document.getElementById('projectModal');
-        const modalOverlay = document.getElementById('modalOverlay');
+        const modal = document.getElementById('projectModal');
         const modalClose = document.getElementById('modalClose');
-
-        // Modal Content Targets
         const modalTitle = document.getElementById('modalTitle');
-        const modalDescription = document.getElementById('modalDescription');
+        const modalDesc = document.getElementById('modalDescription');
         const modalFeatures = document.getElementById('modalFeatures');
         const modalTech = document.getElementById('modalTech');
         const modalRole = document.getElementById('modalRole');
-        const modalImage = document.getElementById('modalImage');
-        const modalDemo = document.getElementById('modalDemo');
-        const modalSource = document.getElementById('modalSource');
+        const modalVisualBanner = document.getElementById('modalVisualBanner');
+        const modalIcon = document.getElementById('modalIcon');
+        const triggers = document.querySelectorAll('.project-modal-trigger');
 
-        if (!projectModal || !modalOverlay || !modalClose) return;
+        if (!modal) return;
 
-        // Project dataset specification
-        const projectsData = {
+        const PROJECTS_DATA = {
             1: {
                 title: 'Website Quản lý Thư viện Online',
-                description: 'Hệ thống quản lý mượn/trả sách trực tuyến được thiết kế dành cho sinh viên và thủ thư. Ứng dụng giúp số hóa quy trình quản lý thư viện, từ việc tìm kiếm sách, đăng ký mượn, đến theo dõi lịch sử mượn/trả và thống kê.',
+                desc: 'Hệ thống quản lý thư viện trực tuyến hỗ trợ toàn diện các nghiệp vụ tìm kiếm danh mục sách, đặt mượn sách, quản lý độc giả và lập phiếu thống kê dành cho thủ thư.',
                 features: [
-                    'Tìm kiếm sách theo tên, tác giả, thể loại',
-                    'Đăng ký mượn/trả sách trực tuyến',
-                    'Quản lý tài khoản người dùng (sinh viên, thủ thư)',
-                    'Thống kê số liệu mượn/trả theo thời gian',
-                    'Giao diện responsive, thân thiện người dùng'
+                    'Tra cứu sách nhanh chóng theo thể loại, tác giả và nhà xuất bản với bộ lọc trực quan',
+                    'Đăng ký tài khoản độc giả và quản lý lịch sử mượn/trả sách cá nhân',
+                    'Bảng điều khiển (Dashboard) dành cho thủ thư duyệt mượn và gửi thông báo nhắc hạn trả',
+                    'Thống kê số lượng sách phổ biến và số lượng độc giả tích cực hàng tháng'
                 ],
-                tech: ['HTML5', 'CSS3', 'JavaScript', 'PHP', 'MySQL', 'Bootstrap'],
-                role: 'Đảm nhận vai trò Full-stack Developer, thiết kế giao diện và xây dựng backend. Qua dự án này, tôi đã học được cách tổ chức cơ sở dữ liệu quan hệ, xử lý CRUD operations và triển khai hệ thống xác thực người dùng.',
-                image: 'linear-gradient(135deg, #667eea, #764ba2)',
-                icon: 'fas fa-book-open',
-                demoLink: '#',
-                sourceLink: '#'
+                tech: ['HTML5', 'CSS3', 'JavaScript ES6', 'PHP (OOP)', 'MySQL Database', 'Apache'],
+                role: 'Đảm nhiệm toàn bộ quá trình thiết kế giao diện UI/UX người dùng, xây dựng cấu trúc cơ sở dữ liệu quan hệ MySQL và lập trình logic CRUD bằng PHP. Dự án giúp củng cố kiến thức kiến trúc MVC và bảo mật biểu mẫu người dùng.',
+                icon: 'fa-book-reader',
+                bannerGradient: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)'
             },
             2: {
                 title: 'TaskWeather - Quản lý công việc thông minh',
-                description: 'Ứng dụng quản lý công việc (Todo App) tích hợp thông tin thời tiết real-time. Người dùng có thể tạo, sửa, xóa task, kéo thả để sắp xếp thứ tự ưu tiên, đồng thời xem thông tin thời tiết để lên kế hoạch hoạt động ngoài trời.',
+                desc: 'Ứng dụng lập kế hoạch và quản lý công việc hàng ngày kết hợp thông tin thời tiết địa phương theo thời gian thực, giúp người dùng sắp xếp hoạt động ngoài trời hợp lý.',
                 features: [
-                    'CRUD tasks với giao diện trực quan',
-                    'Kéo thả (Drag & Drop) để sắp xếp thứ tự',
-                    'Tích hợp API thời tiết real-time',
-                    'Lọc task theo trạng thái (hoàn thành/chưa)',
-                    'Lưu trữ dữ liệu với localStorage',
-                    'Giao diện Dark/Light mode'
+                    'Giao diện kéo thả (Drag and Drop) nhiệm vụ theo mô hình bảng Kanban trực quan',
+                    'Tích hợp OpenWeatherMap API tự động định vị và hiển thị thời tiết nơi người dùng sinh sống',
+                    'Gợi ý thời điểm làm việc phù hợp dựa theo cảnh báo thời tiết (mưa, nắng gắt)',
+                    'Lưu trữ dữ liệu ngoại tuyến (Offline Storage) đảm bảo không bị gián đoạn'
                 ],
-                tech: ['HTML5', 'CSS3', 'JavaScript', 'REST API', 'LocalStorage'],
-                role: 'Tự phát triển toàn bộ ứng dụng từ thiết kế UI đến triển khai logic. Dự án giúp tôi nắm vững JavaScript DOM manipulation, Drag & Drop API, Fetch API để gọi REST endpoints, và quản lý state với localStorage.',
-                image: 'linear-gradient(135deg, #f093fb, #f5576c)',
-                icon: 'fas fa-tasks',
-                demoLink: '#',
-                sourceLink: '#'
+                tech: ['HTML5 Drag & Drop', 'CSS Flexbox/Grid', 'JavaScript ES6+', 'RESTful API', 'LocalStorage'],
+                role: 'Phát triển ứng dụng từ ý tưởng thực tế: kết nối REST API bất đồng bộ với Async/Await, xử lý luồng sự kiện kéo thả mượt mà trên trình duyệt và thiết kế giao diện người dùng theo phong cách Neumorphism/Glassmorphism hiện đại.',
+                icon: 'fa-cloud-sun-rain',
+                bannerGradient: 'linear-gradient(135deg, #4c1d95 0%, #8b5cf6 100%)'
             }
         };
 
         const openModal = (projectId) => {
-            const project = projectsData[projectId];
-            if (!project) return;
+            const data = PROJECTS_DATA[projectId];
+            if (!data) return;
 
-            // Fill text details
-            if (modalTitle) modalTitle.textContent = project.title;
-            if (modalDescription) modalDescription.textContent = project.description;
-            if (modalRole) modalRole.textContent = project.role;
+            modalTitle.textContent = data.title;
+            modalDesc.textContent = data.desc;
 
-            // Fill features list
-            if (modalFeatures) {
-                modalFeatures.innerHTML = '';
-                project.features.forEach((feature) => {
-                    const li = document.createElement('li');
-                    li.textContent = feature;
-                    modalFeatures.appendChild(li);
-                });
-            }
+            // Features list
+            modalFeatures.innerHTML = data.features.map((f) => `<li>${f}</li>`).join('');
 
-            // Fill tech tags
-            if (modalTech) {
-                modalTech.innerHTML = '';
-                project.tech.forEach((tag) => {
-                    const span = document.createElement('span');
-                    span.className = 'tech-tag';
-                    span.textContent = tag;
-                    modalTech.appendChild(span);
-                });
-            }
+            // Tech stack chips
+            modalTech.innerHTML = data.tech.map((t) => `<span class="tech-chip">${t}</span>`).join('');
 
-            // Fill image and icon
-            if (modalImage) {
-                modalImage.style.background = project.image;
-                modalImage.innerHTML = `<i class="${project.icon}"></i>`;
-            }
+            // Role
+            modalRole.textContent = data.role;
 
-            // Fill links
-            if (modalDemo) modalDemo.setAttribute('href', project.demoLink || '#');
-            if (modalSource) modalSource.setAttribute('href', project.sourceLink || '#');
+            // Banner style
+            if (modalVisualBanner) modalVisualBanner.style.background = data.bannerGradient;
+            if (modalIcon) modalIcon.innerHTML = `<i class="fas ${data.icon}"></i>`;
 
-            // Open modal and lock scroll
-            projectModal.classList.add('active');
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
         };
 
         const closeModal = () => {
-            projectModal.classList.remove('active');
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
         };
 
-        // Attach clicks to project cards and view detail buttons
-        const projectCards = document.querySelectorAll('.project-card[data-project]');
-        projectCards.forEach((card) => {
-            card.addEventListener('click', (e) => {
-                // If user clicked directly on source/demo anchor, don't hijack
-                if (e.target.closest('.project-link')) return;
-
-                const projectId = card.getAttribute('data-project');
-                if (projectId) openModal(projectId);
-            });
-        });
-
-        const viewButtons = document.querySelectorAll('.project-view-btn[data-project]');
-        viewButtons.forEach((btn) => {
+        triggers.forEach((btn) => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const projectId = btn.getAttribute('data-project');
-                if (projectId) openModal(projectId);
+                const id = btn.getAttribute('data-project');
+                openModal(id);
             });
         });
 
-        // Close handlers
-        modalClose.addEventListener('click', closeModal);
-        modalOverlay.addEventListener('click', closeModal);
+        if (modalClose) modalClose.addEventListener('click', closeModal);
 
-        // Escape key close
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && projectModal.classList.contains('active')) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
                 closeModal();
             }
         });
     };
 
     /* ==========================================================================
-       FEATURE 14: SLIDESHOW (Hobbies Section)
+       FEATURE 11: PHOTOGRAPHY SLIDESHOW & FULLSCREEN LIGHTBOX
        ========================================================================== */
-    const initSlideshow = () => {
-        const slideshow = document.getElementById('slideshow');
-        if (!slideshow) return;
-
-        const slides = slideshow.querySelectorAll('.slide');
+    const initPhotographyShowcase = () => {
+        const slides = document.querySelectorAll('.slideshow-stage .slide-item');
+        const dots = document.querySelectorAll('.slideshow-pagination-dots .dot');
+        const thumbs = document.querySelectorAll('.gallery-thumbs-row .thumb-node');
         const prevBtn = document.getElementById('slidePrev');
         const nextBtn = document.getElementById('slideNext');
-        const dotsContainer = document.getElementById('slideshowDots');
-        const dots = dotsContainer ? dotsContainer.querySelectorAll('.dot') : [];
+        const counterEl = document.getElementById('slideCounter');
+
+        // Lightbox elements
+        const lightbox = document.getElementById('imageLightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
 
         if (!slides.length) return;
 
         let currentIndex = 0;
-        let autoPlayTimer = null;
-        const AUTOPLAY_INTERVAL = 4000;
+        let slideTimer = null;
 
-        const goToSlide = (index) => {
-            currentIndex = (index + slides.length) % slides.length;
+        const updateSlide = (newIndex) => {
+            currentIndex = (newIndex + slides.length) % slides.length;
 
-            slides.forEach((slide, idx) => {
-                slide.classList.toggle('active', idx === currentIndex);
+            slides.forEach((s, idx) => {
+                s.classList.toggle('active', idx === currentIndex);
             });
 
-            dots.forEach((dot, idx) => {
-                dot.classList.toggle('active', idx === currentIndex);
+            dots.forEach((d, idx) => {
+                d.classList.toggle('active', idx === currentIndex);
             });
-        };
 
-        const nextSlide = () => {
-            goToSlide(currentIndex + 1);
-        };
+            thumbs.forEach((t, idx) => {
+                t.classList.toggle('active', idx === currentIndex);
+            });
 
-        const prevSlide = () => {
-            goToSlide(currentIndex - 1);
-        };
-
-        // Auto-play management
-        const startAutoPlay = () => {
-            stopAutoPlay();
-            autoPlayTimer = setInterval(nextSlide, AUTOPLAY_INTERVAL);
-        };
-
-        const stopAutoPlay = () => {
-            if (autoPlayTimer) {
-                clearInterval(autoPlayTimer);
-                autoPlayTimer = null;
+            if (counterEl) {
+                counterEl.textContent = `${currentIndex + 1} / ${slides.length}`;
             }
         };
 
-        const resetAutoPlay = () => {
-            stopAutoPlay();
-            startAutoPlay();
-        };
+        const nextSlide = () => updateSlide(currentIndex + 1);
+        const prevSlide = () => updateSlide(currentIndex - 1);
 
-        // Navigation button listeners
-        if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
-                nextSlide();
-                resetAutoPlay();
-            });
-        }
+        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
 
-        if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-                prevSlide();
-                resetAutoPlay();
-            });
-        }
-
-        // Dot click listeners
-        dots.forEach((dot, idx) => {
+        dots.forEach((dot) => {
             dot.addEventListener('click', () => {
-                goToSlide(idx);
-                resetAutoPlay();
+                const idx = parseInt(dot.getAttribute('data-slide'), 10);
+                updateSlide(idx);
             });
         });
 
-        // Pause on hover over slideshow container or wrapper
-        const slideshowWrapper = slideshow.closest('.slideshow-wrapper') || slideshow;
-        slideshowWrapper.addEventListener('mouseenter', stopAutoPlay);
-        slideshowWrapper.addEventListener('mouseleave', startAutoPlay);
+        thumbs.forEach((thumb) => {
+            thumb.addEventListener('click', () => {
+                const idx = parseInt(thumb.getAttribute('data-slide'), 10);
+                updateSlide(idx);
+            });
+        });
 
-        // Start auto-play initially
-        startAutoPlay();
+        // Auto advance every 5s, paused on hover
+        const startTimer = () => {
+            slideTimer = setInterval(nextSlide, 5000);
+        };
+        const stopTimer = () => {
+            if (slideTimer) clearInterval(slideTimer);
+        };
+
+        const stage = document.getElementById('slideshow');
+        if (stage) {
+            stage.addEventListener('mouseenter', stopTimer);
+            stage.addEventListener('mouseleave', startTimer);
+        }
+        startTimer();
+
+        // Lightbox Functions
+        const openLightbox = (index) => {
+            const activeSlide = slides[index];
+            if (!activeSlide || !lightbox || !lightboxImg) return;
+
+            const img = activeSlide.querySelector('img');
+            const caption = activeSlide.getAttribute('data-caption') || `Ảnh ${index + 1}`;
+
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            if (lightboxCaption) lightboxCaption.textContent = caption;
+
+            lightbox.classList.add('active');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            stopTimer();
+        };
+
+        const closeLightbox = () => {
+            if (!lightbox) return;
+            lightbox.classList.remove('active');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            startTimer();
+        };
+
+        slides.forEach((slide, idx) => {
+            slide.addEventListener('click', () => {
+                openLightbox(idx);
+            });
+        });
+
+        if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+
+        if (lightboxPrev) {
+            lightboxPrev.addEventListener('click', (e) => {
+                e.stopPropagation();
+                updateSlide(currentIndex - 1);
+                openLightbox(currentIndex);
+            });
+        }
+
+        if (lightboxNext) {
+            lightboxNext.addEventListener('click', (e) => {
+                e.stopPropagation();
+                updateSlide(currentIndex + 1);
+                openLightbox(currentIndex);
+            });
+        }
+
+        if (lightbox) {
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (lightbox && lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') {
+                    updateSlide(currentIndex + 1);
+                    openLightbox(currentIndex);
+                }
+                if (e.key === 'ArrowLeft') {
+                    updateSlide(currentIndex - 1);
+                    openLightbox(currentIndex);
+                }
+            }
+        });
     };
 
     /* ==========================================================================
-       FEATURE 15: FORM VALIDATION (Contact Form)
+       FEATURE 12: TOAST NOTIFICATIONS & QUICK COPY TO CLIPBOARD
+       ========================================================================== */
+    const showToast = (message, icon = 'fa-check-circle') => {
+        const hub = document.getElementById('toastHub');
+        if (!hub) return;
+
+        const toast = document.createElement('div');
+        toast.className = 'toast-item';
+        toast.innerHTML = `<i class="fas ${icon}"></i><span>${message}</span>`;
+        hub.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(10px)';
+            toast.style.transition = 'all 0.3s ease';
+            setTimeout(() => toast.remove(), 300);
+        }, 2500);
+    };
+
+    const initClipboardButtons = () => {
+        const copyBtns = document.querySelectorAll('[data-copy]');
+        copyBtns.forEach((btn) => {
+            btn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const text = btn.getAttribute('data-copy');
+                if (!text) return;
+
+                try {
+                    await navigator.clipboard.writeText(text);
+                    showToast(`Đã sao chép: ${text}`);
+                } catch (err) {
+                    // Fallback for older browsers
+                    const temp = document.createElement('textarea');
+                    temp.value = text;
+                    document.body.appendChild(temp);
+                    temp.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(temp);
+                    showToast(`Đã sao chép: ${text}`);
+                }
+            });
+        });
+    };
+
+    /* ==========================================================================
+       FEATURE 13: CONTACT FORM VALIDATION & INTERACTIVE SUBMISSION
        ========================================================================== */
     const initContactForm = () => {
         const form = document.getElementById('contactForm');
@@ -896,187 +711,166 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const nameInput = document.getElementById('formName');
         const emailInput = document.getElementById('formEmail');
-        const subjectInput = document.getElementById('formSubject');
         const messageInput = document.getElementById('formMessage');
-        const submitBtn = document.getElementById('formSubmit');
-
         const nameError = document.getElementById('nameError');
         const emailError = document.getElementById('emailError');
         const messageError = document.getElementById('messageError');
+        const submitBtn = document.getElementById('formSubmit');
         const formSuccess = document.getElementById('formSuccess');
 
-        const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i;
+        const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        const setError = (input, errorSpan, message) => {
-            if (input) input.classList.add('error');
-            if (errorSpan) {
-                errorSpan.textContent = message;
-                errorSpan.style.display = 'block';
+        const validateName = () => {
+            const val = nameInput.value.trim();
+            if (!val) {
+                nameError.textContent = 'Vui lòng nhập họ và tên của bạn.';
+                nameInput.style.borderColor = '#ef4444';
+                return false;
             }
+            nameError.textContent = '';
+            nameInput.style.borderColor = '';
+            return true;
         };
 
-        const clearError = (input, errorSpan) => {
-            if (input) input.classList.remove('error');
-            if (errorSpan) {
-                errorSpan.textContent = '';
-                errorSpan.style.display = 'none';
+        const validateEmail = () => {
+            const val = emailInput.value.trim();
+            if (!val) {
+                emailError.textContent = 'Vui lòng cung cấp địa chỉ email liên hệ.';
+                emailInput.style.borderColor = '#ef4444';
+                return false;
             }
+            if (!EMAIL_REGEX.test(val)) {
+                emailError.textContent = 'Định dạng email không hợp lệ (ví dụ: name@gmail.com).';
+                emailInput.style.borderColor = '#ef4444';
+                return false;
+            }
+            emailError.textContent = '';
+            emailInput.style.borderColor = '';
+            return true;
         };
 
-        // Real-time input validation: clear error upon typing
-        if (nameInput) {
-            nameInput.addEventListener('input', () => clearError(nameInput, nameError));
-        }
-        if (emailInput) {
-            emailInput.addEventListener('input', () => clearError(emailInput, emailError));
-        }
-        if (messageInput) {
-            messageInput.addEventListener('input', () => clearError(messageInput, messageError));
-        }
+        const validateMessage = () => {
+            const val = messageInput.value.trim();
+            if (!val) {
+                messageError.textContent = 'Vui lòng nhập nội dung tin nhắn.';
+                messageInput.style.borderColor = '#ef4444';
+                return false;
+            }
+            if (val.length < 10) {
+                messageError.textContent = 'Nội dung tin nhắn tối thiểu 10 ký tự.';
+                messageInput.style.borderColor = '#ef4444';
+                return false;
+            }
+            messageError.textContent = '';
+            messageInput.style.borderColor = '';
+            return true;
+        };
 
-        // Form submit handler
+        nameInput.addEventListener('input', validateName);
+        emailInput.addEventListener('input', validateEmail);
+        messageInput.addEventListener('input', validateMessage);
+
         form.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            let isValid = true;
-            let firstInvalidField = null;
+            const isNameValid = validateName();
+            const isEmailValid = validateEmail();
+            const isMsgValid = validateMessage();
 
-            // Validate Name
-            const nameVal = nameInput ? nameInput.value.trim() : '';
-            if (!nameVal) {
-                setError(nameInput, nameError, 'Vui lòng nhập họ tên của bạn.');
-                isValid = false;
-                if (!firstInvalidField) firstInvalidField = nameInput;
-            } else if (nameVal.length < 2) {
-                setError(nameInput, nameError, 'Họ tên phải có ít nhất 2 ký tự.');
-                isValid = false;
-                if (!firstInvalidField) firstInvalidField = nameInput;
-            } else {
-                clearError(nameInput, nameError);
-            }
-
-            // Validate Email
-            const emailVal = emailInput ? emailInput.value.trim() : '';
-            if (!emailVal) {
-                setError(emailInput, emailError, 'Vui lòng nhập địa chỉ email.');
-                isValid = false;
-                if (!firstInvalidField) firstInvalidField = emailInput;
-            } else if (!EMAIL_REGEX.test(emailVal)) {
-                setError(emailInput, emailError, 'Địa chỉ email không hợp lệ (ví dụ: name@gmail.com).');
-                isValid = false;
-                if (!firstInvalidField) firstInvalidField = emailInput;
-            } else {
-                clearError(emailInput, emailError);
-            }
-
-            // Validate Message
-            const msgVal = messageInput ? messageInput.value.trim() : '';
-            if (!msgVal) {
-                setError(messageInput, messageError, 'Vui lòng nhập nội dung tin nhắn.');
-                isValid = false;
-                if (!firstInvalidField) firstInvalidField = messageInput;
-            } else if (msgVal.length < 5) {
-                setError(messageInput, messageError, 'Nội dung tin nhắn phải có ít nhất 5 ký tự.');
-                isValid = false;
-                if (!firstInvalidField) firstInvalidField = messageInput;
-            } else {
-                clearError(messageInput, messageError);
-            }
-
-            // Focus on first error if invalid
-            if (!isValid) {
-                if (firstInvalidField) firstInvalidField.focus();
+            if (!isNameValid || !isEmailValid || !isMsgValid) {
+                showToast('Vui lòng kiểm tra lại thông tin biểu mẫu', 'fa-exclamation-circle');
                 return;
             }
 
-            // Submission Success
-            if (formSuccess) {
-                formSuccess.classList.add('show');
-            }
-            if (submitBtn) {
-                submitBtn.disabled = true;
-            }
+            // Simulate loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i><span>Đang gửi tin nhắn...</span>`;
 
-            // Reset form and message after 3 seconds
             setTimeout(() => {
+                formSuccess.classList.add('show');
+                showToast('Tin nhắn gửi thành công!', 'fa-paper-plane');
                 form.reset();
-                if (formSuccess) {
+
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fas fa-paper-plane"></i><span>Gửi tin nhắn đi</span>`;
+
+                setTimeout(() => {
                     formSuccess.classList.remove('show');
-                }
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                }
-            }, 3000);
+                }, 5000);
+            }, 800);
         });
     };
 
     /* ==========================================================================
-       FEATURE 16: TILT EFFECT ON CARDS
+       FEATURE 14: PROFILE HUB 3D TILT & EQUALIZER INTERACTION
        ========================================================================== */
-    const initTiltCards = () => {
-        // Desktop check: disable on touch devices or screens < 768px
-        const isTouchOrSmall = () => {
-            return window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches;
-        };
+    const initProfileHubEffects = () => {
+        const profileCard = document.getElementById('profileCard');
+        const equalizer = document.querySelector('.soundwave-equalizer');
+        const vibeRibbon = document.querySelector('.creative-vibe-ribbon');
 
-        if (isTouchOrSmall()) return;
+        if (profileCard && window.innerWidth >= 1024 && !window.matchMedia('(pointer: coarse)').matches) {
+            let isHovering = false;
 
-        const tiltCards = document.querySelectorAll('.tilt-card');
-        if (!tiltCards.length) return;
-
-        const MAX_TILT_DEG = 5;
-
-        tiltCards.forEach((card) => {
-            let isHovered = false;
-
-            card.addEventListener('mouseenter', () => {
-                if (isTouchOrSmall()) return;
-                isHovered = true;
-                card.style.transition = 'transform 0.1s ease-out';
+            profileCard.addEventListener('mouseenter', () => {
+                isHovering = true;
+                profileCard.style.transition = 'transform 0.12s ease-out';
             });
 
-            card.addEventListener('mousemove', (e) => {
-                if (isTouchOrSmall() || !isHovered) return;
+            profileCard.addEventListener('mousemove', (e) => {
+                if (!isHovering) return;
+                const rect = profileCard.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
 
-                const rect = card.getBoundingClientRect();
-                const cardWidth = rect.width;
-                const cardHeight = rect.height;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
 
-                const centerX = rect.left + cardWidth / 2;
-                const centerY = rect.top + cardHeight / 2;
+                const rotateX = -((y - centerY) / centerY) * 4;
+                const rotateY = ((x - centerX) / centerX) * 4;
 
-                const mouseX = e.clientX - centerX;
-                const mouseY = e.clientY - centerY;
-
-                // Subtle rotation within max ±5 degrees
-                const rotateX = -((mouseY / (cardHeight / 2)) * MAX_TILT_DEG);
-                const rotateY = (mouseX / (cardWidth / 2)) * MAX_TILT_DEG;
-
-                card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
+                profileCard.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
             });
 
-            card.addEventListener('mouseleave', () => {
-                isHovered = false;
-                card.style.transition = 'transform 0.5s ease-out';
-                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+            profileCard.addEventListener('mouseleave', () => {
+                isHovering = false;
+                profileCard.style.transition = 'transform 0.4s ease-out';
+                profileCard.style.transform = 'none';
             });
-        });
+        }
+
+        // Equalizer interactive click
+        if (vibeRibbon && equalizer) {
+            let isPlaying = true;
+            vibeRibbon.style.cursor = 'pointer';
+            vibeRibbon.title = 'Nhấn để tạm dừng / tiếp tục hiệu ứng giai điệu';
+
+            vibeRibbon.addEventListener('click', () => {
+                isPlaying = !isPlaying;
+                const bars = equalizer.querySelectorAll('.eq-bar');
+                bars.forEach((bar) => {
+                    bar.style.animationPlayState = isPlaying ? 'running' : 'paused';
+                });
+                showToast(isPlaying ? '♫ Giai điệu sáng tạo: Đang phát' : '❚❚ Giai điệu sáng tạo: Tạm dừng', 'fa-music');
+            });
+        }
     };
 
     /* ==========================================================================
-       INITIALIZE ALL FEATURES
+       INITIALIZE ALL MODULES
        ========================================================================== */
     initThemeToggle();
     initMobileMenu();
-    initScrollFeatures();
-    initSmoothScroll();
+    initScrollIndicators();
+    initSectionSpy();
     initTypingEffect();
-    initParticleBackground();
+    initParticleCanvas();
     initCustomCursor();
-    initScrollAnimations();
-    initSkillBars();
+    initScrollReveals();
+    initSkillsFilter();
     initProjectModal();
-    initSlideshow();
+    initPhotographyShowcase();
+    initClipboardButtons();
     initContactForm();
-    initTiltCards();
+    initProfileHubEffects();
 });
