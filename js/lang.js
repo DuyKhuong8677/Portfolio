@@ -17,7 +17,6 @@ const EN = {
   "Chuyển giao diện sáng / tối": "Switch light / dark theme",
   "Mở menu": "Open menu",
   "Đóng menu": "Close menu",
-  "← Về trang Nhóm 4": "← Back to Group 4",
   "Cuộn lên đầu trang": "Scroll to top",
   "Đóng": "Close",
   "Xem ảnh lớn": "View full image",

@@ -1,13 +1,4 @@
-/* Hiệu ứng trang trí: dải công nghệ, số liệu, chữ hiện dần, đom đóm, lá bung, thẻ nghiêng 3D */
-
-/* Dải công nghệ chạy ngang */
-.marquee { overflow: hidden; margin-top: 8px; padding: 14px 0; border-block: 1px dashed var(--line); }
-.marquee-track { display: flex; width: max-content; animation: marquee 32s linear infinite; }
-.marquee:hover .marquee-track { animation-play-state: paused; }
-.marquee-group { display: flex; align-items: center; gap: 28px; padding-right: 28px; }
-.marquee-group span { font-family: var(--serif); font-size: 1.35rem; font-style: italic; font-weight: 600; color: var(--leaf); white-space: nowrap; }
-.marquee-group svg { width: 16px; height: 16px; fill: var(--accent); }
-@keyframes marquee { to { transform: translateX(-50%); } }
+/* Hiệu ứng trang trí: số liệu, chữ hiện dần, đom đóm, lá bung, thẻ nghiêng 3D */
 
 /* Số liệu nhanh */
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; padding-top: 40px; }
@@ -43,7 +34,7 @@
 /* Đom đóm theo con trỏ và lá bung khi bấm */
 .spark { position: fixed; z-index: 60; width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px 2px color-mix(in srgb, var(--accent) 60%, transparent); pointer-events: none; animation: spark .8s ease-out forwards; }
 @keyframes spark { to { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(.2); } }
-.burst { position: fixed; z-index: 60; width: 18px; height: 18px; margin: -9px 0 0 -9px; fill: var(--leaf); pointer-events: none; animation: burst .9s cubic-bezier(.2, .7, .3, 1) forwards; }
+.burst { position: fixed; z-index: 60; width: 26px; height: 26px; margin: -13px 0 0 -13px; fill: var(--leaf); pointer-events: none; animation: burst .9s cubic-bezier(.2, .7, .3, 1) forwards; }
 @keyframes burst { to { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(.6); } }
 
 /* Thẻ nghiêng 3D và vệt sáng */
@@ -54,7 +45,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .js .ph img { clip-path: none; }
-  .marquee-track { animation: none; }
   .sec-title.reveal::after { transform: none; }
   .fireflies { display: none; }
 }

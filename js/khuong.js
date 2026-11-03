@@ -216,7 +216,7 @@ if (leaves && !reduceMotion) {
     leaf.innerHTML = '<use href="#leaf"/>';
     const vars = {
       "--x": `${rand(2, 96)}%`,
-      "--size": `${rand(14, 30)}px`,
+      "--size": `${rand(22, 44)}px`,
       "--dur": `${rand(11, 19)}s`,
       "--delay": `${-rand(0, 18)}s`,
       "--drift": `${rand(-60, 90)}px`,
