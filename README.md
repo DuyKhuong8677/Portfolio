@@ -17,7 +17,7 @@ group-portfolio/
 │   ├── thanh-vien-03.html
 │   ├── thanh-vien-04.html
 │   ├── hiep.html
-│   └── thanh-vien-06.html
+│   └── duy-khanh.html
 ├── images/
 │   ├── project-student.svg
 │   └── project-web.svg
