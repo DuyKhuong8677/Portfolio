@@ -20,6 +20,7 @@
       document.documentElement.dataset.theme = "dark";
     }
   </script>
+  <script src="../js/lang.js" defer></script>
   <script src="../js/khuong.js" defer></script>
 </head>
 <body>
@@ -32,21 +33,42 @@
     <symbol id="leaf" viewBox="0 0 24 24"><path d="M20 4C10 4 4 9 4 16c0 1.5.3 2.8.8 4C6 14 10 11 14 9c-3 3-5 6-6 10.5 1 .3 2 .5 3 .5 7 0 9-7 9-16Z"/></symbol>
   </svg>
 
+  <!-- Cây lớn dần theo tiến trình cuộn; lá nở ra ở các mốc -->
+  <div class="tree" aria-hidden="true">
+    <svg viewBox="0 0 80 320" preserveAspectRatio="xMidYMax meet">
+      <g class="tree-grow">
+        <path class="trunk" d="M40 320 C38 250 44 200 40 140 C37 100 42 60 40 30"/>
+        <path class="trunk" d="M40 240 C52 225 62 214 70 200"/>
+        <path class="trunk" d="M40 190 C28 176 18 168 10 152"/>
+        <path class="trunk" d="M40 130 C50 116 58 108 64 94"/>
+      </g>
+      <use class="t-leaf" data-at=".12" href="#leaf" x="62" y="188" width="16" height="16"/>
+      <use class="t-leaf" data-at=".3" href="#leaf" x="2" y="140" width="18" height="18"/>
+      <use class="t-leaf" data-at=".5" href="#leaf" x="56" y="82" width="20" height="20"/>
+      <use class="t-leaf" data-at=".72" href="#leaf" x="14" y="60" width="20" height="20"/>
+      <use class="t-leaf" data-at=".92" href="#leaf" x="28" y="4" width="26" height="26"/>
+    </svg>
+  </div>
+  <p class="leaf-toast" id="leaf-toast" role="status" aria-live="polite"></p>
+
   <header class="header">
     <nav class="wrap nav" aria-label="Điều hướng hồ sơ">
       <a class="brand" href="#top"><svg aria-hidden="true"><use href="#leaf"/></svg>Duy Khương</a>
       <ul class="nav-links" id="nav-links">
         <li><a href="#about">Giới thiệu</a></li>
+        <li><a href="#story">Về mình</a></li>
         <li><a href="#goal">Mục tiêu</a></li>
         <li><a href="#skills">Kỹ năng</a></li>
         <li><a href="#education">Học vấn</a></li>
+        <li><a href="#journey">Hành trình</a></li>
         <li><a href="#projects">Dự án</a></li>
         <li><a href="#extras">Chứng chỉ</a></li>
         <li><a href="#hobbies">Sở thích</a></li>
+        <li><a href="#gallery">Ảnh</a></li>
         <li><a href="#contact">Liên hệ</a></li>
-        <li><a class="back" href="../index.html">← Nhóm 4</a></li>
       </ul>
       <div class="nav-actions">
+        <button class="lang-toggle" type="button" aria-label="Switch to English">EN</button>
         <button class="theme-toggle" type="button" aria-label="Chuyển giao diện sáng / tối">
           <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
           <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/></svg>
@@ -64,18 +86,22 @@
       <div class="hero-copy">
         <h1 id="hero-title" class="reveal">Nguyễn Đình Duy Khương</h1>
         <p class="role reveal">Sinh viên Trường Đại học Giao thông vận tải TP.HCM · Định hướng <span class="typed-wrap"><span class="typed-size" aria-hidden="true">Full-stack Developer</span><span class="typed" id="typed">Full-stack Developer</span></span></p>
+        <blockquote class="motto reveal">“Mỗi ngày học một chút, như cây lớn từng chút một.”</blockquote>
         <p class="lead reveal">Mình là sinh viên Trường Đại học Giao thông vận tải TP.HCM (UTH), học ngành Công nghệ thông tin với định hướng trở thành Full-stack Developer. Mình thích xây dựng website và phần mềm từ giao diện đến xử lý phía sau, và luyện kỹ năng qua các dự án thực hành.</p>
         <div class="actions reveal">
           <a class="btn btn-primary" href="#projects">Xem dự án <span aria-hidden="true">↓</span></a>
           <a class="btn" href="#contact">Liên hệ</a>
         </div>
+        <p class="hint reveal">Mẹo: bấm vào những chiếc lá đang rơi để biết thêm về mình.</p>
       </div>
 
       <div class="portrait-wrap">
         <figure class="portrait reveal">
           <div class="arch">
             <span class="ph-fallback" aria-hidden="true">K</span>
-            <img src="../images/members/01.jpg" alt="Ảnh đại diện Nguyễn Đình Duy Khương" onerror="this.remove()">
+            <!-- Slideshow: thêm ảnh bằng cách thêm thẻ img class="slide" (ảnh nào lỗi sẽ tự bị bỏ qua) -->
+            <img class="slide" src="../images/members/01.jpg" alt="Ảnh đại diện Nguyễn Đình Duy Khương" onerror="this.remove()">
+            <img class="slide" src="../images/me/me-4.jpg" alt="Duy Khương cùng bạn bè" onerror="this.remove()">
           </div>
           <figcaption>
             <dl class="note">
@@ -89,6 +115,27 @@
       </div>
     </section>
 
+    <!-- Về mình: câu chuyện + thẻ lật -->
+    <section class="wrap sec" id="story" aria-labelledby="story-title">
+      <h2 class="sec-title reveal" id="story-title">Về mình</h2>
+      <p class="sec-lead reveal">Ngoài lý lịch, đây là con người thật của mình.</p>
+      <div class="story">
+        <figure class="ph card reveal" data-file="../images/me/about.jpg">
+          <img src="../images/me/about.jpg" alt="Duy Khương dang tay giữa khu rừng xanh, ánh nắng xuyên qua tán lá" onerror="this.remove()">
+        </figure>
+        <div class="story-text reveal">
+          <p>Mình lớn lên ở vùng nông thôn, nơi công nghệ không phải thứ ở ngay trước mắt. Nhưng mình vốn là người thích khám phá, tìm tòi và học hỏi, nên càng hiểu biết thêm về công nghệ, mình càng bị cuốn hút. Đến đầu năm 2024, mình mới bắt đầu tìm hiểu về lập trình và viết những dòng code đầu tiên của mình. Biết đến code muộn hơn nhiều bạn, nhưng đó cũng chính là lý do mình học bằng tất cả sự háo hức và quyết tâm.</p>
+          <p>Khi làm việc nhóm, mình là người biết lắng nghe và có trách nhiệm với phần việc mình nhận: đã nhận thì mình làm đến nơi đến chốn. Khi gặp lỗi hoặc một bài toán khó, mình thường ngồi suy nghĩ khoảng 3–5 phút để tự tìm hướng đi trước, rồi mới bắt đầu tra cứu trên internet và hỏi AI để tìm lời giải. Mình tin rằng tự suy nghĩ trước giúp mình hiểu vấn đề sâu hơn, còn các công cụ chỉ là người đồng hành.</p>
+          <p>Điều mình muốn bạn nhớ về mình: mình là người không ngại công việc. Nếu bạn có một dự án hay một cơ hội phù hợp, cứ liên hệ với mình nhé (nói vui một chút thôi, nhưng mình nói thật lòng đấy!).</p>
+        </div>
+      </div>
+      <h3 class="hobby-title reveal">Vài điều thú vị (bấm vào thẻ để lật)</h3>
+      <div class="flips">
+        <button class="flip card reveal" type="button" aria-pressed="false"><span class="flip-front">Món ăn mình mê nhất?</span><span class="flip-back">Mì cay Sasin</span></button>
+        <button class="flip card reveal" type="button" aria-pressed="false"><span class="flip-front">Game mình hay chơi?</span><span class="flip-back">Liên Quân, hoặc các game thử thách cùng bạn bè trên Steam</span></button>
+        <button class="flip card reveal" type="button" aria-pressed="false"><span class="flip-front">Nơi mình muốn đến nhất?</span><span class="flip-back">Hà Nội — thủ đô của đất nước mình, nơi mình mong sớm có dịp ghé thăm</span></button>      </div>
+    </section>
+
     <!-- 3. Mục tiêu nghề nghiệp -->
     <section class="wrap sec" id="goal" aria-labelledby="goal-title">
       <h2 class="sec-title reveal" id="goal-title">Mục tiêu nghề nghiệp</h2>
@@ -96,7 +143,7 @@
       <ol class="route-steps">
         <li class="card reveal"><h3>Hiện tại</h3><strong>Sinh viên Công nghệ thông tin</strong><p>Học kiến thức nền tảng về lập trình, luyện tư duy giải quyết vấn đề và làm quen với phát triển web.</p></li>
         <li class="card reveal"><h3>Ngắn hạn</h3><strong>Hoàn thiện nền tảng</strong><p>Hoàn thành tốt các học phần, luyện lập trình thường xuyên, học cách dùng Git và hoàn thiện bài tập thành dự án có thể trình bày.</p></li>
-        <li class="card reveal"><h3>Dài hạn</h3><strong>Trở thành Full-stack Developer</strong><p>Có nền tảng lập trình vững chắc, xây dựng được ứng dụng web hoàn chỉnh từ giao diện đến máy chủ, làm việc nhóm tốt và viết code dễ bảo trì.</p></li>
+        <li class="card reveal"><h3>Dài hạn</h3><strong>Trở thành Full-stack Developer</strong><p>Có nền tảng lập trình vững chắc, xây dựng được ứng dụng web hoàn chỉnh từ giao diện đến máy chủ, làm việc nhóm tốt và viết code dễ bảo trì.</p><p class="why">Mình chọn Full-stack vì muốn hiểu trọn vẹn một sản phẩm, từ giao diện người dùng thấy được đến phần xử lý phía sau. Trong 1 năm tới, mình muốn tự làm được một website hoàn chỉnh có cả giao diện lẫn xử lý dữ liệu, và dùng Git thành thạo để quản lý dự án.</p></li>
       </ol>
     </section>
 
@@ -109,6 +156,8 @@
         <article class="card skill reveal"><span class="kind">Giao diện</span><h3>HTML / CSS</h3><p>Dựng cấu trúc trang, bố cục Flexbox/Grid và giao diện responsive.</p><span class="chip">Đang học</span></article>
         <article class="card skill reveal"><span class="kind">Tương tác</span><h3>JavaScript</h3><p>Xử lý DOM và sự kiện để tạo tương tác cho website.</p><span class="chip">Đang học</span></article>
         <article class="card skill reveal"><span class="kind">Lập trình</span><h3>C++</h3><p>Luyện tư duy lập trình và giải quyết bài toán.</p><span class="chip">Đang học</span></article>
+        <article class="card skill reveal"><span class="kind">Lập trình</span><h3>C# / WinForms</h3><p>Viết ứng dụng desktop và kết nối mạng qua TCP trong game cờ Caro nhiều người chơi.</p><span class="chip">Đã dùng trong dự án</span></article>
+        <article class="card skill reveal"><span class="kind">Công cụ</span><h3>Git / GitHub</h3><p>Lưu và quản lý mã nguồn các dự án cá nhân và dự án nhóm.</p><span class="chip">Đang học</span></article>
         <article class="card skill reveal"><span class="kind">Kỹ năng mềm</span><h3>Làm việc nhóm</h3><p>Phân chia công việc, trao đổi và hỗ trợ các thành viên trong Nhóm 4.</p><span class="chip">Đang rèn luyện</span></article>
       </div>
     </section>
@@ -122,6 +171,30 @@
         <article class="card reveal"><h3>Hoạt động</h3><strong>Thành viên Nhóm 4</strong><p>Cùng nhóm làm bài tập giữa kỳ: xây dựng trang chủ nhóm và portfolio cá nhân cho từng thành viên.</p><dl><div><dt>Vai trò</dt><dd>Trưởng nhóm</dd></div></dl></article>
         <article class="card reveal"><h3>Kinh nghiệm / Thành tích</h3><strong>Chưa có</strong><p>Chưa có kinh nghiệm làm việc hoặc thành tích nổi bật. Mình sẽ bổ sung khi có.</p></article>
       </div>
+    </section>
+
+    <!-- Hành trình -->
+    <section class="wrap sec" id="journey" aria-labelledby="journey-title">
+      <h2 class="sec-title reveal" id="journey-title">Hành trình</h2>
+      <p class="sec-lead reveal">Từng chặng đường đưa mình đến với ngành CNTT.</p>
+      <ol class="timeline">
+        <li class="reveal">
+          <time>Hạt giống · Trước 2024</time>
+          <h3>THPT Võ Lai</h3>
+          <p>Môn Toán là môn mình thích nhất, và năm cuối cấp để lại cho mình nhiều kỷ niệm đáng nhớ, trong đó có giải Ba môn bóng chuyền năm lớp 12. Lúc ấy mình đã xác định sẽ học ngành CNTT, dù chưa có lộ trình rõ ràng.</p>
+          <figure class="ph" data-file="../images/school/thpt.jpg"><img src="../images/school/thpt.jpg" alt="Duy Khương cùng cả lớp trước cổng trường THPT Võ Lai" onerror="this.remove()"><figcaption>Cùng cả lớp trước cổng trường THPT Võ Lai</figcaption></figure>
+        </li>
+        <li class="reveal">
+          <time>Nảy mầm · 2024</time>
+          <h3>Bước vào Đại học GTVT TP.HCM</h3>
+          <p>Từ quê nhà Bình Định, mình vào TP.HCM nhập học tại Đại học Giao thông vận tải. Mọi thứ đều mới mẻ và có phần bỡ ngỡ, nhưng cũng đầy háo hức, vì đây là nơi mình được học lập trình một cách bài bản. Đợt học quân sự năm nhất cũng là một kỷ niệm đáng nhớ: mình học được tính kỷ luật, sự chịu khó và có thêm nhiều người bạn mới.</p>
+          <figure class="ph" data-file="../images/school/uth.jpg"><img src="../images/school/uth.jpg" alt="Duy Khương cùng các bạn trong đợt học quân sự" onerror="this.remove()"><figcaption>Cùng các bạn trong đợt học quân sự</figcaption></figure>
+        </li>
+        <li class="reveal">
+          <time>Vươn thân · Hiện nay</time>
+          <h3>Trưởng nhóm — Nhóm 4</h3>
+          <p>Mình cùng Nhóm 4 làm bài giữa kỳ: xây dựng trang chủ nhóm và portfolio cá nhân cho từng thành viên. Làm trưởng nhóm giúp mình học cách lắng nghe, chia việc rõ ràng và chịu trách nhiệm với phần việc của cả nhóm.</p>        </li>
+      </ol>
     </section>
 
     <!-- 6. Dự án cá nhân -->
@@ -147,7 +220,7 @@
           </div>
         </article>
         <article class="card project reveal" data-category="personal">
-          <img src="../images/project-portfolio.svg" alt="Minh họa trang portfolio cá nhân dạng thẻ hồ sơ" loading="lazy">
+          <img src="../images/project-portfolio.jpg" alt="Ảnh chụp trang portfolio cá nhân của Nguyễn Đình Duy Khương" loading="lazy">
           <div class="project-body">
             <h3>Portfolio cá nhân</h3>
             <p>Chính trang bạn đang xem: giới thiệu bản thân, mục tiêu, kỹ năng, dự án và form liên hệ.</p>
@@ -197,10 +270,27 @@
     <section class="wrap sec" id="hobbies" aria-labelledby="hobbies-title">
       <h2 class="sec-title reveal" id="hobbies-title">Sở thích</h2>
       <div class="hobbies">
-        <figure class="card hobby reveal"><img src="../images/hobby-game.svg" alt="Tay cầm chơi game" loading="lazy"><figcaption><strong>Trò chơi điện tử</strong><p>Thích chơi game để giải trí và học cách tư duy chiến thuật.</p></figcaption></figure>
-        <figure class="card hobby reveal"><img src="../images/hobby-sport.svg" alt="Sân bóng và quả bóng" loading="lazy"><figcaption><strong>Các môn thể thao</strong><p>Chơi thể thao để rèn luyện sức khỏe và tinh thần đồng đội.</p></figcaption></figure>
-        <figure class="card hobby reveal"><img src="../images/hobby-travel.svg" alt="Núi non, mặt trời và máy bay" loading="lazy"><figcaption><strong>Du lịch</strong><p>Thích khám phá những nơi mới, văn hóa mới và gặp gỡ nhiều người.</p></figcaption></figure>
-        <figure class="card hobby reveal"><img src="../images/hobby-music.svg" alt="Tai nghe và nốt nhạc" loading="lazy"><figcaption><strong>Nghe nhạc</strong><p>Nghe nhạc mỗi ngày để thư giãn và có thêm năng lượng làm việc.</p></figcaption></figure>
+        <figure class="card hobby reveal"><img src="../images/hobby-game.svg" alt="Tay cầm chơi game" loading="lazy"><figcaption><strong>Trò chơi điện tử</strong><p>Thích chơi game để giải trí và học cách tư duy chiến thuật.</p><p>Mình hay chơi Liên Quân và các game thử thách cùng bạn bè trên Steam.</p></figcaption></figure>
+        <figure class="card hobby reveal"><img src="../images/hobbies/sport.jpg" alt="Nhóm bạn đá bóng cùng nhau trên sân cỏ buổi tối" loading="lazy"><figcaption><strong>Các môn thể thao</strong><p>Chơi thể thao để rèn luyện sức khỏe và tinh thần đồng đội.</p><p>Mình hay đá bóng và chơi cầu lông cùng bạn bè.</p></figcaption></figure>
+        <figure class="card hobby reveal"><img src="../images/hobbies/travel.jpg" alt="Duy Khương cùng bạn bè trên đường leo núi Bà Đen" loading="lazy"><figcaption><strong>Du lịch</strong><p>Thích khám phá những nơi mới, văn hóa mới và gặp gỡ nhiều người.</p><p>Nơi mình mong muốn đến nhất là Hà Nội, thủ đô của đất nước mình mà chưa có điều kiện ghé thăm. Còn gần đây, mình cùng những người bạn ở quê lên đã chinh phục núi Bà Đen.</p></figcaption></figure>
+        <figure class="card hobby reveal"><img src="../images/hobby-music.svg" alt="Tai nghe và nốt nhạc" loading="lazy"><figcaption><strong>Nghe nhạc</strong><p>Nghe nhạc mỗi ngày để thư giãn và có thêm năng lượng làm việc.</p><p>Mình thích nghe nhạc trẻ.</p></figcaption></figure>
+      </div>
+    </section>
+
+    <!-- Quiz: bạn là loài cây nào? -->
+    <section class="wrap sec" id="quiz" aria-labelledby="quiz-title">
+      <h2 class="sec-title reveal" id="quiz-title">Bạn là loài cây nào?</h2>
+      <p class="sec-lead reveal">Trả lời 4 câu hỏi nhanh để xem tính cách của bạn giống loài cây nào, rồi so với mình nhé.</p>
+      <div class="card quiz reveal" id="quiz-box"></div>
+    </section>
+
+    <!-- Thư viện ảnh -->
+    <section class="wrap sec" id="gallery" aria-labelledby="gallery-title">
+      <h2 class="sec-title reveal" id="gallery-title">Thư viện ảnh</h2>
+      <p class="sec-lead reveal">Một vài khoảnh khắc của mình. Bấm vào ảnh để xem lớn.</p>
+      <div class="gallery">
+        <figure class="shot ph reveal" data-file="../images/gallery/01.jpg"><img src="../images/gallery/01.jpg" alt="Duy Khương đang chạy thử game cờ Caro với hai người chơi" loading="lazy" onerror="this.remove()"><figcaption>Chạy thử game cờ Caro</figcaption></figure>
+        <figure class="shot ph reveal" data-file="../images/gallery/02.jpg"><img src="../images/gallery/02.jpg" alt="Chơi cầu lông cùng bạn bè trong nhà thi đấu" loading="lazy" onerror="this.remove()"><figcaption>Chơi cầu lông cùng bạn bè</figcaption></figure>
       </div>
     </section>
 
@@ -211,7 +301,7 @@
         <p class="sec-lead">Bạn muốn trao đổi về học tập, công nghệ hoặc dự án? Hãy để lại lời nhắn.</p>
         <ul class="social" aria-label="Liên hệ">
           <li><a class="s-mail" href="mailto:dinhduykhuongnguyen@gmail.com" aria-label="Email" title="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1.5 2.3V17.5h15V7.3L12 13 4.5 7.3Zm1.6-.8L12 11l5.9-4.5H6.1Z"/></svg></a></li>
-          <li><a class="s-phone" href="tel:0349330629" aria-label="Điện thoại" title="Điện thoại"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 2.5 9.4 2l1.6 4.4-2 1.5a12 12 0 0 0 6.1 6.1l1.5-2 4.4 1.6-.5 2.8A2.5 2.5 0 0 1 18 18.5C9.9 18.5 3.5 12.1 3.5 4A2.5 2.5 0 0 1 6.6 2.5Z"/></svg></a></li>
+          <li><a class="s-zalo" href="https://zalo.me/0349330629" target="_blank" rel="noopener" aria-label="Zalo" title="Zalo: 0349 330 629"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C6.5 3 2.5 6.8 2.5 11.4c0 2.4 1.1 4.5 2.9 6L4.6 21l3.6-1.8c1.1.4 2.5.6 3.8.6 5.5 0 9.5-3.8 9.5-8.4S17.5 3 12 3Z"/><path class="z" d="M8 8.5h8v1.4l-5.2 5.1H16v1.5H8v-1.4l5.2-5.1H8Z"/></svg></a></li>
           <li><a class="s-fb" href="https://www.facebook.com/duykhuong.nguyen.102361" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8.2h2.8l.5-3.3h-3.3V8.4c0-1 .4-1.7 1.8-1.7H17V3.8c-.3 0-1.3-.1-2.4-.1-2.5 0-4.1 1.5-4.1 4.2v2.6H7.7v3.3h2.8V22h3Z"/></svg></a></li>
           <li><a class="s-gh" href="https://github.com/DuyKhuong8677" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg></a></li>
         </ul>
@@ -238,7 +328,14 @@
     <button class="modal-close" id="modal-close" type="button" aria-label="Đóng">×</button>
     <h2 id="modal-title"></h2>
     <p id="modal-text"></p>
+    <dl class="modal-notes" id="modal-notes"></dl>
     <ul class="tags" id="modal-tags"></ul>
+  </dialog>
+
+  <dialog class="modal lightbox" id="lightbox" aria-label="Xem ảnh lớn">
+    <button class="modal-close" id="lightbox-close" type="button" aria-label="Đóng">×</button>
+    <img id="lightbox-img" src="" alt="">
+    <p id="lightbox-caption"></p>
   </dialog>
 </body>
 </html>

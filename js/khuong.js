@@ -19,7 +19,7 @@ const navLinks = document.querySelector("#nav-links");
 function setMenu(open) {
   navLinks.classList.toggle("open", open);
   menuToggle.setAttribute("aria-expanded", String(open));
-  menuToggle.setAttribute("aria-label", open ? "Đóng menu" : "Mở menu");
+  menuToggle.setAttribute("aria-label", t(open ? "Đóng menu" : "Mở menu"));
 }
 menuToggle.addEventListener("click", () => setMenu(menuToggle.getAttribute("aria-expanded") !== "true"));
 navLinks.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
@@ -118,12 +118,44 @@ const projectInfo = {
     tags: ["C#", "WinForms", "TCP"]
   }
 };
+// Ghi chú vai trò, khó khăn, bài học cho từng dự án (hiện trong cửa sổ mô tả)
+const projectNotes = {
+  banhcuon: {
+    "Vai trò": "Dự án cá nhân: mình tự làm toàn bộ, từ thiết kế giao diện đến viết code và đăng tải lên Netlify.",
+    "Khó khăn": "Làm giỏ hàng bằng JavaScript: cập nhật số lượng và tính lại tổng tiền mỗi khi khách thêm hoặc bớt món, đồng thời giữ giao diện gọn gàng trên màn hình điện thoại.",
+    "Học được": "Cách dùng DOM và sự kiện để trang web tương tác được, cách chia nhỏ vấn đề thành từng bước để dễ sửa lỗi, và cách đưa một website lên mạng cho mọi người cùng xem."
+  },
+  portfolio: {
+    "Vai trò": "Dự án cá nhân: mình tự làm toàn bộ, từ ý tưởng, thiết kế giao diện đến viết HTML, CSS và JavaScript.",
+    "Khó khăn": "Làm cho trang hiển thị đẹp trên cả máy tính, máy tính bảng và điện thoại, đồng thời giữ chế độ sáng/tối và các hiệu ứng chạy mượt mà.",
+    "Học được": "Cách dùng Flexbox và Grid để chia bố cục, cách dùng JavaScript để tạo menu, lọc dự án và kiểm tra form, và cách giữ code gọn gàng để dễ chỉnh sửa về sau."
+  },
+  group: {
+    "Vai trò": "Trưởng nhóm: mình tự làm toàn bộ trang chủ của Nhóm 4, từ bố cục, giao diện đến code, rồi kết nối với trang cá nhân của từng thành viên.",
+    "Khó khăn": "Thiết kế sao cho sáu thẻ thành viên đồng đều, dễ nhìn, và các liên kết dẫn đúng đến từng trang cá nhân.",
+    "Học được": "Cách tổ chức một trang có nhiều liên kết, cách thống nhất giao diện chung cho cả nhóm, và cách điều phối công việc để các trang riêng khớp với trang chủ."
+  },
+  caro: {
+    "Vai trò": "Dự án nhóm: mình phụ trách phần cơ sở dữ liệu và queue writer, tức hàng đợi ghi dữ liệu của game.",
+    "Khó khăn": "Nhiều người chơi cùng gửi dữ liệu một lúc nên cần ghi vào cơ sở dữ liệu đúng thứ tự và không bị mất hay trùng.",
+    "Học được": "Cách thiết kế và làm việc với cơ sở dữ liệu, cách dùng hàng đợi để xử lý nhiều yêu cầu cùng lúc, và cách phối hợp với các bạn phụ trách phần giao diện và kết nối mạng."
+  }
+};
 const modal = document.querySelector("#project-modal");
 document.querySelectorAll("[data-project]").forEach((button) => {
   button.addEventListener("click", () => {
     const info = projectInfo[button.dataset.project];
-    document.querySelector("#modal-title").textContent = info.title;
-    document.querySelector("#modal-text").textContent = info.text;
+    document.querySelector("#modal-title").textContent = t(info.title);
+    document.querySelector("#modal-text").textContent = t(info.text);
+    document.querySelector("#modal-notes").replaceChildren(...Object.entries(projectNotes[button.dataset.project]).map(([k, v]) => {
+      const row = document.createElement("div");
+      const dt = document.createElement("dt");
+      const dd = document.createElement("dd");
+      dt.textContent = t(k);
+      dd.textContent = t(v);
+      row.append(dt, dd);
+      return row;
+    }));
     document.querySelector("#modal-tags").replaceChildren(...info.tags.map((t) => {
       const li = document.createElement("li");
       li.textContent = t;
@@ -149,7 +181,7 @@ function validate(name) {
   const input = form.elements[name];
   const valid = rules[name].ok(input.value.trim());
   input.setAttribute("aria-invalid", String(!valid));
-  form.querySelector(`[data-for="${name}"]`).textContent = valid ? "" : rules[name].msg;
+  form.querySelector(`[data-for="${name}"]`).textContent = valid ? "" : t(rules[name].msg);
   return valid;
 }
 
@@ -166,10 +198,10 @@ form.addEventListener("submit", (e) => {
   const allValid = Object.keys(rules).map(validate).every(Boolean);
   status.classList.toggle("is-error", !allValid);
   if (!allValid) {
-    status.textContent = "Bạn hãy kiểm tra lại các trường được đánh dấu.";
+    status.textContent = t("Bạn hãy kiểm tra lại các trường được đánh dấu.");
     return;
   }
-  status.textContent = "Thông tin hợp lệ. Đây là bản demo nên lời nhắn chưa được gửi đi.";
+  status.textContent = t("Thông tin hợp lệ. Đây là bản demo nên lời nhắn chưa được gửi đi.");
   form.reset();
 });
 
@@ -241,3 +273,129 @@ if (typed && !reduceMotion) {
     setTimeout(tick, delay);
   })();
 }
+
+// Slideshow ảnh ở banner: chỉ xoay vòng những ảnh tải được
+window.addEventListener("load", () => {
+  const slides = [...document.querySelectorAll(".arch .slide")];
+  if (!slides.length) return;
+  let current = 0;
+  slides[0].classList.add("is-on");
+  if (slides.length < 2 || reduceMotion) return;
+  setInterval(() => {
+    slides[current].classList.remove("is-on");
+    current = (current + 1) % slides.length;
+    slides[current].classList.add("is-on");
+  }, 4000);
+});
+
+// Thẻ "vài điều thú vị": bấm để lật
+document.querySelectorAll(".flip").forEach((card) => {
+  card.addEventListener("click", () => {
+    const flipped = card.classList.toggle("flipped");
+    card.setAttribute("aria-pressed", String(flipped));
+  });
+});
+
+// Thư viện ảnh: bấm để xem lớn
+const lightbox = document.querySelector("#lightbox");
+document.querySelectorAll(".shot").forEach((shot) => {
+  shot.addEventListener("click", () => {
+    const img = shot.querySelector("img");
+    if (!img) return;
+    document.querySelector("#lightbox-img").src = img.src;
+    document.querySelector("#lightbox-img").alt = img.alt;
+    document.querySelector("#lightbox-caption").textContent = shot.querySelector("figcaption")?.textContent ?? "";
+    lightbox.showModal();
+  });
+});
+document.querySelector("#lightbox-close").addEventListener("click", () => lightbox.close());
+lightbox.addEventListener("click", (e) => { if (e.target === lightbox) lightbox.close(); });
+
+// Cây lớn dần theo tiến trình cuộn, lá nở ở các mốc
+const treeEl = document.querySelector(".tree");
+const treeLeaves = treeEl.querySelectorAll(".t-leaf");
+function growTree() {
+  const max = root.scrollHeight - innerHeight;
+  const p = max > 0 ? Math.min(scrollY / max, 1) : 0;
+  treeEl.style.setProperty("--g", (0.08 + p * 0.92).toFixed(3));
+  treeLeaves.forEach((leaf) => leaf.classList.toggle("on", p >= Number(leaf.dataset.at)));
+}
+window.addEventListener("scroll", growTree, { passive: true });
+growTree();
+
+// Bấm vào lá rơi để đọc một điều về mình
+const leafFacts = [
+  "Mình là trưởng nhóm của Nhóm 4 trong bài giữa kỳ này.",
+  "Mình học ngành Công nghệ thông tin tại Đại học GTVT TP.HCM (UTH).",
+  "Game cờ Caro của nhóm mình chơi được qua mạng nhờ giao thức TCP.",
+  "Shop bánh cuốn là website đầu tay của mình, đang chạy thật trên Netlify.",
+  "Trang này có phong cảnh ban ngày và ban đêm — thử bấm nút mặt trăng nhé!",
+  "Mục tiêu của mình: trở thành Full-stack Developer."
+];
+const toast = document.querySelector("#leaf-toast");
+let factIndex = 0, toastTimer;
+document.querySelectorAll(".fall").forEach((leaf) => {
+  leaf.addEventListener("click", () => {
+    toast.textContent = t(leafFacts[factIndex++ % leafFacts.length]);
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 4000);
+  });
+});
+
+// Quiz: bạn là loài cây nào?
+const trees = {
+  tre: { name: "Cây tre", text: "Bạn mềm mỏng nhưng bền bỉ: gió lớn đến đâu cũng chỉ uốn mình rồi đứng thẳng lại. Bạn hợp với công việc nhóm và kiên trì theo đuổi mục tiêu dài hạn." },
+  phuong: { name: "Phượng vĩ", text: "Bạn rực rỡ và giàu cảm xúc, thích tạo dấu ấn riêng. Bạn mang năng lượng tích cực đến cho mọi người xung quanh." },
+  soi: { name: "Cây sồi", text: "Bạn chậm mà chắc, vững vàng và đáng tin cậy. Bạn thích xây nền tảng tốt trước khi bứt phá." },
+  sen: { name: "Hoa sen", text: "Bạn điềm tĩnh, giữ được sự thanh thản dù hoàn cảnh ồn ào. Bạn học rất nhanh nhờ biết lắng nghe." }
+};
+const questions = [
+  { q: "Cuối tuần lý tưởng của bạn?", a: [["Đi chơi cùng nhóm bạn", "phuong"], ["Ở nhà đọc sách, nghe nhạc", "sen"], ["Luyện một kỹ năng mới", "soi"], ["Đi dã ngoại, khám phá nơi mới", "tre"]] },
+  { q: "Khi gặp khó khăn, bạn thường…", a: [["Bình tĩnh nghĩ cách", "sen"], ["Kiên trì thử đi thử lại", "tre"], ["Lên kế hoạch từng bước", "soi"], ["Nhờ bạn bè cùng giải quyết", "phuong"]] },
+  { q: "Trong nhóm, bạn hay đóng vai trò…", a: [["Người truyền cảm hứng", "phuong"], ["Người điều phối, giữ nhịp", "soi"], ["Người hỗ trợ thầm lặng", "sen"], ["Người linh hoạt, việc gì cũng làm", "tre"]] },
+  { q: "Bạn muốn mọi người nhớ về mình là…", a: [["Người đáng tin cậy", "soi"], ["Người vui vẻ, nhiều năng lượng", "phuong"], ["Người dịu dàng, thấu hiểu", "sen"], ["Người không bao giờ bỏ cuộc", "tre"]] }
+];
+const quizBox = document.querySelector("#quiz-box");
+function renderQuiz(step = 0, score = {}) {
+  quizBox.replaceChildren();
+  if (step >= questions.length) {
+    const best = Object.keys(trees).reduce((a, b) => ((score[b] || 0) > (score[a] || 0) ? b : a));
+    const h = document.createElement("strong");
+    h.textContent = `${t("Bạn giống: ")}${t(trees[best].name)}`;
+    const p = document.createElement("p");
+    p.textContent = t(trees[best].text);
+    const again = document.createElement("button");
+    again.type = "button";
+    again.className = "btn";
+    again.textContent = t("Làm lại");
+    again.addEventListener("click", () => renderQuiz());
+    quizBox.append(h, p, again);
+    return;
+  }
+  const { q, a } = questions[step];
+  const title = document.createElement("strong");
+  title.textContent = `${t("Câu")} ${step + 1}/${questions.length}: ${t(q)}`;
+  const list = document.createElement("div");
+  list.className = "quiz-options";
+  a.forEach(([label, key]) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "filter";
+    b.textContent = t(label);
+    b.addEventListener("click", () => renderQuiz(step + 1, { ...score, [key]: (score[key] || 0) + 1 }));
+    list.append(b);
+  });
+  quizBox.append(title, list);
+}
+renderQuiz();
+
+// Đổi ngôn ngữ: dựng lại quiz, dịch lại thông báo lỗi form và đóng thông báo cũ
+document.addEventListener("langchange", () => {
+  renderQuiz();
+  Object.keys(rules).forEach((name) => {
+    if (form.elements[name].getAttribute("aria-invalid") === "true") validate(name);
+  });
+  status.textContent = "";
+  toast.classList.remove("show");
+});
