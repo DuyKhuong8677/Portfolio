@@ -1,5 +1,562 @@
 /**
  * ==========================================================================
+ * BILINGUAL TRANSLATIONS & I18N SYSTEM (VIETNAMESE & ENGLISH)
+ * Personal Portfolio - Đỗ Trung Kiên (UTH)
+ * ==========================================================================
+ */
+
+const I18N = {
+    vi: {
+        // Meta & Document
+        docTitle: "Đỗ Trung Kiên | Portfolio Cá Nhân",
+
+        // Header & Masthead
+        brandSub: "UTH · CNTT K24",
+        liveStatus: "Đang học tập & nghiên cứu",
+        navHome: "Trang chủ",
+        navAbout: "Giới thiệu",
+        navCareer: "Mục tiêu",
+        navSkills: "Kỹ năng",
+        navEducation: "Học vấn",
+        navProjects: "Dự án",
+        navHobbies: "Sở thích",
+        navContact: "Liên hệ",
+        groupReturn: "Trang nhóm",
+        themeTooltip: "Giao diện",
+        langTooltip: "Chuyển sang English",
+        langBadge: "EN",
+
+        // Profile Sidebar (Left)
+        sidebarLocation: "TP.HCM · UTH",
+        sidebarPassions: "Đam mê: Code & Nhiếp ảnh",
+        typingPhrases: [
+            "Sinh viên Công nghệ Thông tin",
+            "Nhiếp ảnh gia & Sáng tạo",
+            "Sinh viên K24 · UTH"
+        ],
+        bentoUniLabel: "Trường đào tạo",
+        bentoUniVal: "ĐH GTVT TP.HCM",
+        bentoMajorLabel: "Chuyên ngành",
+        bentoMajorVal: "CNTT (K24)",
+        bentoHometownLabel: "Quê quán",
+        bentoHometownVal: "An Giang",
+        bentoTeamLabel: "Đồ án nhóm",
+        bentoTeamVal: "Nhóm 4",
+        vibeTitle: "Âm nhạc & Nhiếp ảnh",
+        vibeDesc: "Cảm hứng nghệ thuật & Sáng tạo Web",
+        copyEmailTooltip: "Nhấn để sao chép email",
+        copyPhoneTooltip: "Nhấn để sao chép số điện thoại",
+        sidebarContactCta: "Liên hệ",
+
+        // Hero Section
+        heroSalutation: "Xin chào, tôi là",
+        heroBtnProjects: "Xem các dự án",
+        heroBtnContact: "Liên hệ hợp tác",
+        heroBtnAbout: "Khám phá hồ sơ",
+
+        // Section 1: About
+        aboutChapter: "PHẦN I",
+        aboutTitle: "Giới thiệu bản thân",
+        aboutCaption: "Thông tin cá nhân, định hướng và câu chuyện học tập",
+        aboutNarrative1: "Tôi hiện đang là sinh viên năm 3 chuyên ngành Công nghệ Thông tin tại <strong>Trường Đại học Giao thông Vận tải Thành phố Hồ Chí Minh (UTH)</strong>. Xuất phát từ niềm say mê khám phá công nghệ, tôi luôn nỗ lực trau dồi kiến thức chuyên môn để làm chủ các công nghệ web hiện đại và biến những ý tưởng sáng tạo thành các sản phẩm số mang giá trị thực tiễn.",
+        aboutNarrative2: "Bên cạnh giờ học lập trình, tôi có một niềm đam mê đặc biệt với <strong>nhiếp ảnh</strong>. Việc cầm máy ảnh giúp tôi rèn luyện đôi mắt quan sát tinh tế, tư duy bố cục thị giác và cảm thụ màu sắc hài hòa — những yếu tố trực tiếp bổ trợ cho tôi trong việc thiết kế giao diện người dùng (UI/UX) đạt tính thẩm mỹ cao và thân thiện nhất.",
+        aboutMetaNameLabel: "Họ và tên",
+        aboutMetaMssvLabel: "Mã số sinh viên",
+        aboutMetaHometownLabel: "Quê quán",
+        aboutMetaUniLabel: "Trường đào tạo",
+        aboutMetaMajorLabel: "Chuyên ngành",
+        aboutMetaMajorVal: "Công nghệ Thông tin",
+        aboutMetaStatusLabel: "Trạng thái",
+        aboutMetaStatusVal: "Sinh viên năm 3 · K24",
+        aboutBtnMessage: "Gửi tin nhắn cho tôi",
+        aboutBtnGoals: "Xem lộ trình mục tiêu",
+
+        // Section 2: Career Goals
+        careerChapter: "PHẦN II",
+        careerTitle: "Mục tiêu nghề nghiệp",
+        careerCaption: "Lộ trình rèn luyện, hoàn thiện kỹ năng và tầm nhìn tương lai",
+        careerShortTag: "GIAI ĐOẠN 2024 - 2025",
+        careerShortTitle: "Mục tiêu ngắn hạn",
+        careerShortText: "Hoàn thành chương trình đại học với kết quả học tập tốt. Nâng cao kỹ năng lập trình Frontend và Backend. Tham gia các dự án thực tế để tích lũy kinh nghiệm và xây dựng portfolio ấn tượng.",
+        careerShortM1: "Thành thạo HTML5, CSS3, JavaScript hiện đại và Responsive Web",
+        careerShortM2: "Làm chủ Backend căn bản với PHP & Cơ sở dữ liệu MySQL",
+        careerShortM3: "Tham gia thực tập doanh nghiệp và đóng góp vào đồ án thực tiễn",
+        careerLongTag: "TẦM NHÌN 2028+",
+        careerLongTitle: "Mục tiêu dài hạn",
+        careerLongText: "Phát triển các sản phẩm công nghệ riêng, hướng đến khởi nghiệp trong lĩnh vực phần mềm. Trở thành chuyên gia trong lĩnh vực phát triển web và chia sẻ kiến thức với cộng đồng lập trình viên Việt Nam.",
+        careerLongM1: "Phát triển giải pháp công nghệ phục vụ cộng đồng và doanh nghiệp",
+        careerLongM2: "Trở thành Kỹ sư phần mềm Full-Stack chuyên sâu và kiến trúc hệ thống",
+        careerLongM3: "Đóng góp cho mã nguồn mở và chia sẻ tri thức công nghệ thông tin",
+
+        // Section 3: Skills
+        skillsChapter: "PHẦN III",
+        skillsTitle: "Kỹ năng chuyên môn",
+        skillsCaption: "Các công nghệ, ngôn ngữ và công cụ đã tích lũy trong quá trình học",
+        skillFilterAll: "Tất cả kỹ năng",
+        skillFilterFE: "Frontend",
+        skillFilterBE: "Backend",
+        skillFilterTools: "Công cụ & Khác",
+        feDesc: "Xây dựng giao diện web trực quan, linh hoạt và chuẩn responsive",
+        beDesc: "Xử lý logic phía máy chủ, thiết kế cơ sở dữ liệu và REST API",
+        toolsDesc: "Công cụ quản lý mã nguồn, môi trường lập trình và phương pháp",
+        badgeProficient: "Thành thạo",
+        badgeAdvanced: "Khá tốt",
+        badgeIntermediate: "Khá",
+        badgeBasic: "Cơ bản",
+
+        // Section 4: Education & Activities
+        eduChapter: "PHẦN IV",
+        eduTitle: "Học vấn & Hoạt động",
+        eduCaption: "Quá trình đào tạo chính quy và những hoạt động ngoại khóa tiêu biểu",
+        eduPathTitle: "Lộ trình học vấn",
+        eduPathDesc: "Quá trình học tập và rèn luyện từ THPT đến bậc Đại học",
+        eduUthTimeline: "2024 — Hiện tại",
+        eduUthMajor: "Cử nhân Công nghệ Thông tin",
+        eduUthNarrative: "Hiện đang là sinh viên năm 3 với chuyên ngành Công nghệ Thông tin. Tham gia tích cực vào các hoạt động học thuật, nghiên cứu và ngoại khóa trong trường.",
+        eduUthTag1: "Hệ chính quy",
+        eduUthTag2: "Chuyên ngành CNTT",
+        eduUthTag3: "Sinh viên năm 3",
+        eduVongtheTimeline: "2021 — 2024",
+        eduVongtheLocation: "Tốt nghiệp THPT",
+        eduVongtheMajor: "Lớp Khoa học Tự nhiên",
+        eduVongtheNarrative: "Hoàn thành chương trình THPT với thành tích tốt. Bắt đầu hình thành niềm đam mê với công nghệ thông tin và lập trình.",
+        eduVongtheTag1: "Tốt nghiệp loại Tốt",
+        eduVongtheTag2: "Nền tảng Tự nhiên",
+
+        actSubheadingTitle: "Hoạt động nổi bật & Phong trào",
+        actSubheadingDesc: "Các dấu ấn hoạt động văn nghệ, công tác CLB và cống hiến vì cộng đồng",
+        act1Badge1: "Cuộc thi UTH",
+        act1Badge2: "Sân khấu & Nghệ thuật",
+        act1Title: "Cuộc thi Toả sáng tài năng Âm nhạc UTH",
+        act1Desc: "Tham gia cuộc thi Toả sáng tài năng Âm nhạc do Trường Đại học Giao thông Vận tải TP.HCM tổ chức. Đây là sân chơi để sinh viên thể hiện đam mê âm nhạc và tài năng nghệ thuật của mình.",
+        act1Tag1: "Đam mê âm nhạc",
+        act1Tag2: "Sân chơi sinh viên",
+        act2Badge: "Phó Chủ nhiệm CLB",
+        act2Title: "CLB Kỹ Năng UTH",
+        act2Desc: "Thành viên tích cực, Tham gia và đảm nhiệm vai trò Phó Chủ nhiệm CLB Kỹ Năng UTH, trực tiếp đồng hành cùng Ban Chủ nhiệm trong công tác quản lý, điều phối và phát triển hoạt động CLB.",
+        act2Tag1: "Ban Chủ nhiệm",
+        act2Tag2: "Điều phối",
+        act3Badge: "Hoạt động cộng đồng",
+        act3Title: "Tình nguyện viên Mùa hè xanh",
+        act3Desc: "Tham gia các hoạt động tình nguyện Mùa hè xanh và hỗ trợ cộng đồng, cống hiến sức trẻ và rèn luyện kỹ năng kết nối xã hội.",
+        act3Tag1: "Mùa hè xanh",
+        act3Tag2: "Cống hiến",
+
+        // Section 5: Projects
+        projectsChapter: "PHẦN V",
+        projectsTitle: "Dự án cá nhân",
+        projectsCaption: "Những sản phẩm phần mềm thực tế đã triển khai và đúc kết kinh nghiệm",
+        project1Name: "Website Quản lý Thư viện Online",
+        project1Abstract: "Hệ thống quản lý mượn/trả sách trực tuyến dành cho sinh viên và thủ thư, tối ưu quy trình tra cứu và thống kê.",
+        project2Name: "TaskWeather - Quản lý công việc thông minh",
+        project2Abstract: "Ứng dụng quản lý công việc tích hợp dự báo thời tiết trực tuyến theo thời gian thực, hỗ trợ kéo thả Kanban tiện lợi.",
+        btnViewDetails: "Xem chi tiết",
+        btnViewDemo: "Demo",
+        btnViewCode: "Code",
+
+        // Section 6: Certificates & Hobbies
+        hobbiesChapter: "PHẦN VI",
+        hobbiesTitle: "Chứng chỉ & Sở thích",
+        hobbiesCaption: "Chứng nhận học thuật, nguồn cảm hứng đời sống và bộ sưu tập nhiếp ảnh",
+        cert1Kicker: "LĨNH VỰC CÔNG NGHỆ THÔNG TIN",
+        cert1Badge: "Đang tích lũy",
+        cert1Title: "Chứng chỉ chuyên môn",
+        cert1Text: "Đang trong quá trình tích lũy và hoàn thành các chứng chỉ chuyên môn về Công nghệ Thông tin.",
+        cert2Kicker: "SÂN CHƠI HỌC THUẬT & THI ĐUA",
+        cert2Badge: "Mục tiêu phấn đấu",
+        cert2Title: "Giải thưởng & Thi đua",
+        cert2Text: "Chưa có giải thưởng chính thức. Đang nỗ lực phấn đấu trong các cuộc thi học thuật và lập trình.",
+        cert2TagHackathon: "Hackathon UTH",
+        cert2TagIdeas: "Ý tưởng sáng tạo",
+        cert2TagHonor: "Sinh viên Giỏi",
+
+        hobby1Title: "Nhiếp ảnh",
+        hobby1Text: "Nhiếp ảnh là cách tôi khám phá và ghi lại vẻ đẹp cuộc sống. Tôi yêu thích chụp ảnh đường phố, phong cảnh và kiến trúc đô thị — rèn luyện tư duy thẩm mỹ hữu ích cho thiết kế giao diện.",
+        hobby1Tag1: "Street",
+        hobby1Tag2: "Phong cảnh",
+        hobby1Tag3: "Golden Hour",
+
+        hobby2Title: "Âm nhạc",
+        hobby2Text: "Âm nhạc là nguồn cảm hứng và năng lượng trong cuộc sống. Tôi đam mê ca hát, yêu thích nhiều thể loại từ Ballad, acoustic đến pop. Âm nhạc giúp tôi cân bằng và sáng tạo hơn.",
+        hobby2Tag1: "Ca hát",
+        hobby2Tag2: "Acoustic",
+        hobby2Tag3: "Pop",
+
+        hobby3Title: "Phượt & Khám phá",
+        hobby3Text: "Những chuyến đi phượt mang đến cho tôi trải nghiệm khám phá vùng đất mới, con người mới. Cảm giác tự do trên những cung đường dài giúp tôi rèn luyện sự kiên trì và mở rộng tầm nhìn.",
+        hobby3Tag1: "Cung đường",
+        hobby3Tag2: "Cắm trại",
+        hobby3Tag3: "Khám phá",
+
+        galleryKicker: "Ống kính cá nhân",
+        galleryTitle: "Bộ sưu tập ảnh chụp của Đỗ Trung Kiên",
+        gallerySubtitle: "Click vào bất kỳ ảnh nào để xem toàn màn hình (Phóng to sắc nét)",
+        zoomHint: "Nhấn để phóng to",
+        photoCap1: "Con người & Bầu trời",
+        photoCap2: "Khoảnh khắc đời thường & ánh sáng",
+        photoCap3: "Cảnh sắc thiên nhiên & chiều hoàng hôn",
+        photoCap4: "Cảnh sắc thiên nhiên và con người",
+        photoCap5: "Không gian lắng đọng & chiều sâu thị giác",
+        photoCap6: "Bình yên bên sóng nước & Ánh hoàng hôn",
+        photoCap7: "Cung đường đèo uốn lượn & Sắc hoa rực rỡ",
+
+        // Section 7: Contact
+        contactChapter: "PHẦN VII",
+        contactTitle: "Liên hệ với tôi",
+        contactCaption: "Kết nối trao đổi học thuật, đóng góp dự án hoặc cơ hội thực tập",
+        contactInfoTitle: "Thông tin liên lạc",
+        contactInfoDesc: "Nếu bạn có bất kỳ câu hỏi, đề xuất hợp tác hay muốn kết nối, đừng ngần ngại gửi tin nhắn hoặc liên lạc trực tiếp qua các kênh dưới đây.",
+        channelEmailLabel: "Hòm thư điện tử (Email)",
+        channelPhoneLabel: "Số điện thoại di động",
+        channelAddressLabel: "Địa chỉ",
+        channelAddressVal: "TP. Hồ Chí Minh, Việt Nam",
+        channelUniLabel: "Cơ sở đào tạo",
+        officeHours: "Thời gian phản hồi thông thường: Trong vòng 24 giờ",
+
+        formTitle: "Gửi tin nhắn trực tiếp",
+        formSubtitle: "Điền thông tin vào mẫu bên dưới, tôi sẽ liên hệ lại sớm nhất.",
+        formLabelName: "Họ và tên",
+        formPlaceholderName: "Ví dụ: Nguyễn Văn A",
+        formLabelEmail: "Địa chỉ Email",
+        formLabelSubject: "Chủ đề tin nhắn",
+        formPlaceholderSubject: "Chủ đề cần trao đổi hoặc cơ hội hợp tác",
+        formLabelMsg: "Nội dung tin nhắn",
+        formPlaceholderMsg: "Nhập nội dung tin nhắn chi tiết (tối thiểu 10 ký tự)...",
+        formSubmitBtn: "Gửi tin nhắn đi",
+        formSuccessAlert: "Tin nhắn đã được gửi thành công! Cảm ơn bạn đã liên hệ với tôi.",
+
+        // Form Validation Errors
+        errNameReq: "Vui lòng nhập họ và tên của bạn.",
+        errEmailReq: "Vui lòng cung cấp địa chỉ email liên hệ.",
+        errEmailInvalid: "Định dạng email không hợp lệ (ví dụ: name@gmail.com).",
+        errMsgReq: "Vui lòng nhập nội dung tin nhắn.",
+        errMsgShort: "Nội dung tin nhắn tối thiểu 10 ký tự.",
+        toastCopied: "Đã sao chép: ",
+
+        // Footer
+        footerTagline: "Sinh viên năm 3 ngành Công nghệ Thông tin<br>Trường Đại học Giao thông Vận tải TP.HCM (UTH)",
+        footerNavColTitle: "Chuyển hướng nhanh",
+        footerMoreColTitle: "Nội dung mở rộng",
+        footerGroupLink: "Trang chủ Nhóm 4",
+        footerSocialColTitle: "Mạng xã hội",
+        footerCopyright: "© 2024 Đỗ Trung Kiên. Tất cả các quyền được bảo lưu.",
+        footerDevCredits: "Thiết kế & phát triển cho Đồ án Giữa kỳ môn Lập trình Web · UTH",
+
+        // Project Modal
+        modalBadge: "THÔNG TIN DỰ ÁN",
+        modalFeatHeading: "Tính năng nổi bật",
+        modalTechHeading: "Công nghệ & Thư viện sử dụng",
+        modalRoleHeading: "Vai trò & Bài học tích lũy",
+        modalBtnDemo: "Xem Live Demo",
+        modalBtnSource: "Xem Source Code",
+        projectsData: {
+            1: {
+                title: "Website Quản lý Thư viện Online",
+                desc: "Hệ thống quản lý thư viện trực tuyến hỗ trợ toàn diện các nghiệp vụ tìm kiếm danh mục sách, đặt mượn sách, quản lý độc giả và lập phiếu thống kê dành cho thủ thư.",
+                features: [
+                    "Tra cứu sách nhanh chóng theo thể loại, tác giả và nhà xuất bản với bộ lọc trực quan",
+                    "Đăng ký tài khoản độc giả và quản lý lịch sử mượn/trả sách cá nhân",
+                    "Bảng điều khiển (Dashboard) dành cho thủ thư duyệt mượn và gửi thông báo nhắc hạn trả",
+                    "Thống kê số lượng sách phổ biến và số lượng độc giả tích cực hàng tháng"
+                ],
+                tech: ["HTML5", "CSS3", "JavaScript ES6", "PHP (OOP)", "MySQL Database", "Apache"],
+                role: "Đảm nhiệm toàn bộ quá trình thiết kế giao diện UI/UX người dùng, xây dựng cấu trúc cơ sở dữ liệu quan hệ MySQL và lập trình logic CRUD bằng PHP. Dự án giúp củng cố kiến thức kiến trúc MVC và bảo mật biểu mẫu người dùng."
+            },
+            2: {
+                title: "TaskWeather - Quản lý công việc thông minh",
+                desc: "Ứng dụng lập kế hoạch và quản lý công việc hàng ngày kết hợp thông tin thời tiết địa phương theo thời gian thực, giúp người dùng sắp xếp hoạt động ngoài trời hợp lý.",
+                features: [
+                    "Giao diện kéo thả (Drag and Drop) nhiệm vụ theo mô hình bảng Kanban trực quan",
+                    "Tích hợp OpenWeatherMap API tự động định vị và hiển thị thời tiết nơi người dùng sinh sống",
+                    "Gợi ý thời điểm làm việc phù hợp dựa theo cảnh báo thời tiết (mưa, nắng gắt)",
+                    "Lưu trữ dữ liệu ngoại tuyến (Offline Storage) đảm bảo không bị gián đoạn"
+                ],
+                tech: ["HTML5 Drag & Drop", "CSS Flexbox/Grid", "JavaScript ES6+", "RESTful API", "LocalStorage"],
+                role: "Phát triển ứng dụng từ ý tưởng thực tế: kết nối REST API bất đồng bộ với Async/Await, xử lý luồng sự kiện kéo thả mượt mà trên trình duyệt và thiết kế giao diện người dùng theo phong cách Neumorphism/Glassmorphism hiện đại."
+            }
+        }
+    },
+
+    en: {
+        // Meta & Document
+        docTitle: "Do Trung Kien | Personal Portfolio",
+
+        // Header & Masthead
+        brandSub: "UTH · IT Class of 24",
+        liveStatus: "Studying & Researching",
+        navHome: "Home",
+        navAbout: "About",
+        navCareer: "Goals",
+        navSkills: "Skills",
+        navEducation: "Education",
+        navProjects: "Projects",
+        navHobbies: "Hobbies",
+        navContact: "Contact",
+        groupReturn: "Group Site",
+        themeTooltip: "Theme",
+        langTooltip: "Chuyển sang Tiếng Việt",
+        langBadge: "VI",
+
+        // Profile Sidebar (Left)
+        sidebarLocation: "HCMC · UTH",
+        sidebarPassions: "Passion: Coding & Photography",
+        typingPhrases: [
+            "Information Technology Student",
+            "Photographer & Creator",
+            "Class K24 · UTH University"
+        ],
+        bentoUniLabel: "University",
+        bentoUniVal: "UTH (HCMC)",
+        bentoMajorLabel: "Major",
+        bentoMajorVal: "IT (K24)",
+        bentoHometownLabel: "Hometown",
+        bentoHometownVal: "An Giang",
+        bentoTeamLabel: "Group Project",
+        bentoTeamVal: "Team 4",
+        vibeTitle: "Music & Photography",
+        vibeDesc: "Art Inspiration & Web Creation",
+        copyEmailTooltip: "Click to copy email address",
+        copyPhoneTooltip: "Click to copy phone number",
+        sidebarContactCta: "Contact",
+
+        // Hero Section
+        heroSalutation: "Hello, I am",
+        heroBtnProjects: "Explore Projects",
+        heroBtnContact: "Get in Touch",
+        heroBtnAbout: "Discover Profile",
+
+        // Section 1: About
+        aboutChapter: "PART I",
+        aboutTitle: "About Me",
+        aboutCaption: "Personal background, career orientation & academic journey",
+        aboutNarrative1: "I am currently a 3rd-year undergraduate majoring in Information Technology at <strong>University of Transport Ho Chi Minh City (UTH)</strong>. Driven by an enduring curiosity for technology, I continuously expand my technical expertise to master modern web engineering and transform innovative ideas into impactful digital solutions.",
+        aboutNarrative2: "Beyond programming, I cultivate a dedicated passion for <strong>photography</strong>. Looking through the camera lens trains my keen eye for fine details, balanced visual composition, and nuanced color theory — qualities that directly elevate my UI/UX designs to be intuitive, clean, and aesthetically refined.",
+        aboutMetaNameLabel: "Full Name",
+        aboutMetaMssvLabel: "Student ID",
+        aboutMetaHometownLabel: "Hometown",
+        aboutMetaUniLabel: "University",
+        aboutMetaMajorLabel: "Major",
+        aboutMetaMajorVal: "Information Technology",
+        aboutMetaStatusLabel: "Status",
+        aboutMetaStatusVal: "Junior Year · Class K24",
+        aboutBtnMessage: "Send Me a Message",
+        aboutBtnGoals: "View Career Roadmap",
+
+        // Section 2: Career Goals
+        careerChapter: "PART II",
+        careerTitle: "Career Goals",
+        careerCaption: "Development roadmap, skill cultivation & future vision",
+        careerShortTag: "TIMELINE 2024 - 2025",
+        careerShortTitle: "Short-term Goals",
+        careerShortText: "Complete the degree program with strong academic performance. Elevate Frontend and Backend engineering skills. Actively contribute to production-grade projects to build practical expertise and a distinguished portfolio.",
+        careerShortM1: "Master modern HTML5, CSS3, ES6+ JavaScript, and responsive design",
+        careerShortM2: "Build solid Backend foundations with PHP OOP & MySQL relational databases",
+        careerShortM3: "Participate in corporate internships and real-world software projects",
+        careerLongTag: "VISION 2028+",
+        careerLongTitle: "Long-term Goals",
+        careerLongText: "Engineer proprietary software products and embark on tech entrepreneurship. Evolve into a senior web architect and actively share insights with the developer community.",
+        careerLongM1: "Develop high-impact tech solutions for organizations and communities",
+        careerLongM2: "Advance as an accomplished Full-Stack Engineer and System Architect",
+        careerLongM3: "Contribute to open source and mentor budding engineering talents",
+
+        // Section 3: Skills
+        skillsChapter: "PART III",
+        skillsTitle: "Technical Skills",
+        skillsCaption: "Technologies, frameworks, and workflows cultivated throughout study",
+        skillFilterAll: "All Skills",
+        skillFilterFE: "Frontend",
+        skillFilterBE: "Backend",
+        skillFilterTools: "Tools & Others",
+        feDesc: "Engineering intuitive, responsive, and performance-driven web interfaces",
+        beDesc: "Server-side business logic, relational database modeling, and REST APIs",
+        toolsDesc: "Version control workflows, development environments, and methodologies",
+        badgeProficient: "Proficient",
+        badgeAdvanced: "Advanced",
+        badgeIntermediate: "Intermediate",
+        badgeBasic: "Fundamental",
+
+        // Section 4: Education & Activities
+        eduChapter: "PART IV",
+        eduTitle: "Education & Activities",
+        eduCaption: "Formal academic progression and notable extracurricular leadership",
+        eduPathTitle: "Academic Roadmap",
+        eduPathDesc: "Educational foundation from secondary schooling to university degree",
+        eduUthTimeline: "2024 — Present",
+        eduUthMajor: "Bachelor of Information Technology",
+        eduUthNarrative: "Currently a junior student pursuing an IT degree. Actively engaged in academic workshops, software development coursework, and campus extracurricular activities.",
+        eduUthTag1: "Full-time Degree",
+        eduUthTag2: "IT Major",
+        eduUthTag3: "Junior Undergraduate",
+        eduVongtheTimeline: "2021 — 2024",
+        eduVongtheLocation: "High School Diploma",
+        eduVongtheMajor: "Natural Sciences Curriculum",
+        eduVongtheNarrative: "Graduated with honors. Developed an initial fascination with computing, analytical reasoning, and software development.",
+        eduVongtheTag1: "Honors Graduate",
+        eduVongtheTag2: "STEM Foundations",
+
+        actSubheadingTitle: "Notable Activities & Engagements",
+        actSubheadingDesc: "Musical performances, student club executive roles, and community outreach",
+        act1Badge1: "UTH Competition",
+        act1Badge2: "Stage & Performing Arts",
+        act1Title: "UTH Music Talent Showcase Competition",
+        act1Desc: "Participated in the university-wide Music Talent Showcase at UTH. An exciting cultural stage empowering students to exhibit artistic talent and performing confidence.",
+        act1Tag1: "Musical Passion",
+        act1Tag2: "Student Stage",
+        act2Badge: "Vice President",
+        act2Title: "UTH Soft Skills Club",
+        act2Desc: "Dedicated executive officer serving as Vice President of UTH Soft Skills Club, co-managing operations, workshop logistics, and student member engagement.",
+        act2Tag1: "Executive Board",
+        act2Tag2: "Coordination",
+        act3Badge: "Community Service",
+        act3Title: "Green Summer Volunteer Campaign",
+        act3Desc: "Contributed to Green Summer community campaigns, dedicating student enthusiasm to social support initiatives and building interpersonal teamwork skills.",
+        act3Tag1: "Green Summer",
+        act3Tag2: "Dedication",
+
+        // Section 5: Projects
+        projectsChapter: "PART V",
+        projectsTitle: "Featured Projects",
+        projectsCaption: "Practical software applications built with modern engineering practices",
+        project1Name: "Online Library Management System",
+        project1Abstract: "A complete web-based library circulation system for students and librarians, streamlining book catalogs, lending records, and usage reports.",
+        project2Name: "TaskWeather - Smart Task & Weather Dashboard",
+        project2Abstract: "An agile daily task planner integrating real-time local weather forecasts with an intuitive Kanban drag-and-drop workflow.",
+        btnViewDetails: "View Details",
+        btnViewDemo: "Demo",
+        btnViewCode: "Code",
+
+        // Section 6: Certificates & Hobbies
+        hobbiesChapter: "PART VI",
+        hobbiesTitle: "Certificates & Hobbies",
+        hobbiesCaption: "Academic qualifications, creative inspirations, and photo collections",
+        cert1Kicker: "INFORMATION TECHNOLOGY FIELD",
+        cert1Badge: "In Progress",
+        cert1Title: "Professional Certifications",
+        cert1Text: "Actively preparing for and completing accredited professional credentials in Computer Science and Web Development.",
+        cert2Kicker: "ACADEMIC ARENA & COMPETITIONS",
+        cert2Badge: "Aspirational Target",
+        cert2Title: "Honors & Awards",
+        cert2Text: "Currently targeting university hackathons and competitive programming challenges to achieve formal honors.",
+        cert2TagHackathon: "UTH Hackathon",
+        cert2TagIdeas: "Innovative Ideas",
+        cert2TagHonor: "Dean's List",
+
+        hobby1Title: "Photography",
+        hobby1Text: "Photography is my way of perceiving and capturing the nuances of everyday life. I enjoy street, landscape, and urban photography — developing aesthetic balance that directly informs UI design.",
+        hobby1Tag1: "Street",
+        hobby1Tag2: "Landscape",
+        hobby1Tag3: "Golden Hour",
+
+        hobby2Title: "Music",
+        hobby2Text: "Music provides perpetual energy and inspiration. I love singing across acoustic, ballad, and pop genres. Making music helps me reset, refocus, and approach technical challenges with fresh creativity.",
+        hobby2Tag1: "Singing",
+        hobby2Tag2: "Acoustic",
+        hobby2Tag3: "Pop",
+
+        hobby3Title: "Travel & Backpacking",
+        hobby3Text: "Backpacking expeditions introduce me to diverse terrains, communities, and traditions. The freedom of long motorcycle routes builds perseverance and expands my world view.",
+        hobby3Tag1: "Highways",
+        hobby3Tag2: "Camping",
+        hobby3Tag3: "Exploration",
+
+        galleryKicker: "Personal Lens",
+        galleryTitle: "Photography Showcase by Do Trung Kien",
+        gallerySubtitle: "Click on any photograph to view in high-resolution fullscreen lightbox",
+        zoomHint: "Click to enlarge",
+        photoCap1: "People & The Open Sky",
+        photoCap2: "Everyday Moments & Natural Light",
+        photoCap3: "Natural Landscapes & Sunset Glow",
+        photoCap4: "Scenic Serenity & Human Presence",
+        photoCap5: "Quiet Contemplation & Visual Depth",
+        photoCap6: "Waterside Peace & Dusk Radiance",
+        photoCap7: "Winding Mountain Pass & Vivid Flora",
+
+        // Section 7: Contact
+        contactChapter: "PART VII",
+        contactTitle: "Get in Touch",
+        contactCaption: "Reach out for academic discussions, collaborative projects, or internship roles",
+        contactInfoTitle: "Contact Channels",
+        contactInfoDesc: "Have questions, suggestions, or want to collaborate? Feel free to send a message or reach out directly through any of the channels below.",
+        channelEmailLabel: "Email Address",
+        channelPhoneLabel: "Mobile Phone Number",
+        channelAddressLabel: "Location",
+        channelAddressVal: "Ho Chi Minh City, Vietnam",
+        channelUniLabel: "Institution",
+        officeHours: "Typical response time: Within 24 hours",
+
+        formTitle: "Send a Direct Message",
+        formSubtitle: "Fill out the form below and I will get back to you as soon as possible.",
+        formLabelName: "Full Name",
+        formPlaceholderName: "e.g., John Doe",
+        formLabelEmail: "Email Address",
+        formLabelSubject: "Message Subject",
+        formPlaceholderSubject: "Topic of discussion or collaboration opportunity",
+        formLabelMsg: "Message Body",
+        formPlaceholderMsg: "Enter your message details (minimum 10 characters)...",
+        formSubmitBtn: "Send Message",
+        formSuccessAlert: "Message sent successfully! Thank you for reaching out.",
+
+        // Form Validation Errors
+        errNameReq: "Please enter your full name.",
+        errEmailReq: "Please provide a valid contact email address.",
+        errEmailInvalid: "Invalid email format (e.g., name@gmail.com).",
+        errMsgReq: "Please enter your message content.",
+        errMsgShort: "Message content must be at least 10 characters long.",
+        toastCopied: "Copied to clipboard: ",
+
+        // Footer
+        footerTagline: "3rd-Year Information Technology Student<br>University of Transport Ho Chi Minh City (UTH)",
+        footerNavColTitle: "Quick Navigation",
+        footerMoreColTitle: "Explore More",
+        footerGroupLink: "Team 4 Homepage",
+        footerSocialColTitle: "Social Channels",
+        footerCopyright: "© 2024 Do Trung Kien. All rights reserved.",
+        footerDevCredits: "Designed & engineered for Web Programming Midterm Project · UTH",
+
+        // Project Modal
+        modalBadge: "PROJECT BRIEF",
+        modalFeatHeading: "Key Features",
+        modalTechHeading: "Tech Stack & Libraries",
+        modalRoleHeading: "Role & Key Takeaways",
+        modalBtnDemo: "View Live Demo",
+        modalBtnSource: "View Source Code",
+        projectsData: {
+            1: {
+                title: "Online Library Management System",
+                desc: "A full-featured digital library portal supporting book catalog searches, member borrowings, patron record management, and circulation statistics for librarians.",
+                features: [
+                    "Rapid book catalog lookups filtered by category, author, and publisher",
+                    "Student patron accounts with personal borrowing history and due date tracking",
+                    "Administrative dashboard for librarians to approve book requests and dispatch alerts",
+                    "Monthly statistical analytics highlighting popular titles and active readers"
+                ],
+                tech: ["HTML5", "CSS3", "JavaScript ES6", "PHP (OOP)", "MySQL Database", "Apache"],
+                role: "Led the end-to-end UI/UX responsive interface design, modeled the relational MySQL database schema, and implemented backend CRUD operations in object-oriented PHP. Strengthened practical knowledge of MVC architecture and secure form sanitization."
+            },
+            2: {
+                title: "TaskWeather - Smart Task & Weather Dashboard",
+                desc: "An everyday productivity workspace combining an agile Kanban task manager with real-time localized weather forecasts to assist users in planning outdoor activities.",
+                features: [
+                    "Interactive Drag-and-Drop task boards arranged in an intuitive Kanban column format",
+                    "OpenWeatherMap API integration pinpointing the user's geolocation for live atmospheric data",
+                    "Intelligent contextual advice recommending optimal work windows during severe weather alerts",
+                    "Offline-first client caching via LocalStorage ensuring seamless continuity without network drops"
+                ],
+                tech: ["HTML5 Drag & Drop", "CSS Flexbox/Grid", "JavaScript ES6+", "RESTful API", "LocalStorage"],
+                role: "Developed the application from concept to completion: integrated asynchronous REST APIs with Async/Await, engineered robust drag-and-drop browser event handling, and styled a modern Glassmorphism UI."
+            }
+        }
+    }
+};
+
+if (typeof window !== 'undefined') {
+    window.I18N = I18N;
+}
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = I18N;
+}
+/**
+ * ==========================================================================
  * PERSONAL PORTFOLIO WEBSITE - JAVASCRIPT
  * Developer: Đỗ Trung Kiên
  * Institution: Đại học Giao thông Vận tải TP.HCM (UTH)
@@ -9,6 +566,115 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     'use strict';
+
+    /* ==========================================================================
+       FEATURE 0: BILINGUAL I18N SYSTEM (Tiếng Việt & English Switcher)
+       ========================================================================== */
+    const LANG_STORAGE_KEY = 'kien-portfolio-lang';
+    let currentLang = 'vi';
+    let updateTypingPhrases = null;
+
+    const applyLanguage = (lang) => {
+        currentLang = lang;
+        const dict = (window.I18N && window.I18N[lang]) ? window.I18N[lang] : null;
+        if (!dict) return;
+
+        // Set document language & title
+        document.documentElement.lang = lang;
+        if (dict.docTitle) {
+            document.title = dict.docTitle;
+        }
+
+        // 1. Text elements
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+            const key = el.getAttribute('data-i18n');
+            if (dict[key] !== undefined) {
+                el.textContent = dict[key];
+            }
+        });
+
+        // 2. HTML elements (containing formatting/tags)
+        document.querySelectorAll('[data-i18n-html]').forEach((el) => {
+            const key = el.getAttribute('data-i18n-html');
+            if (dict[key] !== undefined) {
+                el.innerHTML = dict[key];
+            }
+        });
+
+        // 3. Placeholders
+        document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (dict[key] !== undefined) {
+                el.placeholder = dict[key];
+            }
+        });
+
+        // 4. Tooltips / Titles
+        document.querySelectorAll('[data-i18n-title]').forEach((el) => {
+            const key = el.getAttribute('data-i18n-title');
+            if (dict[key] !== undefined) {
+                el.title = dict[key];
+            }
+        });
+
+        // 5. Update Switcher Button
+        const langCode = document.getElementById('langCode');
+        const langToggle = document.getElementById('langToggle');
+        if (langCode) {
+            // When VI is active, button shows EN (to switch to English), and vice versa
+            langCode.textContent = (lang === 'vi') ? 'EN' : 'VI';
+        }
+        if (langToggle) {
+            langToggle.title = (lang === 'vi') ? 'Chuyển sang English' : 'Chuyển sang Tiếng Việt';
+            langToggle.setAttribute('aria-label', (lang === 'vi') ? 'Switch to English' : 'Chuyển sang Tiếng Việt');
+        }
+
+        // 6. Update Slideshow Captions
+        const slides = document.querySelectorAll('.slideshow-stage .slide-item');
+        slides.forEach((slide, idx) => {
+            const capKey = `photoCap${idx + 1}`;
+            if (dict[capKey]) {
+                slide.setAttribute('data-caption', dict[capKey]);
+            }
+        });
+
+        // 7. Update dynamic typing phrases
+        if (typeof updateTypingPhrases === 'function' && dict.typingPhrases) {
+            updateTypingPhrases(dict.typingPhrases);
+        }
+
+        // Save preference
+        try {
+            localStorage.setItem(LANG_STORAGE_KEY, lang);
+        } catch (e) {
+            console.warn('LocalStorage error:', e);
+        }
+    };
+
+    const initLanguageSwitcher = () => {
+        const langToggle = document.getElementById('langToggle');
+        
+        // Restore saved language or detect browser preference
+        const savedLang = localStorage.getItem(LANG_STORAGE_KEY);
+        if (savedLang === 'en' || savedLang === 'vi') {
+            applyLanguage(savedLang);
+        } else {
+            // Default is Vietnamese
+            applyLanguage('vi');
+        }
+
+        if (langToggle) {
+            langToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const nextLang = (currentLang === 'vi') ? 'en' : 'vi';
+                applyLanguage(nextLang);
+
+                // Show friendly feedback toast
+                const toastMsg = (nextLang === 'en') ? 'Switched to English' : 'Đã chuyển sang Tiếng Việt';
+                showToast(toastMsg, 'fa-globe');
+            });
+        }
+    };
 
     /* ==========================================================================
        FEATURE 1: THEME TOGGLE (Dark & Light Mode with LocalStorage)
@@ -198,22 +864,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const typingEl = document.getElementById('typingText');
         if (!typingEl) return;
 
-        const PHRASES = [
-            'Sinh viên Công nghệ Thông tin',
-            'Nhiếp ảnh gia & Sáng tạo',
-            'Sinh viên K24 · UTH'
-        ];
+        let phrases = (window.I18N && window.I18N[currentLang]) 
+            ? window.I18N[currentLang].typingPhrases 
+            : [
+                'Sinh viên Công nghệ Thông tin',
+                'Nhiếp ảnh gia & Sáng tạo',
+                'Sinh viên K24 · UTH'
+            ];
 
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
         let typingSpeed = 90;
+        let typeTimer = null;
 
         const type = () => {
-            const currentPhrase = PHRASES[phraseIndex];
+            const currentPhrase = phrases[phraseIndex] || '';
 
             if (isDeleting) {
-                typingEl.textContent = currentPhrase.substring(0, charIndex - 1);
+                typingEl.textContent = currentPhrase.substring(0, Math.max(0, charIndex - 1));
                 charIndex--;
                 typingSpeed = 40;
             } else {
@@ -225,16 +894,26 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!isDeleting && charIndex === currentPhrase.length) {
                 isDeleting = true;
                 typingSpeed = 1600; // Pause at end of phrase
-            } else if (isDeleting && charIndex === 0) {
+            } else if (isDeleting && charIndex <= 0) {
                 isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % PHRASES.length;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
                 typingSpeed = 400; // Pause before new phrase
             }
 
-            setTimeout(type, typingSpeed);
+            typeTimer = setTimeout(type, typingSpeed);
         };
 
         type();
+
+        updateTypingPhrases = (newPhrases) => {
+            if (!newPhrases || !newPhrases.length) return;
+            phrases = newPhrases;
+            phraseIndex = 0;
+            charIndex = 0;
+            isDeleting = false;
+            if (typeTimer) clearTimeout(typeTimer);
+            type();
+        };
     };
 
     /* ==========================================================================
@@ -459,17 +1138,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = PROJECTS_DATA[projectId];
             if (!data) return;
 
-            modalTitle.textContent = data.title;
-            modalDesc.textContent = data.desc;
+            const langDict = (window.I18N && window.I18N[currentLang]) ? window.I18N[currentLang] : null;
+            const projectLang = langDict?.projectsData?.[projectId];
+
+            modalTitle.textContent = projectLang ? projectLang.title : data.title;
+            modalDesc.textContent = projectLang ? projectLang.desc : data.desc;
 
             // Features list
-            modalFeatures.innerHTML = data.features.map((f) => `<li>${f}</li>`).join('');
+            const features = projectLang ? projectLang.features : data.features;
+            modalFeatures.innerHTML = features.map((f) => `<li>${f}</li>`).join('');
 
             // Tech stack chips
-            modalTech.innerHTML = data.tech.map((t) => `<span class="tech-chip">${t}</span>`).join('');
+            const tech = projectLang ? projectLang.tech : data.tech;
+            modalTech.innerHTML = tech.map((t) => `<span class="tech-chip">${t}</span>`).join('');
 
             // Role
-            modalRole.textContent = data.role;
+            modalRole.textContent = projectLang ? projectLang.role : data.role;
 
             // Banner style
             if (modalVisualBanner) modalVisualBanner.style.background = data.bannerGradient;
@@ -687,7 +1371,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 try {
                     await navigator.clipboard.writeText(text);
-                    showToast(`Đã sao chép: ${text}`);
+                    const toastPrefix = (window.I18N && window.I18N[currentLang]) ? window.I18N[currentLang].toastCopied : 'Đã sao chép: ';
+                    showToast(`${toastPrefix}${text}`);
                 } catch (err) {
                     // Fallback for older browsers
                     const temp = document.createElement('textarea');
@@ -696,7 +1381,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     temp.select();
                     document.execCommand('copy');
                     document.body.removeChild(temp);
-                    showToast(`Đã sao chép: ${text}`);
+                    const toastPrefix = (window.I18N && window.I18N[currentLang]) ? window.I18N[currentLang].toastCopied : 'Đã sao chép: ';
+                    showToast(`${toastPrefix}${text}`);
                 }
             });
         });
@@ -722,8 +1408,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const validateName = () => {
             const val = nameInput.value.trim();
+            const dict = (window.I18N && window.I18N[currentLang]) || {};
             if (!val) {
-                nameError.textContent = 'Vui lòng nhập họ và tên của bạn.';
+                nameError.textContent = dict.errNameReq || 'Vui lòng nhập họ và tên của bạn.';
                 nameInput.style.borderColor = '#ef4444';
                 return false;
             }
@@ -734,13 +1421,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const validateEmail = () => {
             const val = emailInput.value.trim();
+            const dict = (window.I18N && window.I18N[currentLang]) || {};
             if (!val) {
-                emailError.textContent = 'Vui lòng cung cấp địa chỉ email liên hệ.';
+                emailError.textContent = dict.errEmailReq || 'Vui lòng cung cấp địa chỉ email liên hệ.';
                 emailInput.style.borderColor = '#ef4444';
                 return false;
             }
             if (!EMAIL_REGEX.test(val)) {
-                emailError.textContent = 'Định dạng email không hợp lệ (ví dụ: name@gmail.com).';
+                emailError.textContent = dict.errEmailInvalid || 'Định dạng email không hợp lệ (ví dụ: name@gmail.com).';
                 emailInput.style.borderColor = '#ef4444';
                 return false;
             }
@@ -751,13 +1439,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const validateMessage = () => {
             const val = messageInput.value.trim();
+            const dict = (window.I18N && window.I18N[currentLang]) || {};
             if (!val) {
-                messageError.textContent = 'Vui lòng nhập nội dung tin nhắn.';
+                messageError.textContent = dict.errMsgReq || 'Vui lòng nhập nội dung tin nhắn.';
                 messageInput.style.borderColor = '#ef4444';
                 return false;
             }
             if (val.length < 10) {
-                messageError.textContent = 'Nội dung tin nhắn tối thiểu 10 ký tự.';
+                messageError.textContent = dict.errMsgShort || 'Nội dung tin nhắn tối thiểu 10 ký tự.';
                 messageInput.style.borderColor = '#ef4444';
                 return false;
             }
@@ -859,6 +1548,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ==========================================================================
        INITIALIZE ALL MODULES
        ========================================================================== */
+    initLanguageSwitcher();
     initThemeToggle();
     initMobileMenu();
     initScrollIndicators();
