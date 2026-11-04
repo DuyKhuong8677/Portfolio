@@ -52,35 +52,41 @@
                     <span class="brand-monogram">TK</span>
                     <span class="brand-text">
                         <span class="brand-name">Đỗ Trung Kiên</span>
-                        <span class="brand-sub">UTH · CNTT K24</span>
+                        <span class="brand-sub" data-i18n="brandSub">UTH · CNTT K24</span>
                     </span>
                 </a>
                 <span class="live-status-pill" title="Trạng thái hiện tại">
                     <span class="status-dot"></span>
-                    <span class="status-text">Đang học tập & nghiên cứu</span>
+                    <span class="status-text" data-i18n="liveStatus">Đang học tập & nghiên cứu</span>
                 </span>
             </div>
 
             <!-- Desktop Navigation Links -->
             <nav class="masthead-nav" aria-label="Điều hướng chính">
                 <ul class="nav-menu" id="navLinks">
-                    <li><a href="#hero" class="nav-link active" data-section="hero">Trang chủ</a></li>
-                    <li><a href="#about" class="nav-link" data-section="about">Giới thiệu</a></li>
-                    <li><a href="#career" class="nav-link" data-section="career">Mục tiêu</a></li>
-                    <li><a href="#skills" class="nav-link" data-section="skills">Kỹ năng</a></li>
-                    <li><a href="#education" class="nav-link" data-section="education">Học vấn</a></li>
-                    <li><a href="#projects" class="nav-link" data-section="projects">Dự án</a></li>
-                    <li><a href="#hobbies" class="nav-link" data-section="hobbies">Sở thích</a></li>
-                    <li><a href="#contact" class="nav-link" data-section="contact">Liên hệ</a></li>
+                    <li><a href="#hero" class="nav-link active" data-section="hero" data-i18n="navHome">Trang chủ</a></li>
+                    <li><a href="#about" class="nav-link" data-section="about" data-i18n="navAbout">Giới thiệu</a></li>
+                    <li><a href="#career" class="nav-link" data-section="career" data-i18n="navCareer">Mục tiêu</a></li>
+                    <li><a href="#skills" class="nav-link" data-section="skills" data-i18n="navSkills">Kỹ năng</a></li>
+                    <li><a href="#education" class="nav-link" data-section="education" data-i18n="navEducation">Học vấn</a></li>
+                    <li><a href="#projects" class="nav-link" data-section="projects" data-i18n="navProjects">Dự án</a></li>
+                    <li><a href="#hobbies" class="nav-link" data-section="hobbies" data-i18n="navHobbies">Sở thích</a></li>
+                    <li><a href="#contact" class="nav-link" data-section="contact" data-i18n="navContact">Liên hệ</a></li>
                 </ul>
             </nav>
 
-            <!-- Actions: Group Back, Theme Toggle, Mobile Hamburger -->
+            <!-- Actions: Group Back, Language Toggle, Theme Toggle, Mobile Hamburger -->
             <div class="masthead-actions">
                 <a href="../index.html" class="group-return-btn" title="Quay lại trang chủ nhóm">
                     <i class="fas fa-arrow-left"></i>
-                    <span>Trang nhóm</span>
+                    <span data-i18n="groupReturn">Trang nhóm</span>
                 </a>
+
+                <!-- Language Switcher Button -->
+                <button class="lang-toggle-btn" id="langToggle" aria-label="Chuyển đổi ngôn ngữ Tiếng Việt / English" title="Chuyển sang English" data-i18n-title="langTooltip">
+                    <i class="fas fa-globe"></i>
+                    <span class="lang-code" id="langCode">EN</span>
+                </button>
 
                 <button class="theme-toggle-btn" id="themeToggle" aria-label="Chuyển đổi giao diện sáng/tối" title="Đổi màu giao diện Sáng / Tối">
                     <i class="fas fa-moon" id="themeIcon"></i>
@@ -115,7 +121,7 @@
                         <span class="beacon-dot"></span>
                     </span>
                     <span class="hub-location-chip" title="Địa điểm học tập">
-                        <i class="fas fa-map-marker-alt"></i> TP.HCM · UTH
+                        <i class="fas fa-map-marker-alt"></i> <span data-i18n="sidebarLocation">TP.HCM · UTH</span>
                     </span>
                 </div>
 
@@ -124,9 +130,9 @@
                     <div class="hub-avatar-ring">
                         <div class="avatar-halo-orbit" aria-hidden="true"></div>
                         <div class="avatar-image-frame">
-                            <img src="../images/kien/avatar.jpg" alt="Ảnh chân dung Đỗ Trung Kiên" class="hub-avatar-img">
+                            <img src="../images/kien/avatar.jpg" alt="Ảnh chân dung Đỗ Trung Kiên" class="hub-avatar-img" onerror="this.src='../images/kien/avatar.JPG'">
                         </div>
-                        <div class="avatar-floating-badge" title="Đam mê: Code & Nhiếp ảnh">
+                        <div class="avatar-floating-badge" title="Đam mê: Code & Nhiếp ảnh" data-i18n-title="sidebarPassions">
                             <i class="fas fa-laptop-code"></i>
                         </div>
                     </div>
@@ -147,29 +153,29 @@
                     <div class="bento-tile">
                         <div class="tile-icon-wrap icon-uni"><i class="fas fa-university"></i></div>
                         <div class="tile-meta">
-                            <span class="tile-label">Trường đào tạo</span>
-                            <span class="tile-value">ĐH GTVT TP.HCM</span>
+                            <span class="tile-label" data-i18n="bentoUniLabel">Trường đào tạo</span>
+                            <span class="tile-value" data-i18n="bentoUniVal">ĐH GTVT TP.HCM</span>
                         </div>
                     </div>
                     <div class="bento-tile">
                         <div class="tile-icon-wrap icon-code"><i class="fas fa-code"></i></div>
                         <div class="tile-meta">
-                            <span class="tile-label">Chuyên ngành</span>
-                            <span class="tile-value">CNTT (K24)</span>
+                            <span class="tile-label" data-i18n="bentoMajorLabel">Chuyên ngành</span>
+                            <span class="tile-value" data-i18n="bentoMajorVal">CNTT (K24)</span>
                         </div>
                     </div>
                     <div class="bento-tile">
                         <div class="tile-icon-wrap icon-geo"><i class="fas fa-compass"></i></div>
                         <div class="tile-meta">
-                            <span class="tile-label">Quê quán</span>
-                            <span class="tile-value">An Giang</span>
+                            <span class="tile-label" data-i18n="bentoHometownLabel">Quê quán</span>
+                            <span class="tile-value" data-i18n="bentoHometownVal">An Giang</span>
                         </div>
                     </div>
                     <div class="bento-tile">
                         <div class="tile-icon-wrap icon-team"><i class="fas fa-users"></i></div>
                         <div class="tile-meta">
-                            <span class="tile-label">Đồ án nhóm</span>
-                            <span class="tile-value">Nhóm 4</span>
+                            <span class="tile-label" data-i18n="bentoTeamLabel">Đồ án nhóm</span>
+                            <span class="tile-value" data-i18n="bentoTeamVal">Nhóm 4</span>
                         </div>
                     </div>
                 </div>
@@ -192,12 +198,12 @@
                 <!-- Quick Action Hub (Copy Contact & Direct Connect) -->
                 <div class="hub-action-section">
                     <div class="contact-pill-row">
-                        <button class="action-pill-btn" id="copyEmailBtn" data-copy="dotrungkien1914@gmail.com" title="Nhấn để sao chép email">
+                        <button class="action-pill-btn" id="copyEmailBtn" data-copy="dotrungkien1914@gmail.com" title="Nhấn để sao chép email" data-i18n-title="copyEmailTooltip">
                             <div class="pill-icon"><i class="fas fa-envelope"></i></div>
                             <span class="pill-text">dotrungkien1914@gmail.com</span>
                             <i class="fas fa-copy copy-ico"></i>
                         </button>
-                        <button class="action-pill-btn" id="copyPhoneBtn" data-copy="0964862711" title="Nhấn để sao chép số điện thoại">
+                        <button class="action-pill-btn" id="copyPhoneBtn" data-copy="0964862711" title="Nhấn để sao chép số điện thoại" data-i18n-title="copyPhoneTooltip">
                             <div class="pill-icon"><i class="fas fa-phone-alt"></i></div>
                             <span class="pill-text">0964 862 711</span>
                             <i class="fas fa-copy copy-ico"></i>
@@ -218,7 +224,7 @@
                         </div>
                         <a href="#contact" class="dock-connect-cta">
                             <i class="fas fa-paper-plane"></i>
-                            <span>Liên hệ</span>
+                            <span data-i18n="sidebarContactCta">Liên hệ</span>
                         </a>
                     </div>
                 </div>
@@ -236,7 +242,7 @@
                         <span class="badge-flag"><i class="fas fa-graduation-cap"></i> UTH PORTFOLIO</span>
                     </div>
 
-                    <p class="hero-salutation">Xin chào, tôi là</p>
+                    <p class="hero-salutation" data-i18n="heroSalutation">Xin chào, tôi là</p>
                     <h2 class="hero-headline">
                         <span class="gradient-text">Đỗ Trung Kiên</span>
                     </h2> 
@@ -244,15 +250,15 @@
                     <div class="hero-action-buttons">
                         <a href="#projects" class="btn btn-primary">
                             <i class="fas fa-rocket"></i>
-                            <span>Xem các dự án</span>
+                            <span data-i18n="heroBtnProjects">Xem các dự án</span>
                         </a>
                         <a href="#contact" class="btn btn-outline">
                             <i class="fas fa-paper-plane"></i>
-                            <span>Liên hệ hợp tác</span>
+                            <span data-i18n="heroBtnContact">Liên hệ hợp tác</span>
                         </a>
                         <a href="#about" class="btn btn-ghost">
                             <i class="fas fa-arrow-down"></i>
-                            <span>Khám phá hồ sơ</span>
+                            <span data-i18n="heroBtnAbout">Khám phá hồ sơ</span>
                         </a>
                     </div>
                 </div>
@@ -261,21 +267,21 @@
             <!-- ===== SECTION 1: ABOUT (GIỚI THIỆU BẢN THÂN) ===== -->
             <section class="section-block" id="about">
                 <div class="section-header-editorial reveal-on-scroll">
-                    <div class="header-chapter">PHẦN I</div>
-                    <h3 class="header-title">Giới thiệu bản thân</h3>
-                    <p class="header-caption">Thông tin cá nhân, định hướng và câu chuyện học tập</p>
+                    <div class="header-chapter" data-i18n="aboutChapter">PHẦN I</div>
+                    <h3 class="header-title" data-i18n="aboutTitle">Giới thiệu bản thân</h3>
+                    <p class="header-caption" data-i18n="aboutCaption">Thông tin cá nhân, định hướng và câu chuyện học tập</p>
                     <div class="header-hairline"></div>
                 </div>
 
                 <div class="about-card-editorial glass-panel reveal-on-scroll">
                     <div class="about-lead-box">
-                        <p class="about-narrative">
+                        <p class="about-narrative" data-i18n-html="aboutNarrative1">
                             Tôi hiện đang là sinh viên năm 3 chuyên ngành Công nghệ Thông tin tại 
                             <strong>Trường Đại học Giao thông Vận tải Thành phố Hồ Chí Minh (UTH)</strong>. 
                             Xuất phát từ niềm say mê khám phá công nghệ, tôi luôn nỗ lực trau dồi kiến thức chuyên môn 
                             để làm chủ các công nghệ web hiện đại và biến những ý tưởng sáng tạo thành các sản phẩm số mang giá trị thực tiễn.
                         </p>
-                        <p class="about-narrative">
+                        <p class="about-narrative" data-i18n-html="aboutNarrative2">
                             Bên cạnh giờ học lập trình, tôi có một niềm đam mê đặc biệt với <strong>nhiếp ảnh</strong>. 
                             Việc cầm máy ảnh giúp tôi rèn luyện đôi mắt quan sát tinh tế, tư duy bố cục thị giác và cảm thụ màu sắc hài hòa — 
                             những yếu tố trực tiếp bổ trợ cho tôi trong việc thiết kế giao diện người dùng (UI/UX) đạt tính thẩm mỹ cao và thân thiện nhất.
@@ -286,7 +292,7 @@
                         <div class="meta-box">
                             <div class="meta-icon"><i class="fas fa-user-graduate"></i></div>
                             <div class="meta-content">
-                                <span class="meta-label">Họ và tên</span>
+                                <span class="meta-label" data-i18n="aboutMetaNameLabel">Họ và tên</span>
                                 <span class="meta-value">Đỗ Trung Kiên</span>
                             </div>
                         </div>
@@ -294,7 +300,7 @@
                         <div class="meta-box">
                             <div class="meta-icon"><i class="fas fa-id-card"></i></div>
                             <div class="meta-content">
-                                <span class="meta-label">Mã số sinh viên</span>
+                                <span class="meta-label" data-i18n="aboutMetaMssvLabel">Mã số sinh viên</span>
                                 <span class="meta-value font-mono">089206024941</span>
                             </div>
                         </div>
@@ -302,32 +308,32 @@
                         <div class="meta-box">
                             <div class="meta-icon"><i class="fas fa-map-marker-alt"></i></div>
                             <div class="meta-content">
-                                <span class="meta-label">Quê quán</span>
-                                <span class="meta-value">An Giang</span>
+                                <span class="meta-label" data-i18n="aboutMetaHometownLabel">Quê quán</span>
+                                <span class="meta-value" data-i18n="bentoHometownVal">An Giang</span>
                             </div>
                         </div>
 
                         <div class="meta-box">
                             <div class="meta-icon"><i class="fas fa-university"></i></div>
                             <div class="meta-content">
-                                <span class="meta-label">Trường đào tạo</span>
-                                <span class="meta-value">ĐH GTVT TP.HCM (UTH)</span>
+                                <span class="meta-label" data-i18n="aboutMetaUniLabel">Trường đào tạo</span>
+                                <span class="meta-value" data-i18n="bentoUniVal">ĐH GTVT TP.HCM (UTH)</span>
                             </div>
                         </div>
 
                         <div class="meta-box">
                             <div class="meta-icon"><i class="fas fa-laptop-code"></i></div>
                             <div class="meta-content">
-                                <span class="meta-label">Chuyên ngành</span>
-                                <span class="meta-value">Công nghệ Thông tin</span>
+                                <span class="meta-label" data-i18n="aboutMetaMajorLabel">Chuyên ngành</span>
+                                <span class="meta-value" data-i18n="aboutMetaMajorVal">Công nghệ Thông tin</span>
                             </div>
                         </div>
 
                         <div class="meta-box">
                             <div class="meta-icon"><i class="fas fa-compass"></i></div>
                             <div class="meta-content">
-                                <span class="meta-label">Trạng thái</span>
-                                <span class="meta-value">Sinh viên năm 3 · K24</span>
+                                <span class="meta-label" data-i18n="aboutMetaStatusLabel">Trạng thái</span>
+                                <span class="meta-value" data-i18n="aboutMetaStatusVal">Sinh viên năm 3 · K24</span>
                             </div>
                         </div>
                     </div>
@@ -335,10 +341,10 @@
                     <div class="about-cta-row">
                         <a href="#contact" class="btn btn-primary">
                             <i class="fas fa-paper-plane"></i>
-                            <span>Gửi tin nhắn cho tôi</span>
+                            <span data-i18n="aboutBtnMessage">Gửi tin nhắn cho tôi</span>
                         </a>
                         <a href="#career" class="btn btn-ghost">
-                            <span>Xem lộ trình mục tiêu</span>
+                            <span data-i18n="aboutBtnGoals">Xem lộ trình mục tiêu</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -348,9 +354,9 @@
             <!-- ===== SECTION 2: CAREER GOALS (MỤC TIÊU NGHỀ NGHIỆP) ===== -->
             <section class="section-block" id="career">
                 <div class="section-header-editorial reveal-on-scroll">
-                    <div class="header-chapter">PHẦN II</div>
-                    <h3 class="header-title">Mục tiêu nghề nghiệp</h3>
-                    <p class="header-caption">Lộ trình rèn luyện, hoàn thiện kỹ năng và tầm nhìn tương lai</p>
+                    <div class="header-chapter" data-i18n="careerChapter">PHẦN II</div>
+                    <h3 class="header-title" data-i18n="careerTitle">Mục tiêu nghề nghiệp</h3>
+                    <p class="header-caption" data-i18n="careerCaption">Lộ trình rèn luyện, hoàn thiện kỹ năng và tầm nhìn tương lai</p>
                     <div class="header-hairline"></div>
                 </div>
 
@@ -362,12 +368,12 @@
                                 <i class="fas fa-bullseye"></i>
                             </div>
                             <div class="goal-title-group">
-                                <span class="goal-timeline-tag">GIAI ĐOẠN 2024 - 2025</span>
-                                <h4 class="goal-title">Mục tiêu ngắn hạn</h4>
+                                <span class="goal-timeline-tag" data-i18n="careerShortTag">GIAI ĐOẠN 2024 - 2025</span>
+                                <h4 class="goal-title" data-i18n="careerShortTitle">Mục tiêu ngắn hạn</h4>
                             </div>
                         </div>
 
-                        <p class="goal-text">
+                        <p class="goal-text" data-i18n="careerShortText">
                             Hoàn thành chương trình đại học với kết quả học tập tốt. Nâng cao kỹ năng 
                             lập trình Frontend và Backend. Tham gia các dự án thực tế để tích lũy kinh nghiệm 
                             và xây dựng portfolio ấn tượng.
@@ -376,15 +382,15 @@
                         <div class="goal-milestones">
                             <div class="milestone-item">
                                 <i class="fas fa-check-circle"></i>
-                                <span>Thành thạo HTML5, CSS3, JavaScript hiện đại và Responsive Web</span>
+                                <span data-i18n="careerShortM1">Thành thạo HTML5, CSS3, JavaScript hiện đại và Responsive Web</span>
                             </div>
                             <div class="milestone-item">
                                 <i class="fas fa-check-circle"></i>
-                                <span>Làm chủ Backend căn bản với PHP & Cơ sở dữ liệu MySQL</span>
+                                <span data-i18n="careerShortM2">Làm chủ Backend căn bản với PHP & Cơ sở dữ liệu MySQL</span>
                             </div>
                             <div class="milestone-item">
                                 <i class="fas fa-check-circle"></i>
-                                <span>Tham gia thực tập doanh nghiệp và đóng góp vào đồ án thực tiễn</span>
+                                <span data-i18n="careerShortM3">Tham gia thực tập doanh nghiệp và đóng góp vào đồ án thực tiễn</span>
                             </div>
                         </div>
                     </div>
@@ -396,12 +402,12 @@
                                 <i class="fas fa-rocket"></i>
                             </div>
                             <div class="goal-title-group">
-                                <span class="goal-timeline-tag">TẦM NHÌN 2028+</span>
-                                <h4 class="goal-title">Mục tiêu dài hạn</h4>
+                                <span class="goal-timeline-tag" data-i18n="careerLongTag">TẦM NHÌN 2028+</span>
+                                <h4 class="goal-title" data-i18n="careerLongTitle">Mục tiêu dài hạn</h4>
                             </div>
                         </div>
 
-                        <p class="goal-text">
+                        <p class="goal-text" data-i18n="careerLongText">
                             Phát triển các sản phẩm công nghệ riêng, hướng đến khởi nghiệp trong lĩnh vực 
                             phần mềm. Trở thành chuyên gia trong lĩnh vực phát triển web và chia sẻ 
                             kiến thức với cộng đồng lập trình viên Việt Nam.
@@ -410,15 +416,15 @@
                         <div class="goal-milestones">
                             <div class="milestone-item">
                                 <i class="fas fa-check-circle"></i>
-                                <span>Phát triển giải pháp công nghệ phục vụ cộng đồng và doanh nghiệp</span>
+                                <span data-i18n="careerLongM1">Phát triển giải pháp công nghệ phục vụ cộng đồng và doanh nghiệp</span>
                             </div>
                             <div class="milestone-item">
                                 <i class="fas fa-check-circle"></i>
-                                <span>Trở thành Kỹ sư phần mềm Full-Stack chuyên sâu và kiến trúc hệ thống</span>
+                                <span data-i18n="careerLongM2">Trở thành Kỹ sư phần mềm Full-Stack chuyên sâu và kiến trúc hệ thống</span>
                             </div>
                             <div class="milestone-item">
                                 <i class="fas fa-check-circle"></i>
-                                <span>Đóng góp cho mã nguồn mở và chia sẻ tri thức công nghệ thông tin</span>
+                                <span data-i18n="careerLongM3">Đóng góp cho mã nguồn mở và chia sẻ tri thức công nghệ thông tin</span>
                             </div>
                         </div>
                     </div>
@@ -428,18 +434,18 @@
             <!-- ===== SECTION 3: SKILLS (KỸ NĂNG CHUYÊN MÔN) ===== -->
             <section class="section-block" id="skills">
                 <div class="section-header-editorial reveal-on-scroll">
-                    <div class="header-chapter">PHẦN III</div>
-                    <h3 class="header-title">Kỹ năng chuyên môn</h3>
-                    <p class="header-caption">Các công nghệ, ngôn ngữ và công cụ đã tích lũy trong quá trình học</p>
+                    <div class="header-chapter" data-i18n="skillsChapter">PHẦN III</div>
+                    <h3 class="header-title" data-i18n="skillsTitle">Kỹ năng chuyên môn</h3>
+                    <p class="header-caption" data-i18n="skillsCaption">Các công nghệ, ngôn ngữ và công cụ đã tích lũy trong quá trình học</p>
                     <div class="header-hairline"></div>
                 </div>
 
                 <!-- Skill Filter Tabs -->
                 <div class="skills-filter-nav reveal-on-scroll">
-                    <button class="filter-tab-btn active" data-filter="all">Tất cả kỹ năng</button>
-                    <button class="filter-tab-btn" data-filter="frontend">Frontend</button>
-                    <button class="filter-tab-btn" data-filter="backend">Backend</button>
-                    <button class="filter-tab-btn" data-filter="tools">Công cụ & Khác</button>
+                    <button class="filter-tab-btn active" data-filter="all" data-i18n="skillFilterAll">Tất cả kỹ năng</button>
+                    <button class="filter-tab-btn" data-filter="frontend" data-i18n="skillFilterFE">Frontend</button>
+                    <button class="filter-tab-btn" data-filter="backend" data-i18n="skillFilterBE">Backend</button>
+                    <button class="filter-tab-btn" data-filter="tools" data-i18n="skillFilterTools">Công cụ & Khác</button>
                 </div>
 
                 <div class="skills-grid-wrapper">
@@ -452,7 +458,7 @@
                             </div>
                             <div>
                                 <h4 class="category-title">Frontend Development</h4>
-                                <span class="category-desc">Xây dựng giao diện web trực quan, linh hoạt và chuẩn responsive</span>
+                                <span class="category-desc" data-i18n="feDesc">Xây dựng giao diện web trực quan, linh hoạt và chuẩn responsive</span>
                             </div>
                         </div>
 
@@ -463,7 +469,7 @@
                                     <div class="meter-name-group">
                                         <i class="fab fa-html5 skill-ico ico-html"></i>
                                         <span class="skill-name">HTML5</span>
-                                        <span class="skill-badge-level">Thành thạo</span>
+                                        <span class="skill-badge-level" data-i18n="badgeProficient">Thành thạo</span>
                                     </div>
                                     <span class="skill-percent-number font-mono">90%</span>
                                 </div>
@@ -478,7 +484,7 @@
                                     <div class="meter-name-group">
                                         <i class="fab fa-css3-alt skill-ico ico-css"></i>
                                         <span class="skill-name">CSS3</span>
-                                        <span class="skill-badge-level">Thành thạo</span>
+                                        <span class="skill-badge-level" data-i18n="badgeProficient">Thành thạo</span>
                                     </div>
                                     <span class="skill-percent-number font-mono">85%</span>
                                 </div>
@@ -493,7 +499,7 @@
                                     <div class="meter-name-group">
                                         <i class="fab fa-js-square skill-ico ico-js"></i>
                                         <span class="skill-name">JavaScript (ES6+)</span>
-                                        <span class="skill-badge-level">Khá tốt</span>
+                                        <span class="skill-badge-level" data-i18n="badgeAdvanced">Khá tốt</span>
                                     </div>
                                     <span class="skill-percent-number font-mono">80%</span>
                                 </div>
@@ -508,7 +514,7 @@
                                     <div class="meter-name-group">
                                         <i class="fab fa-bootstrap skill-ico ico-bootstrap"></i>
                                         <span class="skill-name">Bootstrap</span>
-                                        <span class="skill-badge-level">Khá</span>
+                                        <span class="skill-badge-level" data-i18n="badgeIntermediate">Khá</span>
                                     </div>
                                     <span class="skill-percent-number font-mono">75%</span>
                                 </div>
@@ -523,7 +529,7 @@
                                     <div class="meter-name-group">
                                         <i class="fas fa-mobile-alt skill-ico ico-mobile"></i>
                                         <span class="skill-name">Responsive Design</span>
-                                        <span class="skill-badge-level">Thành thạo</span>
+                                        <span class="skill-badge-level" data-i18n="badgeProficient">Thành thạo</span>
                                     </div>
                                     <span class="skill-percent-number font-mono">85%</span>
                                 </div>
@@ -542,7 +548,7 @@
                             </div>
                             <div>
                                 <h4 class="category-title">Backend Development</h4>
-                                <span class="category-desc">Xử lý logic phía máy chủ, thiết kế cơ sở dữ liệu và REST API</span>
+                                <span class="category-desc" data-i18n="beDesc">Xử lý logic phía máy chủ, thiết kế cơ sở dữ liệu và REST API</span>
                             </div>
                         </div>
 
@@ -553,7 +559,7 @@
                                     <div class="meter-name-group">
                                         <i class="fab fa-php skill-ico ico-php"></i>
                                         <span class="skill-name">PHP</span>
-                                        <span class="skill-badge-level">Khá</span>
+                                        <span class="skill-badge-level" data-i18n="badgeIntermediate">Khá</span>
                                     </div>
                                     <span class="skill-percent-number font-mono">70%</span>
                                 </div>
@@ -568,7 +574,7 @@
                                     <div class="meter-name-group">
                                         <i class="fab fa-java skill-ico ico-java"></i>
                                         <span class="skill-name">Java</span>
-                                        <span class="skill-badge-level">Cơ bản</span>
+                                        <span class="skill-badge-level" data-i18n="badgeBasic">Cơ bản</span>
                                     </div>
                                     <span class="skill-percent-number font-mono">65%</span>
                                 </div>
@@ -583,7 +589,7 @@
                                     <div class="meter-name-group">
                                         <i class="fab fa-python skill-ico ico-python"></i>
                                         <span class="skill-name">Python</span>
-                                        <span class="skill-badge-level">Khá tốt</span>
+                                        <span class="skill-badge-level" data-i18n="badgeAdvanced">Khá tốt</span>
                                     </div>
                                     <span class="skill-percent-number font-mono">75%</span>
                                 </div>
@@ -598,7 +604,7 @@
                                     <div class="meter-name-group">
                                         <i class="fas fa-database skill-ico ico-db"></i>
                                         <span class="skill-name">MySQL</span>
-                                        <span class="skill-badge-level">Khá</span>
+                                        <span class="skill-badge-level" data-i18n="badgeIntermediate">Khá</span>
                                     </div>
                                     <span class="skill-percent-number font-mono">70%</span>
                                 </div>
@@ -617,7 +623,7 @@
                             </div>
                             <div>
                                 <h4 class="category-title">Tools & Others</h4>
-                                <span class="category-desc">Công cụ quản lý mã nguồn, môi trường lập trình và phương pháp</span>
+                                <span class="category-desc" data-i18n="toolsDesc">Công cụ quản lý mã nguồn, môi trường lập trình và phương pháp</span>
                             </div>
                         </div>
 
@@ -628,7 +634,7 @@
                                     <div class="meter-name-group">
                                         <i class="fab fa-git-alt skill-ico ico-git"></i>
                                         <span class="skill-name">Git / GitHub</span>
-                                        <span class="skill-badge-level">Khá tốt</span>
+                                        <span class="skill-badge-level" data-i18n="badgeAdvanced">Khá tốt</span>
                                     </div>
                                     <span class="skill-percent-number font-mono">75%</span>
                                 </div>
@@ -643,7 +649,7 @@
                                     <div class="meter-name-group">
                                         <i class="fas fa-code skill-ico ico-vscode"></i>
                                         <span class="skill-name">VS Code</span>
-                                        <span class="skill-badge-level">Thành thạo</span>
+                                        <span class="skill-badge-level" data-i18n="badgeProficient">Thành thạo</span>
                                     </div>
                                     <span class="skill-percent-number font-mono">90%</span>
                                 </div>
@@ -658,7 +664,7 @@
                                     <div class="meter-name-group">
                                         <i class="fab fa-figma skill-ico ico-figma"></i>
                                         <span class="skill-name">Figma</span>
-                                        <span class="skill-badge-level">Cơ bản</span>
+                                        <span class="skill-badge-level" data-i18n="badgeBasic">Cơ bản</span>
                                     </div>
                                     <span class="skill-percent-number font-mono">65%</span>
                                 </div>
@@ -673,7 +679,7 @@
                                     <div class="meter-name-group">
                                         <i class="fas fa-cubes skill-ico ico-oop"></i>
                                         <span class="skill-name">OOP (Lập trình hướng đối tượng)</span>
-                                        <span class="skill-badge-level">Khá tốt</span>
+                                        <span class="skill-badge-level" data-i18n="badgeAdvanced">Khá tốt</span>
                                     </div>
                                     <span class="skill-percent-number font-mono">80%</span>
                                 </div>
@@ -690,9 +696,9 @@
             <!-- ===== SECTION 4: EDUCATION & ACTIVITIES (HỌC VẤN & HOẠT ĐỘNG) ===== -->
             <section class="section-block" id="education">
                 <div class="section-header-editorial reveal-on-scroll">
-                    <div class="header-chapter">PHẦN IV</div>
-                    <h3 class="header-title">Học vấn & Hoạt động</h3>
-                    <p class="header-caption">Quá trình đào tạo chính quy và những hoạt động ngoại khóa tiêu biểu</p>
+                    <div class="header-chapter" data-i18n="eduChapter">PHẦN IV</div>
+                    <h3 class="header-title" data-i18n="eduTitle">Học vấn & Hoạt động</h3>
+                    <p class="header-caption" data-i18n="eduCaption">Quá trình đào tạo chính quy và những hoạt động ngoại khóa tiêu biểu</p>
                     <div class="header-hairline"></div>
                 </div>
 
@@ -701,8 +707,8 @@
                     <div class="block-subheading reveal-on-scroll">
                         <span class="subheading-icon"><i class="fas fa-graduation-cap"></i></span>
                         <div class="subheading-text">
-                            <h4 class="subheading-title">Lộ trình học vấn</h4>
-                            <p class="subheading-desc">Quá trình học tập và rèn luyện từ THPT đến bậc Đại học</p>
+                            <h4 class="subheading-title" data-i18n="eduPathTitle">Lộ trình học vấn</h4>
+                            <p class="subheading-desc" data-i18n="eduPathDesc">Quá trình học tập và rèn luyện từ THPT đến bậc Đại học</p>
                         </div>
                     </div>
 
@@ -712,9 +718,9 @@
                         <div class="clean-card glass-panel edu-card current-school reveal-on-scroll">
                             <div class="card-meta-top">
                                 <span class="badge-status-live">
-                                    <span class="beacon-dot"></span> 2024 — Hiện tại
+                                    <span class="beacon-dot"></span> <span data-i18n="eduUthTimeline">2024 — Hiện tại</span>
                                 </span>
-                                <span class="card-meta-loc"><i class="fas fa-map-marker-alt"></i> TP.HCM · UTH</span>
+                                <span class="card-meta-loc"><i class="fas fa-map-marker-alt"></i> <span data-i18n="sidebarLocation">TP.HCM · UTH</span></span>
                             </div>
 
                             <div class="card-identity-row">
@@ -723,20 +729,20 @@
                                 </div>
                                 <div class="card-title-wrap">
                                     <h5 class="card-school-name">Đại học Giao thông Vận tải TP.HCM (UTH)</h5>
-                                    <div class="card-major-name"><i class="fas fa-laptop-code"></i> Cử nhân Công nghệ Thông tin</div>
+                                    <div class="card-major-name"><i class="fas fa-laptop-code"></i> <span data-i18n="eduUthMajor">Cử nhân Công nghệ Thông tin</span></div>
                                 </div>
                             </div>
 
-                            <p class="card-narrative">
+                            <p class="card-narrative" data-i18n="eduUthNarrative">
                                 Hiện đang là sinh viên năm 3 với chuyên ngành Công nghệ Thông tin. 
                                 Tham gia tích cực vào các hoạt động học thuật, nghiên cứu và ngoại khóa 
                                 trong trường.
                             </p>
 
                             <div class="card-tags-list">
-                                <span class="card-tag-pill active"><i class="fas fa-check-circle"></i> Hệ chính quy</span>
-                                <span class="card-tag-pill active"><i class="fas fa-code"></i> Chuyên ngành CNTT</span>
-                                <span class="card-tag-pill"><i class="fas fa-user-graduate"></i> Sinh viên năm 3</span>
+                                <span class="card-tag-pill active"><i class="fas fa-check-circle"></i> <span data-i18n="eduUthTag1">Hệ chính quy</span></span>
+                                <span class="card-tag-pill active"><i class="fas fa-code"></i> <span data-i18n="eduUthTag2">Chuyên ngành CNTT</span></span>
+                                <span class="card-tag-pill"><i class="fas fa-user-graduate"></i> <span data-i18n="eduUthTag3">Sinh viên năm 3</span></span>
                             </div>
                         </div>
 
@@ -746,7 +752,7 @@
                                 <span class="badge-status-past">
                                     <i class="fas fa-calendar-alt"></i> 2021 — 2024
                                 </span>
-                                <span class="card-meta-loc"><i class="fas fa-medal"></i> Tốt nghiệp THPT</span>
+                                <span class="card-meta-loc"><i class="fas fa-medal"></i> <span data-i18n="eduVongtheLocation">Tốt nghiệp THPT</span></span>
                             </div>
 
                             <div class="card-identity-row">
@@ -755,18 +761,18 @@
                                 </div>
                                 <div class="card-title-wrap">
                                     <h5 class="card-school-name">THPT Vọng Thê</h5>
-                                    <div class="card-major-name"><i class="fas fa-atom"></i> Lớp Khoa học Tự nhiên</div>
+                                    <div class="card-major-name"><i class="fas fa-atom"></i> <span data-i18n="eduVongtheMajor">Lớp Khoa học Tự nhiên</span></div>
                                 </div>
                             </div>
 
-                            <p class="card-narrative">
+                            <p class="card-narrative" data-i18n="eduVongtheNarrative">
                                 Hoàn thành chương trình THPT với thành tích tốt. Bắt đầu hình thành 
                                 niềm đam mê với công nghệ thông tin và lập trình.
                             </p>
 
                             <div class="card-tags-list">
-                                <span class="card-tag-pill"><i class="fas fa-award"></i> Tốt nghiệp loại Tốt</span>
-                                <span class="card-tag-pill"><i class="fas fa-brain"></i> Nền tảng Tự nhiên</span>
+                                <span class="card-tag-pill"><i class="fas fa-award"></i> <span data-i18n="eduVongtheTag1">Tốt nghiệp loại Tốt</span></span>
+                                <span class="card-tag-pill"><i class="fas fa-brain"></i> <span data-i18n="eduVongtheTag2">Nền tảng Tự nhiên</span></span>
                             </div>
                         </div>
 
@@ -778,8 +784,8 @@
                     <div class="block-subheading reveal-on-scroll">
                         <span class="subheading-icon amber"><i class="fas fa-star"></i></span>
                         <div class="subheading-text">
-                            <h4 class="subheading-title">Hoạt động nổi bật & Phong trào</h4>
-                            <p class="subheading-desc">Các dấu ấn hoạt động văn nghệ, công tác CLB và cống hiến vì cộng đồng</p>
+                            <h4 class="subheading-title" data-i18n="actSubheadingTitle">Hoạt động nổi bật & Phong trào</h4>
+                            <p class="subheading-desc" data-i18n="actSubheadingDesc">Các dấu ấn hoạt động văn nghệ, công tác CLB và cống hiến vì cộng đồng</p>
                         </div>
                     </div>
 
@@ -793,17 +799,17 @@
                                 </div>
                                 <div class="spotlight-content">
                                     <div class="activity-badge-row">
-                                        <span class="act-badge amber"><i class="fas fa-trophy"></i> Cuộc thi UTH</span>
-                                        <span class="act-badge pink"><i class="fas fa-music"></i> Sân khấu & Nghệ thuật</span>
+                                        <span class="act-badge amber"><i class="fas fa-trophy"></i> <span data-i18n="act1Badge1">Cuộc thi UTH</span></span>
+                                        <span class="act-badge pink"><i class="fas fa-music"></i> <span data-i18n="act1Badge2">Sân khấu & Nghệ thuật</span></span>
                                     </div>
-                                    <h5 class="activity-headline">Cuộc thi Toả sáng tài năng Âm nhạc UTH</h5>
-                                    <p class="activity-desc">
+                                    <h5 class="activity-headline" data-i18n="act1Title">Cuộc thi Toả sáng tài năng Âm nhạc UTH</h5>
+                                    <p class="activity-desc" data-i18n="act1Desc">
                                         Tham gia cuộc thi Toả sáng tài năng Âm nhạc do Trường Đại học Giao thông Vận tải TP.HCM tổ chức. 
                                         Đây là sân chơi để sinh viên thể hiện đam mê âm nhạc và tài năng nghệ thuật của mình.
                                     </p>
                                     <div class="card-tags-list">
-                                        <span class="card-tag-pill amber"><i class="fas fa-guitar"></i> Đam mê âm nhạc</span>
-                                        <span class="card-tag-pill"><i class="fas fa-users"></i> Sân chơi sinh viên</span>
+                                        <span class="card-tag-pill amber"><i class="fas fa-guitar"></i> <span data-i18n="act1Tag1">Đam mê âm nhạc</span></span>
+                                        <span class="card-tag-pill"><i class="fas fa-users"></i> <span data-i18n="act1Tag2">Sân chơi sinh viên</span></span>
                                     </div>
                                 </div>
                             </div>
@@ -818,16 +824,16 @@
                                     <div class="card-brand-icon purple-icon">
                                         <i class="fas fa-crown"></i>
                                     </div>
-                                    <span class="act-badge purple"><i class="fas fa-user-shield"></i> Phó Chủ nhiệm CLB</span>
+                                    <span class="act-badge purple"><i class="fas fa-user-shield"></i> <span data-i18n="act2Badge">Phó Chủ nhiệm CLB</span></span>
                                 </div>
-                                <h5 class="activity-headline">CLB Kỹ Năng UTH</h5>
-                                <p class="activity-desc">
+                                <h5 class="activity-headline" data-i18n="act2Title">CLB Kỹ Năng UTH</h5>
+                                <p class="activity-desc" data-i18n="act2Desc">
                                     Thành viên tích cực, Tham gia và đảm nhiệm vai trò Phó Chủ nhiệm CLB Kỹ Năng UTH, 
                                     trực tiếp đồng hành cùng Ban Chủ nhiệm trong công tác quản lý, điều phối và phát triển hoạt động CLB.
                                 </p>
                                 <div class="card-tags-list">
-                                    <span class="card-tag-pill purple"><i class="fas fa-users-cog"></i> Ban Chủ nhiệm</span>
-                                    <span class="card-tag-pill"><i class="fas fa-sitemap"></i> Điều phối</span>
+                                    <span class="card-tag-pill purple"><i class="fas fa-users-cog"></i> <span data-i18n="act2Tag1">Ban Chủ nhiệm</span></span>
+                                    <span class="card-tag-pill"><i class="fas fa-sitemap"></i> <span data-i18n="act2Tag2">Điều phối</span></span>
                                 </div>
                             </div>
 
@@ -837,15 +843,15 @@
                                     <div class="card-brand-icon green-icon">
                                         <i class="fas fa-hands-helping"></i>
                                     </div>
-                                    <span class="act-badge green"><i class="fas fa-heart"></i> Hoạt động cộng đồng</span>
+                                    <span class="act-badge green"><i class="fas fa-heart"></i> <span data-i18n="act3Badge">Hoạt động cộng đồng</span></span>
                                 </div>
-                                <h5 class="activity-headline">Tình nguyện viên Mùa hè xanh</h5>
-                                <p class="activity-desc">
+                                <h5 class="activity-headline" data-i18n="act3Title">Tình nguyện viên Mùa hè xanh</h5>
+                                <p class="activity-desc" data-i18n="act3Desc">
                                     Tham gia các hoạt động tình nguyện Mùa hè xanh và hỗ trợ cộng đồng, cống hiến sức trẻ và rèn luyện kỹ năng kết nối xã hội.
                                 </p>
                                 <div class="card-tags-list">
-                                    <span class="card-tag-pill green"><i class="fas fa-leaf"></i> Mùa hè xanh</span>
-                                    <span class="card-tag-pill"><i class="fas fa-hand-holding-heart"></i> Cống hiến</span>
+                                    <span class="card-tag-pill green"><i class="fas fa-leaf"></i> <span data-i18n="act3Tag1">Mùa hè xanh</span></span>
+                                    <span class="card-tag-pill"><i class="fas fa-hand-holding-heart"></i> <span data-i18n="act3Tag2">Cống hiến</span></span>
                                 </div>
                             </div>
 
@@ -859,9 +865,9 @@
             <!-- ===== SECTION 5: PROJECTS (DỰ ÁN TIÊU BIỂU) ===== -->
             <section class="section-block" id="projects">
                 <div class="section-header-editorial reveal-on-scroll">
-                    <div class="header-chapter">PHẦN V</div>
-                    <h3 class="header-title">Dự án cá nhân</h3>
-                    <p class="header-caption">Những sản phẩm phần mềm thực tế đã triển khai và đúc kết kinh nghiệm</p>
+                    <div class="header-chapter" data-i18n="projectsChapter">PHẦN V</div>
+                    <h3 class="header-title" data-i18n="projectsTitle">Dự án cá nhân</h3>
+                    <p class="header-caption" data-i18n="projectsCaption">Những sản phẩm phần mềm thực tế đã triển khai và đúc kết kinh nghiệm</p>
                     <div class="header-hairline"></div>
                 </div>
 
@@ -879,10 +885,10 @@
 
                         <div class="project-card-body">
                             <div class="project-header-row">
-                                <h4 class="project-name">Website Quản lý Thư viện Online</h4>
+                                <h4 class="project-name" data-i18n="project1Name">Website Quản lý Thư viện Online</h4>
                             </div>
 
-                            <p class="project-abstract">
+                            <p class="project-abstract" data-i18n="project1Abstract">
                                 Hệ thống quản lý mượn/trả sách trực tuyến dành cho sinh viên và thủ thư, tối ưu quy trình tra cứu và thống kê.
                             </p>
 
@@ -897,16 +903,16 @@
                             <div class="project-bottom-actions">
                                 <button type="button" class="btn btn-primary project-modal-trigger" data-project="1">
                                     <i class="fas fa-eye"></i>
-                                    <span>Xem chi tiết</span>
+                                    <span data-i18n="btnViewDetails">Xem chi tiết</span>
                                 </button>
                                 <div class="project-outlinks">
                                     <a href="#" class="btn btn-outline btn-sm" onclick="event.preventDefault(); alert('Source code đang được lưu trữ nội bộ môn học.');" title="Xem mã nguồn">
                                         <i class="fab fa-github"></i>
-                                        <span>Code</span>
+                                        <span data-i18n="btnViewCode">Code</span>
                                     </a>
                                     <a href="#" class="btn btn-outline btn-sm" onclick="event.preventDefault(); alert('Bản thử nghiệm đang chạy trong môi trường localhost.');" title="Xem demo">
                                         <i class="fas fa-external-link-alt"></i>
-                                        <span>Demo</span>
+                                        <span data-i18n="btnViewDemo">Demo</span>
                                     </a>
                                 </div>
                             </div>
@@ -925,10 +931,10 @@
 
                         <div class="project-card-body">
                             <div class="project-header-row">
-                                <h4 class="project-name">TaskWeather - Quản lý công việc thông minh</h4>
+                                <h4 class="project-name" data-i18n="project2Name">TaskWeather - Quản lý công việc thông minh</h4>
                             </div>
 
-                            <p class="project-abstract">
+                            <p class="project-abstract" data-i18n="project2Abstract">
                                 Ứng dụng quản lý công việc tích hợp dự báo thời tiết trực tuyến theo thời gian thực, hỗ trợ kéo thả Kanban tiện lợi.
                             </p>
 
@@ -942,16 +948,16 @@
                             <div class="project-bottom-actions">
                                 <button type="button" class="btn btn-primary project-modal-trigger" data-project="2">
                                     <i class="fas fa-eye"></i>
-                                    <span>Xem chi tiết</span>
+                                    <span data-i18n="btnViewDetails">Xem chi tiết</span>
                                 </button>
                                 <div class="project-outlinks">
                                     <a href="#" class="btn btn-outline btn-sm" onclick="event.preventDefault(); alert('Source code đang được lưu trữ nội bộ môn học.');" title="Xem mã nguồn">
                                         <i class="fab fa-github"></i>
-                                        <span>Code</span>
+                                        <span data-i18n="btnViewCode">Code</span>
                                     </a>
                                     <a href="#" class="btn btn-outline btn-sm" onclick="event.preventDefault(); alert('Bản demo đang cập nhật API key mới.');" title="Xem demo">
                                         <i class="fas fa-external-link-alt"></i>
-                                        <span>Demo</span>
+                                        <span data-i18n="btnViewDemo">Demo</span>
                                     </a>
                                 </div>
                             </div>
@@ -964,9 +970,9 @@
             <!-- ===== SECTION 6: CERTIFICATES & HOBBIES (CHỨNG CHỈ & SỞ THÍCH) ===== -->
             <section class="section-block" id="hobbies">
                 <div class="section-header-editorial reveal-on-scroll">
-                    <div class="header-chapter">PHẦN VI</div>
-                    <h3 class="header-title">Chứng chỉ & Sở thích</h3>
-                    <p class="header-caption">Chứng nhận học thuật, nguồn cảm hứng đời sống và bộ sưu tập nhiếp ảnh</p>
+                    <div class="header-chapter" data-i18n="hobbiesChapter">PHẦN VI</div>
+                    <h3 class="header-title" data-i18n="hobbiesTitle">Chứng chỉ & Sở thích</h3>
+                    <p class="header-caption" data-i18n="hobbiesCaption">Chứng nhận học thuật, nguồn cảm hứng đời sống và bộ sưu tập nhiếp ảnh</p>
                     <div class="header-hairline"></div>
                 </div>
 
@@ -980,13 +986,13 @@
                                 <i class="fas fa-certificate"></i>
                             </div>
                             <span class="cert-badge learning">
-                                <span class="beacon-dot"></span> Đang tích lũy
+                                <span class="beacon-dot"></span> <span data-i18n="cert1Badge">Đang tích lũy</span>
                             </span>
                         </div>
                         <div class="cert-body">
-                            <span class="cert-kicker">LĨNH VỰC CÔNG NGHỆ THÔNG TIN</span>
-                            <h5 class="cert-title">Chứng chỉ chuyên môn</h5>
-                            <p class="cert-text">
+                            <span class="cert-kicker" data-i18n="cert1Kicker">LĨNH VỰC CÔNG NGHỆ THÔNG TIN</span>
+                            <h5 class="cert-title" data-i18n="cert1Title">Chứng chỉ chuyên môn</h5>
+                            <p class="cert-text" data-i18n="cert1Text">
                                 Đang trong quá trình tích lũy và hoàn thành các chứng chỉ chuyên môn về Công nghệ Thông tin.
                             </p>
                         </div>
@@ -1004,20 +1010,20 @@
                                 <i class="fas fa-trophy"></i>
                             </div>
                             <span class="cert-badge striving">
-                                <i class="fas fa-bullseye"></i> Mục tiêu phấn đấu
+                                <i class="fas fa-bullseye"></i> <span data-i18n="cert2Badge">Mục tiêu phấn đấu</span>
                             </span>
                         </div>
                         <div class="cert-body">
-                            <span class="cert-kicker">SÂN CHƠI HỌC THUẬT & THI ĐUA</span>
-                            <h5 class="cert-title">Giải thưởng & Thi đua</h5>
-                            <p class="cert-text">
+                            <span class="cert-kicker" data-i18n="cert2Kicker">SÂN CHƠI HỌC THUẬT & THI ĐUA</span>
+                            <h5 class="cert-title" data-i18n="cert2Title">Giải thưởng & Thi đua</h5>
+                            <p class="cert-text" data-i18n="cert2Text">
                                 Chưa có giải thưởng chính thức. Đang nỗ lực phấn đấu trong các cuộc thi học thuật và lập trình.
                             </p>
                         </div>
                         <div class="cert-target-tags">
-                            <span class="target-tag amber"><i class="fas fa-laptop-code"></i> Hackathon UTH</span>
-                            <span class="target-tag amber"><i class="fas fa-lightbulb"></i> Ý tưởng sáng tạo</span>
-                            <span class="target-tag amber"><i class="fas fa-medal"></i> Sinh viên Giỏi</span>
+                            <span class="target-tag amber"><i class="fas fa-laptop-code"></i> <span data-i18n="cert2TagHackathon">Hackathon UTH</span></span>
+                            <span class="target-tag amber"><i class="fas fa-lightbulb"></i> <span data-i18n="cert2TagIdeas">Ý tưởng sáng tạo</span></span>
+                            <span class="target-tag amber"><i class="fas fa-medal"></i> <span data-i18n="cert2TagHonor">Sinh viên Giỏi</span></span>
                         </div>
                     </div>
 
@@ -1035,17 +1041,17 @@
                             <span class="hobby-mini-tag camera-tag"><i class="fas fa-eye"></i> Visual Mind</span>
                         </div>
                         <div class="hobby-body">
-                            <h4 class="hobby-title">Nhiếp ảnh</h4>
-                            <p class="hobby-text">
+                            <h4 class="hobby-title" data-i18n="hobby1Title">Nhiếp ảnh</h4>
+                            <p class="hobby-text" data-i18n="hobby1Text">
                                 Nhiếp ảnh là cách tôi khám phá và ghi lại vẻ đẹp cuộc sống. 
                                 Tôi yêu thích chụp ảnh đường phố, phong cảnh và kiến trúc đô thị — 
                                 rèn luyện tư duy thẩm mỹ hữu ích cho thiết kế giao diện.
                             </p>
                         </div>
                         <div class="card-tags-list">
-                            <span class="card-tag-pill active"><i class="fas fa-street-view"></i> Street</span>
-                            <span class="card-tag-pill active"><i class="fas fa-mountain"></i> Phong cảnh</span>
-                            <span class="card-tag-pill active"><i class="fas fa-sun"></i> Golden Hour</span>
+                            <span class="card-tag-pill active"><i class="fas fa-street-view"></i> <span data-i18n="hobby1Tag1">Street</span></span>
+                            <span class="card-tag-pill active"><i class="fas fa-mountain"></i> <span data-i18n="hobby1Tag2">Phong cảnh</span></span>
+                            <span class="card-tag-pill active"><i class="fas fa-sun"></i> <span data-i18n="hobby1Tag3">Golden Hour</span></span>
                         </div>
                     </div>
 
@@ -1058,17 +1064,17 @@
                             <span class="hobby-mini-tag music-tag"><i class="fas fa-headphones"></i> Sound & Flow</span>
                         </div>
                         <div class="hobby-body">
-                            <h4 class="hobby-title">Âm nhạc</h4>
-                            <p class="hobby-text">
+                            <h4 class="hobby-title" data-i18n="hobby2Title">Âm nhạc</h4>
+                            <p class="hobby-text" data-i18n="hobby2Text">
                                 Âm nhạc là nguồn cảm hứng và năng lượng trong cuộc sống. 
                                 Tôi đam mê ca hát, yêu thích nhiều thể loại từ Ballad, 
                                 acoustic đến pop. Âm nhạc giúp tôi cân bằng và sáng tạo hơn.
                             </p>
                         </div>
                         <div class="card-tags-list">
-                            <span class="card-tag-pill purple"><i class="fas fa-microphone-alt"></i> Ca hát</span>
-                            <span class="card-tag-pill purple"><i class="fas fa-headphones"></i> Acoustic</span>
-                            <span class="card-tag-pill purple"><i class="fas fa-music"></i> Pop</span>
+                            <span class="card-tag-pill purple"><i class="fas fa-microphone-alt"></i> <span data-i18n="hobby2Tag1">Ca hát</span></span>
+                            <span class="card-tag-pill purple"><i class="fas fa-headphones"></i> <span data-i18n="hobby2Tag2">Acoustic</span></span>
+                            <span class="card-tag-pill purple"><i class="fas fa-music"></i> <span data-i18n="hobby2Tag3">Pop</span></span>
                         </div>
                     </div>
 
@@ -1081,17 +1087,17 @@
                             <span class="hobby-mini-tag travel-tag"><i class="fas fa-compass"></i> Explore</span>
                         </div>
                         <div class="hobby-body">
-                            <h4 class="hobby-title">Phượt & Khám phá</h4>
-                            <p class="hobby-text">
+                            <h4 class="hobby-title" data-i18n="hobby3Title">Phượt & Khám phá</h4>
+                            <p class="hobby-text" data-i18n="hobby3Text">
                                 Những chuyến đi phượt mang đến cho tôi trải nghiệm khám phá vùng đất mới, 
                                 con người mới. Cảm giác tự do trên những cung đường dài giúp tôi 
                                 rèn luyện sự kiên trì và mở rộng tầm nhìn.
                             </p>
                         </div>
                         <div class="card-tags-list">
-                            <span class="card-tag-pill green"><i class="fas fa-road"></i> Cung đường</span>
-                            <span class="card-tag-pill green"><i class="fas fa-campground"></i> Cắm trại</span>
-                            <span class="card-tag-pill green"><i class="fas fa-compass"></i> Khám phá</span>
+                            <span class="card-tag-pill green"><i class="fas fa-road"></i> <span data-i18n="hobby3Tag1">Cung đường</span></span>
+                            <span class="card-tag-pill green"><i class="fas fa-campground"></i> <span data-i18n="hobby3Tag2">Cắm trại</span></span>
+                            <span class="card-tag-pill green"><i class="fas fa-compass"></i> <span data-i18n="hobby3Tag3">Khám phá</span></span>
                         </div>
                     </div>
 
@@ -1101,9 +1107,9 @@
                 <div class="photography-showcase-panel glass-panel reveal-on-scroll">
                     <div class="gallery-header-row">
                         <div>
-                            <span class="gallery-kicker"><i class="fas fa-images"></i> Ống kính cá nhân</span>
-                            <h4 class="gallery-title">Bộ sưu tập ảnh chụp của Đỗ Trung Kiên</h4>
-                            <p class="gallery-subtitle">Click vào bất kỳ ảnh nào để xem toàn màn hình (Phóng to sắc nét)</p>
+                            <span class="gallery-kicker"><i class="fas fa-images"></i> <span data-i18n="galleryKicker">Ống kính cá nhân</span></span>
+                            <h4 class="gallery-title" data-i18n="galleryTitle">Bộ sưu tập ảnh chụp của Đỗ Trung Kiên</h4>
+                            <p class="gallery-subtitle" data-i18n="gallerySubtitle">Click vào bất kỳ ảnh nào để xem toàn màn hình (Phóng to sắc nét)</p>
                         </div>
                         
                         <!-- Slideshow Arrow Controls -->
@@ -1126,7 +1132,7 @@
                                 <img src="../images/kien/photo1.jpg" alt="Ảnh chụp sản phẩm 1 - Đỗ Trung Kiên" class="slide-img">
                                 <div class="slide-caption-bar">
                                     <span class="cap-title">Khoảnh khắc 01</span>
-                                    <span class="cap-zoom"><i class="fas fa-search-plus"></i> Nhấn để phóng to</span>
+                                    <span class="cap-zoom"><i class="fas fa-search-plus"></i> <span data-i18n="zoomHint">Nhấn để phóng to</span></span>
                                 </div>
                             </div>
 
@@ -1135,7 +1141,7 @@
                                 <img src="../images/kien/photo2.JPG" alt="Ảnh chụp sản phẩm 2 - Đỗ Trung Kiên" class="slide-img">
                                 <div class="slide-caption-bar">
                                     <span class="cap-title">Khoảnh khắc 02</span>
-                                    <span class="cap-zoom"><i class="fas fa-search-plus"></i> Nhấn để phóng to</span>
+                                    <span class="cap-zoom"><i class="fas fa-search-plus"></i> <span data-i18n="zoomHint">Nhấn để phóng to</span></span>
                                 </div>
                             </div>
 
@@ -1144,7 +1150,7 @@
                                 <img src="../images/kien/photo3.jpg" alt="Ảnh chụp sản phẩm 3 - Đỗ Trung Kiên" class="slide-img">
                                 <div class="slide-caption-bar">
                                     <span class="cap-title">Khoảnh khắc 03</span>
-                                    <span class="cap-zoom"><i class="fas fa-search-plus"></i> Nhấn để phóng to</span>
+                                    <span class="cap-zoom"><i class="fas fa-search-plus"></i> <span data-i18n="zoomHint">Nhấn để phóng to</span></span>
                                 </div>
                             </div>
 
@@ -1153,7 +1159,7 @@
                                 <img src="../images/kien/photo4.JPG" alt="Ảnh chụp sản phẩm 4 - Đỗ Trung Kiên" class="slide-img">
                                 <div class="slide-caption-bar">
                                     <span class="cap-title">Khoảnh khắc 04</span>
-                                    <span class="cap-zoom"><i class="fas fa-search-plus"></i> Nhấn để phóng to</span>
+                                    <span class="cap-zoom"><i class="fas fa-search-plus"></i> <span data-i18n="zoomHint">Nhấn để phóng to</span></span>
                                 </div>
                             </div>
 
@@ -1162,7 +1168,7 @@
                                 <img src="../images/kien/photo5.JPG" alt="Ảnh chụp sản phẩm 5 - Đỗ Trung Kiên" class="slide-img">
                                 <div class="slide-caption-bar">
                                     <span class="cap-title">Khoảnh khắc 05</span>
-                                    <span class="cap-zoom"><i class="fas fa-search-plus"></i> Nhấn để phóng to</span>
+                                    <span class="cap-zoom"><i class="fas fa-search-plus"></i> <span data-i18n="zoomHint">Nhấn để phóng to</span></span>
                                 </div>
                             </div>
 
@@ -1171,7 +1177,7 @@
                                 <img src="../images/kien/photo6.JPG" alt="Ảnh chụp sản phẩm 6 - Đỗ Trung Kiên" class="slide-img">
                                 <div class="slide-caption-bar">
                                     <span class="cap-title">Khoảnh khắc 06</span>
-                                    <span class="cap-zoom"><i class="fas fa-search-plus"></i> Nhấn để phóng to</span>
+                                    <span class="cap-zoom"><i class="fas fa-search-plus"></i> <span data-i18n="zoomHint">Nhấn để phóng to</span></span>
                                 </div>
                             </div>
 
@@ -1180,7 +1186,7 @@
                                 <img src="../images/kien/photo7.png" alt="Ảnh chụp sản phẩm 7 - Đỗ Trung Kiên" class="slide-img">
                                 <div class="slide-caption-bar">
                                     <span class="cap-title">Khoảnh khắc 07</span>
-                                    <span class="cap-zoom"><i class="fas fa-search-plus"></i> Nhấn để phóng to</span>
+                                    <span class="cap-zoom"><i class="fas fa-search-plus"></i> <span data-i18n="zoomHint">Nhấn để phóng to</span></span>
                                 </div>
                             </div>
                         </div>
@@ -1227,9 +1233,9 @@
             <!-- ===== SECTION 7: CONTACT (LIÊN HỆ TRỰC TIẾP) ===== -->
             <section class="section-block" id="contact">
                 <div class="section-header-editorial reveal-on-scroll">
-                    <div class="header-chapter">PHẦN VII</div>
-                    <h3 class="header-title">Liên hệ với tôi</h3>
-                    <p class="header-caption">Kết nối trao đổi học thuật, đóng góp dự án hoặc cơ hội thực tập</p>
+                    <div class="header-chapter" data-i18n="contactChapter">PHẦN VII</div>
+                    <h3 class="header-title" data-i18n="contactTitle">Liên hệ với tôi</h3>
+                    <p class="header-caption" data-i18n="contactCaption">Kết nối trao đổi học thuật, đóng góp dự án hoặc cơ hội thực tập</p>
                     <div class="header-hairline"></div>
                 </div>
 
@@ -1238,8 +1244,8 @@
                     <!-- Left: Contact Details Cards -->
                     <div class="contact-info-cards reveal-on-scroll">
                         <div class="contact-intro-box glass-panel">
-                            <h4 class="intro-box-title">Thông tin liên lạc</h4>
-                            <p class="intro-box-desc">
+                            <h4 class="intro-box-title" data-i18n="contactInfoTitle">Thông tin liên lạc</h4>
+                            <p class="intro-box-desc" data-i18n="contactInfoDesc">
                                 Nếu bạn có bất kỳ câu hỏi, đề xuất hợp tác hay muốn kết nối, đừng ngần ngại gửi tin nhắn hoặc liên lạc trực tiếp qua các kênh dưới đây.
                             </p>
 
@@ -1248,7 +1254,7 @@
                                 <div class="contact-channel-item">
                                     <div class="channel-icon"><i class="fas fa-envelope"></i></div>
                                     <div class="channel-details">
-                                        <span class="channel-label">Hòm thư điện tử (Email)</span>
+                                        <span class="channel-label" data-i18n="channelEmailLabel">Hòm thư điện tử (Email)</span>
                                         <a href="mailto:dotrungkien1914@gmail.com" class="channel-value">dotrungkien1914@gmail.com</a>
                                     </div>
                                     <button class="channel-copy-btn" data-copy="dotrungkien1914@gmail.com" title="Sao chép email">
@@ -1259,7 +1265,7 @@
                                 <div class="contact-channel-item">
                                     <div class="channel-icon"><i class="fas fa-phone-alt"></i></div>
                                     <div class="channel-details">
-                                        <span class="channel-label">Số điện thoại di động</span>
+                                        <span class="channel-label" data-i18n="channelPhoneLabel">Số điện thoại di động</span>
                                         <a href="tel:0964862711" class="channel-value font-mono">0964 862 711</a>
                                     </div>
                                     <button class="channel-copy-btn" data-copy="0964862711" title="Sao chép số điện thoại">
@@ -1270,15 +1276,15 @@
                                 <div class="contact-channel-item">
                                     <div class="channel-icon"><i class="fas fa-map-marker-alt"></i></div>
                                     <div class="channel-details">
-                                        <span class="channel-label">Địa chỉ</span>
-                                        <span class="channel-value">TP. Hồ Chí Minh, Việt Nam</span>
+                                        <span class="channel-label" data-i18n="channelAddressLabel">Địa chỉ</span>
+                                        <span class="channel-value" data-i18n="channelAddressVal">TP. Hồ Chí Minh, Việt Nam</span>
                                     </div>
                                 </div>
 
                                 <div class="contact-channel-item">
                                     <div class="channel-icon"><i class="fas fa-university"></i></div>
                                     <div class="channel-details">
-                                        <span class="channel-label">Cơ sở đào tạo</span>
+                                        <span class="channel-label" data-i18n="channelUniLabel">Cơ sở đào tạo</span>
                                         <span class="channel-value">Đại học Giao thông Vận tải TP.HCM (UTH)</span>
                                     </div>
                                 </div>
@@ -1287,7 +1293,7 @@
 
                             <div class="office-hours-plate">
                                 <i class="fas fa-clock"></i>
-                                <span>Thời gian phản hồi thông thường: Trong vòng 24 giờ</span>
+                                <span data-i18n="officeHours">Thời gian phản hồi thông thường: Trong vòng 24 giờ</span>
                             </div>
                         </div>
                     </div>
@@ -1295,19 +1301,19 @@
                     <!-- Right: Modern Contact Form -->
                     <div class="contact-form-column reveal-on-scroll">
                         <div class="contact-form-panel glass-panel">
-                            <h4 class="form-panel-title">Gửi tin nhắn trực tiếp</h4>
-                            <p class="form-panel-subtitle">Điền thông tin vào mẫu bên dưới, tôi sẽ liên hệ lại sớm nhất.</p>
+                            <h4 class="form-panel-title" data-i18n="formTitle">Gửi tin nhắn trực tiếp</h4>
+                            <p class="form-panel-subtitle" data-i18n="formSubtitle">Điền thông tin vào mẫu bên dưới, tôi sẽ liên hệ lại sớm nhất.</p>
 
                             <form class="editorial-contact-form" id="contactForm" novalidate>
                                 <div class="form-row-2">
                                     <!-- Name Field -->
                                     <div class="form-group-editorial">
                                         <label for="formName" class="form-label">
-                                            Họ và tên <span class="req">*</span>
+                                            <span data-i18n="formLabelName">Họ và tên</span> <span class="req">*</span>
                                         </label>
                                         <div class="input-container">
                                             <i class="fas fa-user input-icon"></i>
-                                            <input type="text" id="formName" class="form-input" placeholder="Ví dụ: Nguyễn Văn A" required>
+                                            <input type="text" id="formName" class="form-input" placeholder="Ví dụ: Nguyễn Văn A" data-i18n-placeholder="formPlaceholderName" required>
                                         </div>
                                         <span class="error-msg" id="nameError"></span>
                                     </div>
@@ -1315,7 +1321,7 @@
                                     <!-- Email Field -->
                                     <div class="form-group-editorial">
                                         <label for="formEmail" class="form-label">
-                                            Địa chỉ Email <span class="req">*</span>
+                                            <span data-i18n="formLabelEmail">Địa chỉ Email</span> <span class="req">*</span>
                                         </label>
                                         <div class="input-container">
                                             <i class="fas fa-envelope input-icon"></i>
@@ -1327,21 +1333,21 @@
 
                                 <!-- Subject Field -->
                                 <div class="form-group-editorial">
-                                    <label for="formSubject" class="form-label">Chủ đề tin nhắn</label>
+                                    <label for="formSubject" class="form-label" data-i18n="formLabelSubject">Chủ đề tin nhắn</label>
                                     <div class="input-container">
                                         <i class="fas fa-tag input-icon"></i>
-                                        <input type="text" id="formSubject" class="form-input" placeholder="Chủ đề cần trao đổi hoặc cơ hội hợp tác">
+                                        <input type="text" id="formSubject" class="form-input" placeholder="Chủ đề cần trao đổi hoặc cơ hội hợp tác" data-i18n-placeholder="formPlaceholderSubject">
                                     </div>
                                 </div>
 
                                 <!-- Message Field -->
                                 <div class="form-group-editorial">
                                     <label for="formMessage" class="form-label">
-                                        Nội dung tin nhắn <span class="req">*</span>
+                                        <span data-i18n="formLabelMsg">Nội dung tin nhắn</span> <span class="req">*</span>
                                     </label>
                                     <div class="input-container textarea-container">
                                         <i class="fas fa-comment-dots input-icon"></i>
-                                        <textarea id="formMessage" class="form-input form-textarea" rows="5" placeholder="Nhập nội dung tin nhắn chi tiết (tối thiểu 10 ký tự)..." required></textarea>
+                                        <textarea id="formMessage" class="form-input form-textarea" rows="5" placeholder="Nhập nội dung tin nhắn chi tiết (tối thiểu 10 ký tự)..." data-i18n-placeholder="formPlaceholderMsg" required></textarea>
                                     </div>
                                     <span class="error-msg" id="messageError"></span>
                                 </div>
@@ -1349,13 +1355,13 @@
                                 <!-- Submit Button -->
                                 <button type="submit" class="btn btn-primary submit-action-btn" id="formSubmit">
                                     <i class="fas fa-paper-plane"></i>
-                                    <span>Gửi tin nhắn đi</span>
+                                    <span data-i18n="formSubmitBtn">Gửi tin nhắn đi</span>
                                 </button>
 
                                 <!-- Success Feedback Alert -->
                                 <div class="form-alert-success" id="formSuccess" role="alert">
                                     <i class="fas fa-check-circle"></i>
-                                    <span>Tin nhắn đã được gửi thành công! Cảm ơn bạn đã liên hệ với tôi.</span>
+                                    <span data-i18n="formSuccessAlert">Tin nhắn đã được gửi thành công! Cảm ơn bạn đã liên hệ với tôi.</span>
                                 </div>
                             </form>
                         </div>
@@ -1372,34 +1378,34 @@
                             <span class="brand-monogram">TK</span>
                             <span class="footer-name">Đỗ Trung Kiên</span>
                         </a>
-                        <p class="footer-tagline">
+                        <p class="footer-tagline" data-i18n-html="footerTagline">
                             Sinh viên năm 3 ngành Công nghệ Thông tin<br>
                             Trường Đại học Giao thông Vận tải TP.HCM (UTH)
                         </p>
                     </div>
 
                     <div class="footer-links-col">
-                        <h5 class="col-title">Chuyển hướng nhanh</h5>
+                        <h5 class="col-title" data-i18n="footerNavColTitle">Chuyển hướng nhanh</h5>
                         <ul class="col-links-list">
-                            <li><a href="#about">Giới thiệu</a></li>
-                            <li><a href="#career">Mục tiêu</a></li>
-                            <li><a href="#skills">Kỹ năng</a></li>
-                            <li><a href="#education">Học vấn</a></li>
+                            <li><a href="#about" data-i18n="navAbout">Giới thiệu</a></li>
+                            <li><a href="#career" data-i18n="navCareer">Mục tiêu</a></li>
+                            <li><a href="#skills" data-i18n="navSkills">Kỹ năng</a></li>
+                            <li><a href="#education" data-i18n="navEducation">Học vấn</a></li>
                         </ul>
                     </div>
 
                     <div class="footer-links-col">
-                        <h5 class="col-title">Nội dung mở rộng</h5>
+                        <h5 class="col-title" data-i18n="footerMoreColTitle">Nội dung mở rộng</h5>
                         <ul class="col-links-list">
-                            <li><a href="#projects">Dự án cá nhân</a></li>
-                            <li><a href="#hobbies">Sở thích & Nhiếp ảnh</a></li>
-                            <li><a href="#contact">Liên hệ</a></li>
-                            <li><a href="../index.html">Trang chủ Nhóm 4</a></li>
+                            <li><a href="#projects" data-i18n="navProjects">Dự án cá nhân</a></li>
+                            <li><a href="#hobbies" data-i18n="navHobbies">Sở thích & Nhiếp ảnh</a></li>
+                            <li><a href="#contact" data-i18n="navContact">Liên hệ</a></li>
+                            <li><a href="../index.html" data-i18n="footerGroupLink">Trang chủ Nhóm 4</a></li>
                         </ul>
                     </div>
 
                     <div class="footer-social-col">
-                        <h5 class="col-title">Mạng xã hội</h5>
+                        <h5 class="col-title" data-i18n="footerSocialColTitle">Mạng xã hội</h5>
                         <div class="social-pills-row">
                             <a href="https://github.com/trungkien1914" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
                             <a href="https://www.facebook.com/tkend.249" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -1411,8 +1417,8 @@
                 <div class="footer-divider-hairline"></div>
 
                 <div class="footer-lower">
-                    <p class="copyright-text">&copy; 2024 Đỗ Trung Kiên. Tất cả các quyền được bảo lưu.</p>
-                    <p class="dev-credits">Thiết kế & phát triển cho Đồ án Giữa kỳ môn Lập trình Web · UTH</p>
+                    <p class="copyright-text" data-i18n="footerCopyright">&copy; 2024 Đỗ Trung Kiên. Tất cả các quyền được bảo lưu.</p>
+                    <p class="dev-credits" data-i18n="footerDevCredits">Thiết kế & phát triển cho Đồ án Giữa kỳ môn Lập trình Web · UTH</p>
                 </div>
             </footer>
 
@@ -1430,33 +1436,33 @@
                     <div class="modal-banner-icon" id="modalIcon"><i class="fas fa-folder-open"></i></div>
                 </div>
                 <div class="modal-editorial-content">
-                    <span class="modal-sub-badge" id="modalBadge">THÔNG TIN DỰ ÁN</span>
+                    <span class="modal-sub-badge" id="modalBadge" data-i18n="modalBadge">THÔNG TIN DỰ ÁN</span>
                     <h3 class="modal-project-title" id="modalTitle">Tiêu đề dự án</h3>
                     <p class="modal-project-desc" id="modalDescription">Mô tả tổng quát dự án...</p>
 
                     <div class="modal-details-block">
-                        <h5 class="block-heading"><i class="fas fa-star"></i> Tính năng nổi bật</h5>
+                        <h5 class="block-heading"><i class="fas fa-star"></i> <span data-i18n="modalFeatHeading">Tính năng nổi bật</span></h5>
                         <ul class="modal-features-list" id="modalFeatures"></ul>
                     </div>
 
                     <div class="modal-details-block">
-                        <h5 class="block-heading"><i class="fas fa-code"></i> Công nghệ & Thư viện sử dụng</h5>
+                        <h5 class="block-heading"><i class="fas fa-code"></i> <span data-i18n="modalTechHeading">Công nghệ & Thư viện sử dụng</span></h5>
                         <div class="modal-tech-chips" id="modalTech"></div>
                     </div>
 
                     <div class="modal-details-block">
-                        <h5 class="block-heading"><i class="fas fa-lightbulb"></i> Vai trò & Bài học tích lũy</h5>
+                        <h5 class="block-heading"><i class="fas fa-lightbulb"></i> <span data-i18n="modalRoleHeading">Vai trò & Bài học tích lũy</span></h5>
                         <p class="modal-role-narrative" id="modalRole"></p>
                     </div>
 
                     <div class="modal-actions-footer">
                         <a href="#" class="btn btn-primary" id="modalDemo" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-external-link-alt"></i>
-                            <span>Xem Live Demo</span>
+                            <span data-i18n="modalBtnDemo">Xem Live Demo</span>
                         </a>
                         <a href="#" class="btn btn-outline" id="modalSource" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-github"></i>
-                            <span>Xem Source Code</span>
+                            <span data-i18n="modalBtnSource">Xem Source Code</span>
                         </a>
                     </div>
                 </div>
